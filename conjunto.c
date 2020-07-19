@@ -73,7 +73,7 @@ void mostrar_conjunto(Conjunto muestro) {
   printf("\nAlias : -%s-\n", muestro->alias);
   printf("Lista solitarios :\n");
   for (; muestro->lista != NULL; muestro->lista = muestro->lista->next) {
-    printf("- %i -", muestro->lista->data);
+    printf("- %i -", *((int*)muestro->lista->data));
   }
   printf("\nLista intervalos :\n");
   for (; muestro->intervaloLista != NULL; muestro->intervaloLista = muestro->intervaloLista->next) {
@@ -93,7 +93,7 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
   GList bufferIntervaloLista = muestro->intervaloLista;
   printf("\n");
   for (; muestro->lista != NULL;muestro->lista = muestro->lista->next) {
-    printf("%i", muestro->lista->data);
+    printf("%i", *((int*)muestro->lista->data));
     if (muestro->lista->next != NULL) {
       printf(",");
     }
@@ -114,3 +114,4 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
   muestro->intervaloLista = bufferIntervaloLista;
   }
 }
+
