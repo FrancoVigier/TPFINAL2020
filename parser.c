@@ -43,8 +43,9 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   if (fraccion != NULL) { //fraccion = "10" i.e
     while (fraccion != NULL) {// Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
       int numConjunto =  numero_char_a_int(fraccion);
-      int* numConj = (int*)numConjunto;
-      conjunto->lista = prepend_glist(conjunto->lista, numConj);
+      int* numConju = malloc(sizeof(int));
+      *numConju = numConjunto;
+      conjunto->lista = prepend_glist(conjunto->lista, numConju);
       fraccion = strtok(NULL, separadorInicial);
     }
   }
