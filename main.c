@@ -69,7 +69,7 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   }
   for (; primeroBufferLista != NULL;) {
     Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
-    int extremos = (int)primeroBufferLista->data;
+    int extremos = *((int*)primeroBufferLista->data);
     printf("numero libre -%i-\n", extremos);
     numero_solo->inicio = extremos;
     numero_solo->ultimo = extremos;
@@ -81,7 +81,7 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   }
   for (; segundoBufferLista != NULL;) {
     Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
-    int extremos = (int)segundoBufferLista->data;
+    int extremos = *((int*)segundoBufferLista->data);
     numero_solo->inicio = extremos;
     numero_solo->ultimo = extremos;
     numero_solo->cardinalidad = 1;
@@ -110,7 +110,7 @@ GList aplanar_lista(Conjunto primero) {
   aux = glist_copiar_lista(primero->lista);
   for (; aux!= NULL;) {
     Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
-    int extremos = (int)aux->data;
+    int extremos = *((int*)aux->data);
     printf("numero libre -%i-\n", extremos);
     numero_solo->inicio = extremos;
     numero_solo->ultimo = extremos;
@@ -250,7 +250,7 @@ GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
 
 void mostrar(GList lista) {
   for (; lista != NULL; lista = lista->next) {
-    int num = (int)lista->data;
+    int num = *((int*)lista->data);
     printf("- %i -\n", num);
   }
 }
