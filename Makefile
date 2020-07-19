@@ -1,10 +1,10 @@
 all: main
 
 main: main.c LSE.o conjunto.o hash.o intervalo.o pila.o parser.o
-	gcc  -std=c99 -o main main.c LSE.o conjunto.o hash.o intervalo.o pila.o parser.o -lm
+  gcc  -std=c99 -o main main.c LSE.o conjunto.o hash.o intervalo.o pila.o parser.o -lm
 
 hash.o: hash.c hash.h LSE.o conjunto.o
-	gcc -c -Wall -Wextra -Werror -std=c99 hash.c
+  gcc -c -Wall -Wextra -Werror -std=c99 hash.c
 
 pila.o: pila.c pila.h LSE.o
   gcc -c -Wall -Wextra -Werror -std=c99 pila.c
