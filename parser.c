@@ -41,9 +41,10 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   separadorInicial[0] = ',';
   fraccion = strtok(numeros, separadorInicial);
   if (fraccion != NULL) { //fraccion = "10" i.e
-    while (fraccion != NULL) {// Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// SÃ³lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       int numConjunto =  numero_char_a_int(fraccion);
-      conjunto->lista = prepend_glist(conjunto->lista, (int*)numConjunto);
+      int* numConj = (int*)numConjunto;
+      conjunto->lista = prepend_glist(conjunto->lista, numConj);
       fraccion = strtok(NULL, separadorInicial);
     }
   }
@@ -56,7 +57,7 @@ char* parsear_comando_y_operacion(char* comando, char* operacion) {
   int diferencia = 0;
   char separadorDiferencial[] = "\0";
   if (fraccion != NULL) {
-    while (fraccion != NULL) {// Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// SÃ³lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       fraccion[strlen(fraccion) - 1] = '\0';
       if (diferencia == 0) {
         comando = fraccion;
