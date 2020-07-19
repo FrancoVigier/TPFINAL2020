@@ -8,6 +8,7 @@ hash.o: hash.c hash.h LSE.o conjunto.o
 
 pila.o: pila.c pila.h LSE.o
   gcc -c -Wall -Wextra -Werror -std=c99 pila.c
+  
 parser.o: parser.c parser.h LSE.o
   gcc -c -Wall -Wextra -Werror -std=c99 parser.c 
 
