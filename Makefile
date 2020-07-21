@@ -57,5 +57,8 @@ compilados/.obj/parser:
 compilados/.obj/pila:
 	mkdir -p $@	
 
+compilados/.obj:
+	mkdir -p $@
+
 clean:
 	-rm -rf compilados
