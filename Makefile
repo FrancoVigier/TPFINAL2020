@@ -49,7 +49,7 @@ compilados/.obj/hash:
 	mkdir -p $@
 	
 compilados/.obj/intervalo:
-	mkdir -o $@
+	mkdir -p $@
 
 compilados/.obj/parser:
 	mkdir -p $@
