@@ -39,14 +39,23 @@ Interprete: compilados compilados/.obj compilados/.obj/LSE compilados/.obj/conju
 compilados:
 	mkdir -p $@
 
-compilados/.obj/avl:
+compilados/.obj/LSE:
 	mkdir -p $@
 
-compilados/.obj/trie:
+compilados/.obj/conjunto:
 	mkdir -p $@
 
-compilados/.obj:
+compilados/.obj/hash:
 	mkdir -p $@
+	
+compilados/.obj/intervalo:
+	mkdir -o $@
+
+compilados/.obj/parser:
+	mkdir -p $@
+	
+compilados/.obj/pila:
+	mkdir -p $@	
 
 clean:
 	-rm -rf compilados
