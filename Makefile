@@ -1,25 +1,52 @@
-all: main
-
-main: main.c LSE.o conjunto.o hash.o intervalo.o pila.o parser.o
-	gcc  -std=c99 -o main main.c LSE.o conjunto.o hash.o intervalo.o pila.o parser.o -lm
-
-hash.o: hash.c hash.h LSE.o conjunto.o
-	gcc -c -Wall -Wextra -std=c99 hash.c
-
-pila.o: pila.c pila.h LSE.o
-	gcc -c -Wall -Wextra -std=c99 pila.c
   
-parser.o: parser.c parser.h LSE.o
-	gcc -c -Wall -Wextra -std=c99 parser.c 
+CC = gcc
+CFLAGS = -g -O3 -Wall -Wextra -std=c99
 
-LSE.o: LSE.c LSE.h conjunto.o intervalo.o
-	gcc -c -Wall -Wextra -std=c99 LSE.c
-  
-conjunto.o: conjunto.c conjunto.h intervalo.o parser.o
-	gcc -c -Wall -Wextra -std=c99 conjunto.c
+.PHONY: default_target all clean
 
-intervalo.o: intervalo.c intervalo.h parser.o
-	gcc -c -Wall -Wextra -std=c99 intervalo.c
-  
+default_target: Interprete
+all: default_target
+
+OBJECTS_LSE = $(patsubst %.c, compilados/.obj/%.o, $(wildcard LSE/*.c))
+HEADERS_LSE = $(wildcard LSE/*.h)
+
+OBJECTS_CONJUNTO = $(patsubst %.c, compilados/.obj/%.o, $(wildcard conjunto/*.c))
+HEADERS_CONJUNTO = $(wildcard conjunto/*.h)
+
+OBJECTS_HASH = $(patsubst %.c, compilados/.obj/%.o, $(wildcard hash/*.c))
+HEADERS_HASH = $(wildcard hash/*.h)
+
+OBJECTS_INTERVALO = $(patsubst %.c, compilados/.obj/%.o, $(wildcard intervalo/*.c))
+HEADERS_INTERVALO = $(wildcard intervalo/*.h)
+
+OBJECTS_PARSER = $(patsubst %.c, compilados/.obj/%.o, $(wildcard parser/*.c))
+HEADERS_PARSER = $(wildcard parser/*.h)
+
+OBJECTS_PILA = $(patsubst %.c, compilados/.obj/%.o, $(wildcard pila/*.c))
+HEADERS_PILA = $(wildcard pila/*.h)
+
+OBJECTS_INTERPRETE = $(patsubst %.c, compilados/.obj/%.o, $(wildcard *.c))
+HEADERS_INTERPRETE = $(wildcard *.h)
+
+compilados/.obj/%.o: %.c $(HEADERS_LSE) $(HEADERS_CONJUNTO) $(HEADERS_HASH) $(HEADERS_INTERVALO) $(HEADERS_PARSER) $(HEADERS_PILA)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PRECIOUS: Interprete $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA)
+
+Interprete: compilados compilados/.obj compilados/.obj/LSE compilados/.obj/conjunto compilados/.obj/hash compilados/.obj/intervalo compilados/.obj/parser compilados/.obj/pila $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_INTERPRETE)
+	$(CC) $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_INTERPRETE) $(CFLAGS) -o compilados/$@
+
+compilados:
+	mkdir -p $@
+
+compilados/.obj/avl:
+	mkdir -p $@
+
+compilados/.obj/trie:
+	mkdir -p $@
+
+compilados/.obj:
+	mkdir -p $@
+
 clean:
-	rm -f *.o main main.exe
+	-rm -rf compilados
