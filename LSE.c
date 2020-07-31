@@ -104,19 +104,20 @@ struct _GNodo* glist_copiar_lista(struct _GNodo* head) {
   struct _GNodo* tail = NULL;	// point to last node in new list
   while (current != NULL) {// special case for the first new Node
     if (newList == NULL) {
-      newList = (struct _GNodo*)malloc(sizeof(struct _GNodo));
+      newList = alloc_gnodo();
       newList->data = current->data;
       newList->next = NULL;
       tail = newList;
     } else {
-      tail->next = (struct _GNodo*)malloc(sizeof(struct _GNodo));
+      tail->next = alloc_gnodo();
       tail = tail->next;
       tail->data = current->data;
       tail->next = NULL;
     }
     current = current->next;
-  }
-  return newList;
+	}
+
+	return newList;
 }
 
 struct _GNodo* eliminar_glist_char(struct _GNodo* lista, char* dato) {
