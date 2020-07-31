@@ -9,5 +9,5 @@ typedef struct _Intervalo {
 } Intervalo;
 
 Intervalo* extraer_ini_y_fin(char* operacion);
-
+void free_intervalo (Intervalo* interval, void* aux);
 #endif // INTERVALO_H_INCLUDED
