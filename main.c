@@ -356,7 +356,7 @@ int main() {
 
             GList buff = uni;
             mostrar_intervalo(buff);
-
+            dlist_destruir(uni,(Visitante)free_intervalo);
         interprete = 1;
 
         break;
