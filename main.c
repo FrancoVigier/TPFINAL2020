@@ -364,8 +364,6 @@ int main() {
             GList buff = uni;
             mostrar_intervalo(buff);
         
-            destruir_conjunto(D, NULL);
-            destruir_conjunto(C, NULL);
             dlist_destruir(uni, (Visitante) free_intervalo);
         
         interprete = 1;
