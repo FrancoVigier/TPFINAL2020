@@ -80,14 +80,14 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     primeroBufferLista = primeroBufferLista->next;
   }
   for (; segundoBufferLista != NULL;) {
-    Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
+    Intervalo* numero_solo_sl = malloc(sizeof(struct _Intervalo));
     int extremos = *((int*)segundoBufferLista->data);
-    numero_solo->inicio = extremos;
-    numero_solo->ultimo = extremos;
-    numero_solo->cardinalidad = 1;
-    numero_solo->esVacio = 0;
-    printf("APLANAR2[%i,%i]-", numero_solo->inicio, numero_solo->ultimo);
-    listaAplanada = prepend_glist(listaAplanada, numero_solo);
+    numero_solo_sl->inicio = extremos;
+    numero_solo_sl->ultimo = extremos;
+    numero_solo_sl->cardinalidad = 1;
+    numero_solo_sl->esVacio = 0;
+    printf("APLANAR2[%i,%i]-", numero_solo_sl->inicio, numero_solo_sl->ultimo);
+    listaAplanada = prepend_glist(listaAplanada, numero_solo_sl);
     segundoBufferLista = segundoBufferLista->next;
   }
   for (; segundoBufferIntervalo != NULL;) {
@@ -351,7 +351,7 @@ int main() {
             GList uni = malloc(sizeof(struct _GNodo));
             uni=aplanar_solos_e_intervalos(C,D);
 
-            mostrar_glist(uni);
+            mostrar_intervalo(uni);
         interprete = 1;
 
         break;
