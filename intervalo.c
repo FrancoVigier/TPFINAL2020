@@ -47,3 +47,7 @@ Intervalo* extraer_ini_y_fin(char* operacion) {
   }
   return intervalo;
 }
+
+void free_intervalo (Intervalo* interval, void* aux){
+  free(interval);
+}
