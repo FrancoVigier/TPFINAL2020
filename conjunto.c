@@ -115,3 +115,11 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
   }
 }
 
+void destruir_conjunto(Conjunto conjunto, void* aux){
+  free(conjunto->alias);
+  dlist_destruir(conjunto->lista,NULL);
+  dlist_destruir(conjunto->intervaloLista,NULL);
+  free(conjunto);
+}
+
+
