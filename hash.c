@@ -123,6 +123,7 @@ void free_table(struct _GNodo*** table) {
     for (int j = 0; j < 41; j++){
       dlist_destruir(table[i][j],(Visitante) destruir_conjunto);
     }
+  free(table[i]);
   }
   free(table);
 }
