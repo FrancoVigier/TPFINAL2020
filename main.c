@@ -62,13 +62,10 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   primeroBufferLista = glist_copiar_lista(recursaPrimero->lista);
   segundoBufferIntervalo = glist_copiar_lista(recursaSegundo->intervaloLista);
   segundoBufferLista = glist_copiar_lista(recursaSegundo->lista);
-  
-  GList segBuffLis = segundoBufferLista;
-  GList priBuffLis = primeroBufferLista;
-  
+
   for (; primeroBufferIntervalo != NULL;) {
     Intervalo* mostrar = primeroBufferIntervalo->data;
-    printf("APLANAR[%i,%i]-", mostrar->inicio,mostrar->ultimo);
+    printf("APLANAR3[%i,%i]-", mostrar->inicio,mostrar->ultimo);
     listaAplanada = prepend_glist(listaAplanada, primeroBufferIntervalo->data);
     primeroBufferIntervalo = primeroBufferIntervalo->next;
   }
@@ -83,7 +80,6 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     printf("APLANAR1[%i,%i]-", numero_solo->inicio, numero_solo->ultimo);
     listaAplanada = prepend_glist(listaAplanada, numero_solo);
     primeroBufferLista = primeroBufferLista->next;
-
   }
   for (; segundoBufferLista != NULL;) {
     Intervalo* numero_solo_sl = malloc(sizeof(struct _Intervalo));
@@ -106,13 +102,7 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     return NULL;
   }
   listaAplanada = conjunto_union(listaAplanada);
-  
-  segundoBufferLista = segBuffLis;
-  primeroBufferLista = priBuffLis;
-  
-  dlist_destruir(primeroBufferLista, (Visitante) free_int_punt);
-  dlist_destruir(segundoBufferLista, (Visitante) free_int_punt);
-  
+
   return listaAplanada;
 }
 
@@ -366,7 +356,7 @@ int main() {
 
             GList buff = uni;
             mostrar_intervalo(buff);
-        
+
         interprete = 1;
 
         break;
