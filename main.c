@@ -357,7 +357,6 @@ int main() {
             destruir_conjunto(D, NULL);
             destruir_conjunto(C, NULL);
             dlist_destruir(uni, (Visitante) free_intervalo);
-        dlist_destruir(uni, NULL);
         
         interprete = 1;
 
