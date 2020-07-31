@@ -62,6 +62,10 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   primeroBufferLista = glist_copiar_lista(recursaPrimero->lista);
   segundoBufferIntervalo = glist_copiar_lista(recursaSegundo->intervaloLista);
   segundoBufferLista = glist_copiar_lista(recursaSegundo->lista);
+  
+  GList segBuffLis = segundoBufferLista;
+  GList priBuffLis = primeroBufferLista;
+  
   for (; primeroBufferIntervalo != NULL;) {
     Intervalo* mostrar = primeroBufferIntervalo->data;
     printf("APLANAR[%i,%i]-", mostrar->inicio,mostrar->ultimo);
@@ -102,6 +106,10 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     return NULL;
   }
   listaAplanada = conjunto_union(listaAplanada);
+  
+  dlist_destruir(priBuffLis, (Visitante) free_int_punt);
+  dlist_destruir(segBuffLis, (Visitante) free_int_punt);
+  
   return listaAplanada;
 }
 
