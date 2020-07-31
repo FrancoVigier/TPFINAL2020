@@ -289,11 +289,16 @@ int main() {
   while (interprete == 0) {
     char* alias = malloc(LIMITE * sizeof(char));
     char* operacion = malloc(LIMITE * sizeof(char));
-    fgets(alias, LIMITE, stdin);
-    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
-    int instruccion = comando_int(operacion, alias);
+ ///   fgets(alias, LIMITE, stdin);
+ ///   operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
+ ///   int instruccion = comando_int(operacion, alias);
+
+    int instruccion = 1;
+
     switch (instruccion) {
       case 1:
+
+        /*
         printf("extension");
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
@@ -301,6 +306,14 @@ int main() {
         Conjunto aux = hash_busco(HASH, operando->alias);
         mostrar_conjunto(aux);
         free (operando);
+        */
+        printf("extension");
+                 Conjunto I=malloc(sizeof(struct _Conjunto));
+            char ope7[]= " {1,2,5,8}";//1 2 5 7 9 13
+            char ali7[] ="pepe";
+            I = definir_conj_ext(ope7,ali7);
+            destruir_conjunto(I,NULL);
+        interprete = 1;
         break;
       case 2:
         printf("comprension");
@@ -401,5 +414,6 @@ int main() {
         break;
     }
   }
+  free_table(HASH);
   return 0;
 }
