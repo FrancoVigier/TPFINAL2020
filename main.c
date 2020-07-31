@@ -364,16 +364,6 @@ int main() {
             GList buff = uni;
             mostrar_intervalo(buff);
         
-            dlist_destruir(uni, (Visitante) free_intervalo);
-            dlist_destruir(D->lista, (Visitante) free_int_punt);
-            free(D->lista);
-            dlist_destruir(D->intervaloLista, (Visitante) free_intervalo);
-            free(D->intervaloLista);
-            free(D);
-            
-            dlist_destruir(C->lista, (Visitante) free_int_punt);
-            dlist_destruir(C->intervaloLista, (Visitante) free_intervalo);
-            free(C);
         interprete = 1;
 
         break;
