@@ -22,3 +22,8 @@ void* stack_top(Stack stack) {
     return NULL;
   return dnodo_dato(stack->primero);
 }
+
+void stack_destruir(Stack stack) {
+  dlist_destruir(stack->primero, (Visitante) free_intervalo);
+  free(stack);
+}
