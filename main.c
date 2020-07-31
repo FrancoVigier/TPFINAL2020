@@ -365,7 +365,8 @@ int main() {
             mostrar_intervalo(buff);
         
             dlist_destruir(uni, (Visitante) free_intervalo);
-        
+            destruir_conjunto(D, NULL);
+            destruir_conjunto(C, NULL);
         interprete = 1;
 
         break;
