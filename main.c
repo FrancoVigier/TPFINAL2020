@@ -365,8 +365,13 @@ int main() {
             mostrar_intervalo(buff);
         
             dlist_destruir(uni, (Visitante) free_intervalo);
-            destruir_conjunto(D, NULL);
-            destruir_conjunto(C, NULL);
+            dlist_destruir(D->lista, (Visitante) free_int_punt);
+            dlist_destruir(D->intervaloLista, (Visitante) free_intervalo);
+            free(D);
+            
+            dlist_destruir(C->lista, (Visitante) free_int_punt);
+            dlist_destruir(C->intervaloLista, (Visitante) free_intervalo);
+            free(C);
         interprete = 1;
 
         break;
