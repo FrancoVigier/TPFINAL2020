@@ -46,6 +46,7 @@ GList conjunto_union(GList intervalos) { /// [...],[...] UNION
     printf("[%i,%i]-", intervaloUnion->inicio, intervaloUnion->ultimo);
     stack_pop(pila);
   }
+  stack_destruir(pila);
   return listaUnion;
 }
 
