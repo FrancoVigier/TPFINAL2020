@@ -353,7 +353,8 @@ int main() {
             GList uni = malloc(sizeof(struct _GNodo));
             uni=aplanar_solos_e_intervalos(C,D);
 
-            mostrar_intervalo(uni);
+            GList buff = uni;
+            mostrar_intervalo(buff);
         
             destruir_conjunto(D, NULL);
             destruir_conjunto(C, NULL);
