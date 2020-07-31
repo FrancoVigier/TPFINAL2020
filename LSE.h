@@ -21,6 +21,9 @@ typedef struct _Conjunto {
   int vacio;
 }* Conjunto;
 
+typedef void (*Visitante) (void *, void*);
+
+
 GList initialization_glist();
 GList alloc_gnodo();
 GList prepend_glist(GList lista, void* data);
@@ -38,4 +41,6 @@ struct _GNodo* eliminar_glist(struct _GNodo* lista, Conjunto dato);
 struct _GNodo* buscar(struct _GNodo* lista, Conjunto pala);
 GList pisa_data_glist_nopos(GList lista, Conjunto data);
 int esta_data_glist(GList lista, Conjunto data);
+void dlist_destruir(GList lista, Visitante liberar);
 #endif // LSE_H_INCLUDED
+
