@@ -289,11 +289,11 @@ int main() {
   while (interprete == 0) {
     char* alias = malloc(LIMITE * sizeof(char));
     char* operacion = malloc(LIMITE * sizeof(char));
- ///   fgets(alias, LIMITE, stdin);
- ///   operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
- ///   int instruccion = comando_int(operacion, alias);
+///    fgets(alias, LIMITE, stdin);
+///    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
+///    int instruccion = comando_int(operacion, alias);
 
-    int instruccion = 2;
+    int instruccion = 3;
 
     switch (instruccion) {
       case 1:
@@ -308,7 +308,7 @@ int main() {
 
         break;
       case 2:
-        /*
+
         printf("comprension");
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
@@ -316,17 +316,10 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         free (operandoB);
-        */
-               printf("extension");
-                 Conjunto I=malloc(sizeof(struct _Conjunto));
-            char ope7[]= " {pepe : -100 <= pepe <= 100}";//1 2 5 7 9 13
-            char ali7[] ="pepe";
-            I = definir_conj_com(ope7,ali7);
-            mostrar_glist(I->lista);
-            destruir_conjunto(I,NULL);
-        interprete = 1;
+
         break;
       case 3:
+        /*
         printf("union");
         Operandos* operandoUnion = sacar_operando_union_inters(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoUnion->aliasOperandoA, operandoUnion->aliasOperandoB);//parsea a | b
@@ -343,6 +336,24 @@ int main() {
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
+        */
+        printf("union");
+            Conjunto C=malloc(sizeof(struct _Conjunto));
+            Conjunto D=malloc(sizeof(struct _Conjunto));
+            char ope[]= " {1,2,3,4,5,6}";
+            char ali[] ="pepe";
+            C = definir_conj_ext(ope,ali);
+
+            char ope2[]= " {1,5,1,6,8}";
+            char ali2[] ="pepe";
+            D = definir_conj_ext(ope2,ali2);
+
+            GList uni = malloc(sizeof(struct _GNodo));
+            uni=aplanar_solos_e_intervalos(C,D);
+
+            mostrar_glist(uni);
+        interprete = 1;
+
         break;
       case 4:
         printf("interseccion");
