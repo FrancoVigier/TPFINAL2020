@@ -206,3 +206,16 @@ int esta_data_glist(GList lista, Conjunto data) {
   }
   return 0;
 }
+
+void dlist_destruir(GList lista, Visitante liberar) {
+  GList proximo = lista;
+  GList actual;
+  for (; proximo != NULL;) {
+    // Guardo un puntero al nodo actual, me muevo al siguiente y libero.
+    actual = proximo;
+    proximo = proximo->next;
+    if (liberar != NULL)
+      liberar(actual->data, NULL);
+    free(actual);
+  }
+}
