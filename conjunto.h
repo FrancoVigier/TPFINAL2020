@@ -21,5 +21,5 @@ Conjunto definir_conj_com(char* operacion, char* alias);
 Conjunto definir_conj_ext(char* operacion, char* alias);
 void mostrar_conjunto(Conjunto muestro);
 void mostrar_conjunto_imprimir(Conjunto muestro);
-
+void destruir_conjunto(Conjunto conjunto, void* aux);
 #endif // CONJUNTO_H_INCLUDED
