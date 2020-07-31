@@ -115,8 +115,10 @@ struct _GNodo* glist_copiar_lista(struct _GNodo* head) {
       tail->next = NULL;
     }
     current = current->next;
-	}
-	return newList;
+  }
+  dlist_destruir(tail, NULL);
+  dlist_destruir(current, NULL);
+  return newList;
 }
 
 struct _GNodo* eliminar_glist_char(struct _GNodo* lista, char* dato) {
