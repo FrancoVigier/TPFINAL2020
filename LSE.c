@@ -116,8 +116,6 @@ struct _GNodo* glist_copiar_lista(struct _GNodo* head) {
     }
     current = current->next;
   }
-  dlist_destruir(tail, NULL);
-  dlist_destruir(current, NULL);
   return newList;
 }
 
