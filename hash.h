@@ -10,4 +10,5 @@ Conjunto hash_busco(struct _GNodo*** hash, char* alias);
 void hash_elimino(struct _GNodo*** hash, char* alias);
 struct _GNodo*** ingresar_conjunto(struct _GNodo*** hasheo, Conjunto pal);
 struct _GNodo*** eliminar_conjunto(struct _GNodo*** hasheo, Conjunto pal);
+void free_table(struct _GNodo*** table);
 #endif // HASH_H_INCLUDED
