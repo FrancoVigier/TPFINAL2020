@@ -366,7 +366,9 @@ int main() {
         
             dlist_destruir(uni, (Visitante) free_intervalo);
             dlist_destruir(D->lista, (Visitante) free_int_punt);
+            free(D->lista);
             dlist_destruir(D->intervaloLista, (Visitante) free_intervalo);
+            free(D->intervaloLista);
             free(D);
             
             dlist_destruir(C->lista, (Visitante) free_int_punt);
