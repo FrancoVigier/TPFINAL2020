@@ -18,31 +18,31 @@ struct _GNodo *** inicializar_HASH() {
 
 int codigo_ascii(char a) {
   switch(a) {
-    case 'ñ':
+    case 'Ã±':
       return 26;
     case ' ':
       return 27;
     case '-':
       return 28;
-    case '´':
+    case 'Â´':
       return 29;
     case '?':
       return 30;
-    case 'ü':
+    case 'Ã¼':
       return 31;
-    case 'è':
+    case 'Ã¨':
       return 32;
-    case 'î':
+    case 'Ã®':
       return 33;
-    case 'á':
+    case 'Ã¡':
       return 34;
-    case 'é':
+    case 'Ã©':
       return 35;
-    case 'í':
+    case 'Ã­':
       return 36;
-    case 'ó':
+    case 'Ã³':
       return 37;
-    case 'ú':
+    case 'Ãº':
       return 38;
     default:
       return a - 'a';
@@ -117,3 +117,13 @@ struct _GNodo*** eliminar_conjunto(struct _GNodo*** hasheo, Conjunto pal) {
   hasheo[keyUno][keyDos] = eliminar_glist (hasheo[keyUno][keyDos], pal);
   return hasheo;
 }
+
+void free_table(struct _GNodo*** table) {
+  for (int i = 0; i < 41; i++){
+    for (int j = 0; j < 41; j++){
+      dlist_destruir(table[i][j],(Visitante) destruir_conjunto);
+    }
+  }
+  free(table);
+}
+
