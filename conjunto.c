@@ -40,14 +40,8 @@ Conjunto extraer_com_conjunto(char* operacion, Conjunto conjunto) {
   conjunto->vacio = intervalo->esVacio;
   printf("\nINICIO -%i-\nFINAL -%i-\n", intervalo->inicio, intervalo->ultimo);
   if (conjunto->vacio == 0) {
-    Intervalo aux;
-    aux.esVacio = intervalo->esVacio;
-    aux.inicio = intervalo->inicio;
-    aux.ultimo = intervalo->ultimo;
-    aux.cardinalidad = intervalo->cardinalidad;
-    conjunto->intervaloLista = prepend_glist(conjunto->intervaloLista, &aux);
+    conjunto->intervaloLista = prepend_glist(conjunto->intervaloLista, intervalo);
   }
-  free(intervalo);
   return conjunto;
 }
 
@@ -124,8 +118,8 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
 void destruir_conjunto(Conjunto conjunto, void* aux){
   //free(conjunto->alias);
   dlist_destruir(conjunto->lista,NULL);
-  dlist_destruir(conjunto->intervaloLista,NULL);
+  dlist_destruir(conjunto->intervaloLista,(Visitante) free_intervalo);
+
   free(conjunto);
 }
-
 
