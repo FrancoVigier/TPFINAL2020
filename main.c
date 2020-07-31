@@ -293,12 +293,11 @@ int main() {
  ///   operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
  ///   int instruccion = comando_int(operacion, alias);
 
-    int instruccion = 1;
+    int instruccion = 2;
 
     switch (instruccion) {
       case 1:
 
-        /*
         printf("extension");
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
@@ -306,16 +305,10 @@ int main() {
         Conjunto aux = hash_busco(HASH, operando->alias);
         mostrar_conjunto(aux);
         free (operando);
-        */
-        printf("extension");
-                 Conjunto I=malloc(sizeof(struct _Conjunto));
-            char ope7[]= " {1,2,5,8}";//1 2 5 7 9 13
-            char ali7[] ="pepe";
-            I = definir_conj_ext(ope7,ali7);
-            destruir_conjunto(I,NULL);
-        interprete = 1;
+
         break;
       case 2:
+        /*
         printf("comprension");
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
@@ -323,6 +316,15 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         free (operandoB);
+        */
+               printf("extension");
+                 Conjunto I=malloc(sizeof(struct _Conjunto));
+            char ope7[]= " {pepe : -100 <= pepe <= 100}";//1 2 5 7 9 13
+            char ali7[] ="pepe";
+            I = definir_conj_com(ope7,ali7);
+            mostrar_glist(I->lista);
+            destruir_conjunto(I,NULL);
+        interprete = 1;
         break;
       case 3:
         printf("union");
