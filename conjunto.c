@@ -40,8 +40,14 @@ Conjunto extraer_com_conjunto(char* operacion, Conjunto conjunto) {
   conjunto->vacio = intervalo->esVacio;
   printf("\nINICIO -%i-\nFINAL -%i-\n", intervalo->inicio, intervalo->ultimo);
   if (conjunto->vacio == 0) {
-    conjunto->intervaloLista = prepend_glist(conjunto->intervaloLista, intervalo);
+    Intervalo aux;
+    aux.esVacio = intervalo->esVacio;
+    aux.inicio = intervalo->inicio;
+    aux.ultimo = intervalo->ultimo;
+    aux.cardinalidad = intervalo->cardinalidad;
+    conjunto->intervaloLista = prepend_glist(conjunto->intervaloLista, &aux);
   }
+  free(intervalo);
   return conjunto;
 }
 
