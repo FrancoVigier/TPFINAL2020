@@ -353,7 +353,11 @@ int main() {
             uni=aplanar_solos_e_intervalos(C,D);
 
             mostrar_intervalo(uni);
+        
+            destruir_conjunto(D, NULL);
+            destruir_conjunto(C, NULL);
             dlist_destruir(uni, (Visitante) free_intervalo);
+        
         interprete = 1;
 
         break;
