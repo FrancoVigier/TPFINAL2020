@@ -79,7 +79,6 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     printf("APLANAR1[%i,%i]-", numero_solo->inicio, numero_solo->ultimo);
     listaAplanada = prepend_glist(listaAplanada, numero_solo);
     primeroBufferLista = primeroBufferLista->next;
-        free(numero_solo);
 
   }
   for (; segundoBufferLista != NULL;) {
