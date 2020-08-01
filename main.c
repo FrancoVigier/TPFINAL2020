@@ -289,7 +289,7 @@ int main() {
 
   int instruccion = 2;
   int test = 1;
-
+  
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
@@ -361,7 +361,7 @@ int main() {
         mostrar_conjunto(aux1);
         //free (operandoB);
 
-        //destruir_conjunto(operandoB,NULL);
+        destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
           instruccion = 3;
@@ -493,3 +493,4 @@ int main() {
   free_table(HASH);
   return 0;
 }
+
