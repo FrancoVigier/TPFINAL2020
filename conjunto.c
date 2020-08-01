@@ -10,7 +10,7 @@
 
 Conjunto inicializar_conjunto(Conjunto conjunto, char* alias, char* operacion) {
   char vacio[] = " {}";
-  conjunto->alias = malloc(20 * sizeof(char));
+  //conjunto->alias = malloc(20 * sizeof(char));
   conjunto->alias = alias;
   conjunto->comprenExtens = 0;
   conjunto->lista=initialization_glist();
@@ -118,8 +118,8 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
 
 void destruir_conjunto(Conjunto conjunto, void* aux){
 
-  char* alias = conjunto->alias;
-  free(alias);
+  //char* alias = conjunto->alias;
+  //free(alias);
 
   GList proximo = conjunto->lista;
   GList actual;
