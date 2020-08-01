@@ -90,6 +90,8 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
 
   GList prBufferLista = primeroBufferLista;
   GList sgBufferLista = segundoBufferLista;
+  GList prBufferInter = primeroBufferIntervalo;
+  GList sgBufferInter = segundoBufferIntervalo;
 
   for (; primeroBufferIntervalo != NULL;) {
     Intervalo* mostrar = primeroBufferIntervalo->data;
@@ -138,7 +140,8 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
 
   segundoBufferLista = sgBufferLista;
   primeroBufferLista = prBufferLista;
-
+  primeroBufferIntervalo = prBufferInter;
+  segundoBufferIntervalo = sgBufferInter;
 
   listaAplanada = conjunto_union(listaAplanada);
 
@@ -152,8 +155,12 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     free(current);
   }
 */
-  dlist_destruir(segundoBufferLista,NULL);
-  dlist_destruir(primeroBufferLista,NULL);
+  dlist_destruir(segundoBufferLista,(Visitante)free_int_punt);
+  dlist_destruir(primeroBufferLista,(Visitante)free_int_punt);
+
+  dlist_destruir(segundoBufferIntervalo,(Visitante)free_intervalo);
+  dlist_destruir(primeroBufferIntervalo,(Visitante)free_intervalo);
+
   return listaAplanada;
 }
 
@@ -499,4 +506,3 @@ int main() {
   free_table(HASH);
   return 0;
 }
-
