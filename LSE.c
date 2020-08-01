@@ -227,8 +227,8 @@ void dlist_destruir_int(GList lista){
     // Guardo un puntero al nodo actual, me muevo al siguiente y libero.
     actual = proximo;
     proximo = proximo->next;
-    //int* data = actual->data;
-    free(actual->data);
+    int* data = (int*)actual->data;
+    free(data);
     free(actual);
   }
   }
@@ -245,4 +245,3 @@ void dlist_destruir_intervalo(GList lista){
     free(actualDos);
   }
 }
-
