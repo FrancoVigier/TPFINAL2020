@@ -140,7 +140,7 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     actualDos = proximoDos;
     proximoDos = proximoDos->next;
     //Intervalo* data = actualDos->data;
-    free(actualDos->data);
+   // free(actualDos->data);
     free(actualDos);
   }
 
