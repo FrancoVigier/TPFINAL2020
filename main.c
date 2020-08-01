@@ -292,13 +292,13 @@ int main() {
 ///    fgets(alias, LIMITE, stdin);
 ///    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
 ///    int instruccion = comando_int(operacion, alias);
-       int instruccion = 1;
+       int instruccion = 2;
     switch (instruccion) {
       case 1:
         printf("extension");
 
-        char alias[] = "pepe";
-        char operacion[] = " {1,4,6,2}";
+    //    char alias[] = "pepe";
+    //    char operacion[] = " {1,4,6,2}";
 
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
@@ -307,18 +307,25 @@ int main() {
         mostrar_conjunto(aux);
         //free (operando);
         destruir_conjunto(operando,NULL);
-        
-        interprete = 1;
+
+    //    interprete = 1;
 
         break;
       case 2:
         printf("comprension");
+        
+        char alias[] = "pepe";
+        char operacion[] = " {x : 2 <= x <= 100}";
+        
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
-        free (operandoB);
+        //free (operandoB);
+        destruir_conjunto(operandoB,NULL);
+        
+        interprete = 1;
         break;
       case 3:
         printf("union");
