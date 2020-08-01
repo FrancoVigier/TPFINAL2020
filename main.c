@@ -349,7 +349,7 @@ int main() {
         mostrar_conjunto(aux1);
         //free (operandoB);
 
-        //destruir_conjunto(operandoB,NULL);
+        destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
         char alias[] = "papa";
@@ -361,7 +361,7 @@ int main() {
         mostrar_conjunto(aux1);
         //free (operandoB);
 
-        //destruir_conjunto(operandoB,NULL);
+        destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
           instruccion = 3;
