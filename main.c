@@ -323,9 +323,7 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         //free (operandoB);
-        
-        dlist_destruir_intervalo(operandoB->intervaloLista);
-        
+
         destruir_conjunto(operandoB,NULL);
 
         interprete = 1;
