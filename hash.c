@@ -18,31 +18,31 @@ struct _GNodo *** inicializar_HASH() {
 
 int codigo_ascii(char a) {
   switch(a) {
-    case 'ñ':
+    case 'Ã±':
       return 26;
     case ' ':
       return 27;
     case '-':
       return 28;
-    case '´':
+    case 'Â´':
       return 29;
     case '?':
       return 30;
-    case 'ü':
+    case 'Ã¼':
       return 31;
-    case 'è':
+    case 'Ã¨':
       return 32;
-    case 'î':
+    case 'Ã®':
       return 33;
-    case 'á':
+    case 'Ã¡':
       return 34;
-    case 'é':
+    case 'Ã©':
       return 35;
-    case 'í':
+    case 'Ã­':
       return 36;
-    case 'ó':
+    case 'Ã³':
       return 37;
-    case 'ú':
+    case 'Ãº':
       return 38;
     default:
       return a - 'a';
@@ -86,12 +86,23 @@ Conjunto hash_busco(struct _GNodo*** hash, char* alias) {
   int keyUno = hasheo_uno(alias);
   int keyDos = hasheo_dos(alias);
   struct _GNodo* aux = glist_copiar_lista(hash[keyUno][keyDos]);
+  
+  GList buffer = aux;
+  
   for (; aux != NULL; aux = aux->next) {
     Conjunto ver = aux->data;
     if (strcmp(ver->alias, alias) == 0) {
+      
+      aux = buffer;
+      dlist_destruir(aux,(Visitante)destruir_conjunto);
+      
       return ver;
     }
   }
+  
+  aux = buffer;
+  dlist_destruir(aux,(Visitante)destruir_conjunto);
+  
   return NULL;
 }
 
@@ -127,3 +138,4 @@ void free_table(struct _GNodo*** table) {
   }
   free(table);
 }
+
