@@ -126,8 +126,8 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     // Guardo un puntero al nodo actual, me muevo al siguiente y libero.
     actual = proximo;
     proximo = proximo->next;
-    int* data = (int*)actual->data;
-    free(data);
+    //int* data = (int*)actual->data;
+    //free(data);
     free(actual);
   }
 
@@ -146,4 +146,3 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
 }
-
