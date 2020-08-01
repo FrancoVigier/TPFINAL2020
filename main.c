@@ -296,7 +296,7 @@ int main() {
     switch (instruccion) {
       case 1:
         printf("extension");
-
+/*
     //    char alias[] = "pepe";
     //    char operacion[] = " {1,4,6,2}";
 
@@ -309,7 +309,7 @@ int main() {
         destruir_conjunto(operando,NULL);
 
     //    interprete = 1;
-
+*/
         break;
       case 2:
         printf("comprension");
@@ -420,3 +420,4 @@ int main() {
   free_table(HASH);
   return 0;
 }
+
