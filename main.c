@@ -377,7 +377,15 @@ int main() {
         
             dlist_destruir(C->lista,NULL);
             dlist_destruir(C->intervaloLista,NULL);
+            free(C->lista);
+            free(C->intervaloLista);
             free(C);
+            
+            dlist_destruir(D->lista,NULL);
+            dlist_destruir(D->intervaloLista,NULL);
+            free(D->lista);
+            free(D->intervaloLista);
+            free(D);
         
             dlist_destruir(uni,(Visitante)free_intervalo);
         interprete = 1;
