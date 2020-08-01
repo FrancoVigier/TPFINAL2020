@@ -10,6 +10,7 @@
 
 Conjunto inicializar_conjunto(Conjunto conjunto, char* alias, char* operacion) {
   char vacio[] = " {}";
+  conjunto->alias = malloc(LIMITE * sizeof(char));
   conjunto->alias = alias;
   conjunto->comprenExtens = 0;
   conjunto->lista=initialization_glist();
@@ -146,3 +147,4 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
 }
+
