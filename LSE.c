@@ -216,7 +216,7 @@ void dlist_destruir(GList lista, Visitante liberar) {
     actual = proximo;
     proximo = proximo->next;
     if (liberar != NULL)
-      liberar(actual->data, NULL);
+      free(actual->data);
     free(actual);
   }
 }
