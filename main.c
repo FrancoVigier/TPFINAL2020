@@ -69,6 +69,8 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     listaAplanada = prepend_glist(listaAplanada, primeroBufferIntervalo->data);
     primeroBufferIntervalo = primeroBufferIntervalo->next;
   }
+
+
   for (; primeroBufferLista != NULL;) {
     Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
     int extremos = *((int*)primeroBufferLista->data);
@@ -84,7 +86,6 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     primeroBufferLista = primeroBufferLista->next;
     //free(numero_solo);
   }
-
   for (; segundoBufferLista != NULL;) {
     Intervalo* numero_solo_sl = malloc(sizeof(struct _Intervalo));
     int extremos = *((int*)segundoBufferLista->data);
@@ -105,9 +106,15 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   if (listaAplanada == NULL) {
     return NULL;
   }
-  listaAplanada = conjunto_union(listaAplanada);
 
-  return listaAplanada;
+  GList listAplan = initialization_glist();
+  listAplan = glist_copiar_lista(listaAplanada);
+
+  listAplan = conjunto_union(listAplan);
+
+  dlist_destruir(listaAplanada,NULL);
+
+  return listAplan;
 }
 
 GList aplanar_lista(Conjunto primero) {
