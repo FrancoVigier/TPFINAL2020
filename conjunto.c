@@ -120,7 +120,6 @@ void free_int_punt (int* puntero, void* aux){
 }
 
 void destruir_conjunto(Conjunto conjunto, void* aux){
-  free(conjunto->alias);
   dlist_destruir(conjunto->lista,NULL);
   dlist_destruir(conjunto->intervaloLista,NULL);
   free(conjunto);
