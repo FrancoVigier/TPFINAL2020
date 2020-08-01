@@ -114,11 +114,12 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   primeroBufferLista = prBufferLista;
 
 
-  listaAplanada = conjunto_union(listaAplanada);
+  GList listaApla = conjunto_union(listaAplanada);
 
+  dlist_destruir(listaAplanada,(Visitante)free_intervalo);
   dlist_destruir(segundoBufferLista,NULL);
   dlist_destruir(primeroBufferLista,NULL);
-  return listaAplanada;
+  return listaApla;
 }
 
 GList aplanar_lista(Conjunto primero) {
