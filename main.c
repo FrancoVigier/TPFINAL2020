@@ -380,7 +380,7 @@ int main() {
             dlist_destruir(C->intervaloLista,NULL);
             free(C);
             
-            dlist_destruir(D->lista,NULL);
+            dlist_destruir(C->lista,free_int_punt);
             dlist_destruir(D->intervaloLista,NULL);
             free(D);
         
