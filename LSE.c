@@ -219,5 +219,4 @@ void dlist_destruir(GList lista, Visitante liberar) {
       free(actual->data);
     free(actual);
   }
-  free(lista);
 }
