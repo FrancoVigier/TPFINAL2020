@@ -379,6 +379,7 @@ int main() {
             destruir_conjunto(D,NULL);
         
             dlist_destruir(uni,(Visitante)free_int_punt);
+            free(uni);
         interprete = 1;
 
         break;
