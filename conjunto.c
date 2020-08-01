@@ -139,8 +139,8 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     // Guardo un puntero al nodo actual, me muevo al siguiente y libero.
     actualDos = proximoDos;
     proximoDos = proximoDos->next;
-    Intervalo* data = (Intervalo*)actualDos->data;
-    free(data);
+    //Intervalo* data = (Intervalo*)actualDos->data;
+    //free(data);
     free(actualDos);
   }
 
@@ -148,4 +148,3 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
 }
-
