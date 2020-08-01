@@ -27,8 +27,9 @@ Conjunto inicializar_conjunto(Conjunto conjunto, char* alias, char* operacion) {
 
 Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista) {
   Conjunto conju = malloc(sizeof(struct _Conjunto));
-  conju->alias = malloc(sizeof(char*) * 40);
-  strcpy(conju->alias, alias);
+//  conju->alias = malloc(sizeof(char*) * 40);
+//  strcpy(conju->alias, alias);
+  conju->alias = alias;
   conju->lista = initialization_glist();
   conju->intervaloLista = initialization_glist();
   conju->lista = glist_copiar_lista(lista);
@@ -147,3 +148,4 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
 }
+
