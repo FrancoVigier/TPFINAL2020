@@ -286,19 +286,24 @@ int main() {
   int interprete = 0;
   struct _GNodo*** HASH;
   HASH =  inicializar_HASH();
+
+  int instruccion = 1;
+  int test = 1;
+
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
 ///    fgets(alias, LIMITE, stdin);
 ///    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
 ///    int instruccion = comando_int(operacion, alias);
-       int instruccion = 2;
+
     switch (instruccion) {
       case 1:
         printf("extension");
-/*
-    //    char alias[] = "pepe";
-    //    char operacion[] = " {1,4,6,2}";
+
+        if(test == 1){
+          char alias[] = "pepe";
+          char operacion[] = " {10,11,12,13}";
 
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
@@ -308,14 +313,30 @@ int main() {
         //free (operando);
         destruir_conjunto(operando,NULL);
 
-    //    interprete = 1;
-*/
+        }
+        if(test == 2){
+          char alias[] = "papa";
+          char operacion[] = " {1,3,6,7}";
+
+        printf("-%s- , -%s-", alias, operacion);
+        Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
+        hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
+        Conjunto aux = hash_busco(HASH, operando->alias);
+        mostrar_conjunto(aux);
+        //free (operando);
+        destruir_conjunto(operando,NULL);
+        }
+        if(test == 2){
+          instruccion = 3;
+        }
+        test++;
+      ///  system("pause");
         break;
       case 2:
         printf("comprension");
-
-        char alias[] = "pepe";
-        char operacion[] = " {x : 2 <= x <= 100}";
+/*
+      //  char alias[] = "pepe";
+      //  char operacion[] = " {x : 2 <= x <= 100}";
 
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
@@ -326,18 +347,38 @@ int main() {
 
         destruir_conjunto(operandoB,NULL);
 
-        interprete = 1;
+      //  interprete = 1;
+      */
         break;
       case 3:
         printf("union");
+        /*
         Operandos* operandoUnion = sacar_operando_union_inters(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoUnion->aliasOperandoA, operandoUnion->aliasOperandoB);//parsea a | b
         printf("\n\nUNION\n");
         Conjunto op1 = hash_busco(HASH, operandoUnion->aliasOperandoA);
         Conjunto op2 = hash_busco(HASH, operandoUnion->aliasOperandoB);
+        */
+        Conjunto op1 = hash_busco(HASH, "pepe");
+        Conjunto op2 = hash_busco(HASH, "papa");
+        if(op1 == NULL){printf("\nOP1 NULL\n");}
+        if(op2 == NULL){printf("\nOP2 NULL\n");}
+
         if (op1 != NULL && op2 != NULL) {
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
+          GList resultado = aplanar_solos_e_intervalos(op1, op2);
+          Conjunto uniones = crear_conjunto("carlos", NULL, resultado);
+          hash_inserto(HASH, "carlos", NULL, resultado);
+          mostrar_conjunto(uniones);
+        } else {
+          printf("\nUno de los operandos no existe...\n");
+        }
+
+/*
+        if (op1 != NULL && op2 != NULL) {
+          mostrar_conjunto(op1);
+          mostrar_conjunto(op2);}
           GList resultado = aplanar_solos_e_intervalos(op1, op2);
           Conjunto uniones = crear_conjunto(alias, NULL, resultado);
           hash_inserto(HASH, alias, NULL, resultado);
@@ -345,8 +386,12 @@ int main() {
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
+*/
+        interprete = 1;
+
         break;
       case 4:
+          /*
         printf("interseccion");
         Operandos* operandoInterseccion = sacar_operando_union_inters(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoInterseccion->aliasOperandoA, operandoInterseccion->aliasOperandoB);//parsea a | b
@@ -364,8 +409,10 @@ int main() {
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
+        */
         break;
       case 5:
+          /*
         printf("resta");
         Operandos* operandoResta = sacar_operando_union_inters(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoResta->aliasOperandoA, operandoResta->aliasOperandoB);//parsea a | b
@@ -381,8 +428,10 @@ int main() {
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
+        */
         break;
       case 6:
+          /*
         printf("complemento");
         Operandos* operandoComplemento = sacar_operando_complemento(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoComplemento->aliasOperandoA, operandoComplemento->aliasOperandoB);//parsea a | b
@@ -397,7 +446,9 @@ int main() {
           printf("\nUno de los operandos no existe...\n");
         }
         break;
+        */
       case 7:
+          /*
         printf("imprimir");
         printf("-%s-", alias);
         Operandos* operandoImprimir = sacar_operando_imprimir(alias);
@@ -408,6 +459,7 @@ int main() {
         } else {
           printf("\nEl operando no existe...\n");
         }
+        */
         break;
       case 8:
         printf("salir");
