@@ -50,6 +50,31 @@ GList conjunto_union(GList intervalos) { /// [...],[...] UNION
   return listaUnion;
 }
 
+GList dnodo_crear(void* dato, GList sig) {
+  // se pide memoria para la estructura nodo.
+   GList nuevo = malloc(sizeof(struct _GNodo));
+  // se establecen las variables.
+
+  nuevo->next = sig;
+  nuevo->data = dato;
+  return nuevo;
+}
+
+GList dnodo_agregar_inicio(GList lista, void* dato) {
+  if(lista == NULL) {
+    // Caso lista vacia.
+    GList nuevo = dnodo_crear(dato, NULL);
+    return nuevo;
+  } else {
+    // Caso lista con elementos.
+    // Creo un nuevo nodo
+    GList nuevo = dnodo_crear(dato, lista);
+    // El antiguo primer elemento ahora es el segundo, asi que le asigno su ant.
+    return nuevo;
+  }
+}
+
+
 GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->union 2->interseccion
   GList listaAplanada = initialization_glist();
   Conjunto recursaPrimero = primero;
@@ -96,13 +121,14 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     numero_solo_sl->ultimo = extremos;
     numero_solo_sl->cardinalidad = 1;
     numero_solo_sl->esVacio = 0;
+
     printf("APLANAR2[%i,%i]-", numero_solo_sl->inicio, numero_solo_sl->ultimo);
     listaAplanada = prepend_glist(listaAplanada, numero_solo_sl);
     segundoBufferLista = segundoBufferLista->next;
   }
   for (; segundoBufferIntervalo != NULL;) {
-    Intervalo* mostrar = segundoBufferIntervalo->data;
-    printf("APLANAR[%i,%i]-", mostrar->inicio, mostrar->ultimo);
+    Intervalo* mostrara = segundoBufferIntervalo->data;
+    printf("APLANAR[%i,%i]-", mostrara->inicio, mostrara->ultimo);
     listaAplanada = prepend_glist(listaAplanada, segundoBufferIntervalo->data);
     segundoBufferIntervalo = segundoBufferIntervalo->next;
   }
@@ -116,7 +142,16 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
 
   GList listaApla = conjunto_union(listaAplanada);
 
-  dlist_destruir(listaAplanada,NULL);
+  //dlist_destruir(listaAplanada,NULL);
+/*
+  GList current = NULL;
+  for(; (current = listaAplanada)!=NULL;){
+    Intervalo* freeInter = current->data;
+    listaAplanada = listaAplanada->next;
+    free(freeInter);
+    free(current);
+  }
+*/
   dlist_destruir(segundoBufferLista,NULL);
   dlist_destruir(primeroBufferLista,NULL);
   return listaApla;
@@ -370,14 +405,22 @@ int main() {
             GList uni = malloc(sizeof(struct _GNodo));
             uni=aplanar_solos_e_intervalos(C,D);
 
+
             GList buff = uni;
             mostrar_intervalo(buff);
-        
+
             destruir_conjunto(C,NULL);
             destruir_conjunto(D,NULL);
-        
-            dlist_destruir(uni,(Visitante)free_intervalo);
-          
+
+            //dlist_destruir(uni,(Visitante)free_intervalo);
+              GList current = NULL;
+            for(; (current = uni)!=NULL;){
+            Intervalo* freeInter = current->data;
+            uni = uni->next;
+            free(freeInter);
+            free(current);
+            }
+
         interprete = 1;
 
         break;
