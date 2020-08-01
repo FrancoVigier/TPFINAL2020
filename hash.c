@@ -85,24 +85,14 @@ void hash_inserto(struct _GNodo*** hash, char* alias, GList lista, GList interva
 Conjunto hash_busco(struct _GNodo*** hash, char* alias) {
   int keyUno = hasheo_uno(alias);
   int keyDos = hasheo_dos(alias);
-  struct _GNodo* aux = glist_copiar_lista(hash[keyUno][keyDos]);
-  
-  GList buffer = aux;
+  struct _GNodo* aux = hash[keyUno][keyDos];
   
   for (; aux != NULL; aux = aux->next) {
     Conjunto ver = aux->data;
     if (strcmp(ver->alias, alias) == 0) {
-      
-      aux = buffer;
-      dlist_destruir(aux,(Visitante)destruir_conjunto);
-      
       return ver;
     }
   }
-  
-  aux = buffer;
-  dlist_destruir(aux,(Visitante)destruir_conjunto);
-  
   return NULL;
 }
 
