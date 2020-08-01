@@ -374,6 +374,11 @@ int main() {
 
             GList buff = uni;
             mostrar_intervalo(buff);
+        
+            dlist_destruir(C->lista,NULL);
+            dlist_destruir(C->intervaloLista,NULL);
+            free(C);
+        
             dlist_destruir(uni,(Visitante)free_intervalo);
         interprete = 1;
 
