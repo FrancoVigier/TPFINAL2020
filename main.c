@@ -313,18 +313,21 @@ int main() {
         break;
       case 2:
         printf("comprension");
-        
+
         char alias[] = "pepe";
         char operacion[] = " {x : 2 <= x <= 100}";
-        
+
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         //free (operandoB);
-        destruir_conjunto(operandoB,NULL);
         
+        dlist_destruir_intervalo(operandoB->intervaloLista);
+        
+        destruir_conjunto(operandoB,NULL);
+
         interprete = 1;
         break;
       case 3:
@@ -420,4 +423,3 @@ int main() {
   free_table(HASH);
   return 0;
 }
-
