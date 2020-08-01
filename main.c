@@ -305,8 +305,9 @@ int main() {
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
         Conjunto aux = hash_busco(HASH, operando->alias);
         mostrar_conjunto(aux);
-        free (operando);
-
+        //free (operando);
+        destruir_conjunto(operando,NULL);
+        
         interprete = 1;
 
         break;
