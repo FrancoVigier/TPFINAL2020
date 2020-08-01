@@ -69,9 +69,8 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     listaAplanada = prepend_glist(listaAplanada, primeroBufferIntervalo->data);
     primeroBufferIntervalo = primeroBufferIntervalo->next;
   }
-  Intervalo* numero_solo = NULL;
   for (; primeroBufferLista != NULL;) {
-    numero_solo = malloc(sizeof(struct _Intervalo));
+    Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
     int extremos = *((int*)primeroBufferLista->data);
     printf("numero libre -%i-\n", extremos);
 
@@ -85,7 +84,7 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
     primeroBufferLista = primeroBufferLista->next;
     //free(numero_solo);
   }
-  free(numero_solo);
+
   for (; segundoBufferLista != NULL;) {
     Intervalo* numero_solo_sl = malloc(sizeof(struct _Intervalo));
     int extremos = *((int*)segundoBufferLista->data);
