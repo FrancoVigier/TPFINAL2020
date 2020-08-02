@@ -310,7 +310,7 @@ int main() {
   int test = 1;
   Conjunto testt;
   Conjunto testt2;
-
+  GList freeLista = initialization_glist();
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
@@ -370,6 +370,7 @@ int main() {
         mostrar_conjunto(aux1);
         //free (operandoB);
         testt = operandoB;
+        freeLista = prepend_glist(freeLista,operandoB);
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
@@ -382,6 +383,7 @@ int main() {
         mostrar_conjunto(aux1);
         //free (operandoB);
         testt2 = operandoB;
+        freeLista = prepend_glist(freeLista,operandoB);
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
@@ -520,12 +522,27 @@ int main() {
 
 
   free_table(HASH);
+  
+  GList proximo = freeLista;
+  Glist actual;
+  for(; proximo != NULL;){
+    actual = proximo;
+    proximo = proximo->next;
+    Conjunto fr = (Conjunto) actual->data;
+    free(fr->lista);
+    free(fr->intervaloLista);
+    free(fr);
+    free(actual);
+  }
+  
+  /*
   free(testt->intervaloLista);
   free(testt->lista);
   free(testt);
   free(testt2->intervaloLista);
   free(testt2->lista);
   free(testt2);
+  */
   //mostrar_conjunto(testt);
   return 0;
 }
