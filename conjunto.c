@@ -38,20 +38,20 @@ Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista) {
   return conju;
 }
 
-GList extraer_com_conjunto(char* operacion, Conjunto conjunto) {
+void extraer_com_conjunto(char* operacion, Conjunto conjunto) {
   Intervalo* intervalo = extraer_ini_y_fin(operacion);
   conjunto->vacio = intervalo->esVacio;
   printf("\nINICIO -%i-\nFINAL -%i-\n", intervalo->inicio, intervalo->ultimo);
   if (conjunto->vacio == 0) {
     conjunto->intervaloLista = prepend_glist(conjunto->intervaloLista, intervalo);
   }
-  return conjunto->intervaloLista;
+  return;
 }
 
 Conjunto definir_conj_com(char* operacion, char* alias) {
 
   Conjunto nuevoConjunto = inicializar_conjunto( alias, operacion);
-  nuevoConjunto->intervaloLista = extraer_com_conjunto(operacion, nuevoConjunto);
+  extraer_com_conjunto(operacion, nuevoConjunto);
 
   Intervalo* inter = nuevoConjunto->intervaloLista->data; //GUARDA BIEN
   if (nuevoConjunto->vacio == 1)
@@ -148,3 +148,4 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
 
   free(conjunto);
 }
+
