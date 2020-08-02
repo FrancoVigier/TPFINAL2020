@@ -534,7 +534,7 @@ int main() {
           Conjunto resta = crear_conjunto("carlos", NULL, restas);
           hash_inserto(HASH, "carlos", NULL, restas);
           mostrar_conjunto(resta);
-          freeLista = prepend_glist(freeLista, restas);
+          freeLista = prepend_glist(freeLista, resta);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -560,7 +560,7 @@ int main() {
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
-          freeLista = prepend_glist(freeLista,complemetos);
+          freeLista = prepend_glist(freeLista,complemento);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
