@@ -8,7 +8,8 @@
 #define INT_SUPLIM 32767
 #define INT_INFLIM -32767
 
-Conjunto inicializar_conjunto(Conjunto conjunto, char* alias, char* operacion) {
+Conjunto inicializar_conjunto(char* alias, char* operacion) {
+  Conjunto conjunto = malloc(sizeof (struct _Conjunto));
   char vacio[] = " {}";
   //conjunto->alias = malloc(20 * sizeof(char));
   conjunto->alias = alias;
@@ -48,8 +49,8 @@ Conjunto extraer_com_conjunto(char* operacion, Conjunto conjunto) {
 }
 
 Conjunto definir_conj_com(char* operacion, char* alias) {
-  Conjunto nuevoConjunto = malloc(sizeof (struct _Conjunto));
-  nuevoConjunto = inicializar_conjunto(nuevoConjunto, alias, operacion);
+
+  Conjunto nuevoConjunto = inicializar_conjunto( alias, operacion);
   Conjunto nuevoConju = extraer_com_conjunto(operacion, nuevoConjunto);
   Intervalo* inter = nuevoConju->intervaloLista->data; //GUARDA BIEN
   if (nuevoConju->vacio == 1)
@@ -60,8 +61,8 @@ Conjunto definir_conj_com(char* operacion, char* alias) {
 }
 
 Conjunto definir_conj_ext(char* operacion, char* alias) {
-  Conjunto nuevoConjunto = malloc(sizeof(struct _Conjunto));
-  nuevoConjunto = inicializar_conjunto(nuevoConjunto, alias, operacion);
+
+  Conjunto nuevoConjunto = inicializar_conjunto( alias, operacion);
   if (nuevoConjunto->vacio == 0)
     nuevoConjunto->lista = extraer_ext_conjunto(operacion, nuevoConjunto);
   else
@@ -122,6 +123,8 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   //char* alias = conjunto->alias;
   //free(alias);
 
+  printf("\nA ELIMINAR: %s\n", conjunto->alias);
+
   GList proximo = conjunto->lista;
   GList actual;
   for (; proximo != NULL ; ) {
@@ -135,12 +138,16 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   conjunto->lista = NULL;
 
   GList proximoDos = conjunto->intervaloLista;
+
   GList actualDos;
   for (; proximoDos != NULL ; ) {
     // Guardo un puntero al nodo actual, me muevo al siguiente y libero.
     actualDos = proximoDos;
     proximoDos = proximoDos->next;
     Intervalo* data = (Intervalo*)actualDos->data;
+
+    printf("DATA A ELIMINAR: [%i-%i] %i %i\n",data->inicio,data->ultimo,data->esVacio,data->cardinalidad);
+
     free(data);
     free(actualDos);
   }
@@ -150,4 +157,3 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
 }
-
