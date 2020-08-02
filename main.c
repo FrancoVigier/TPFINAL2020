@@ -117,6 +117,7 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   if (listaAplanada == NULL) {
     return NULL;
   }
+
   GList listaAplana = conjunto_union(listaAplanada);
   return listaAplana;
 }
