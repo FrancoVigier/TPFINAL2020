@@ -375,7 +375,7 @@ int main() {
         }
         if(test == 2){
         char alias[] = "papa";
-        char operacion[] = " {x : 102 <= x <= 200}";
+        char operacion[] = " {x : 50 <= x <= 200}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -387,7 +387,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 3;
+          instruccion = 4;
         }
         test++;
       //  interprete = 1;
@@ -410,12 +410,12 @@ int main() {
         if (op1 != NULL && op2 != NULL) {
 
           GList resultado = aplanar_solos_e_intervalos(op1, op2);
-
+          mostrar_conjunto(op1);
+          mostrar_conjunto(op2);
           Conjunto uniones = crear_conjunto("carlos", NULL, resultado);
           hash_inserto(HASH, "carlos", NULL, resultado);
           mostrar_conjunto(uniones);
-          mostrar_conjunto(op1);
-          mostrar_conjunto(op2);
+
 
         } else {
           printf("\nUno de los operandos no existe...\n");
@@ -438,24 +438,32 @@ int main() {
         break;
       case 4:
           /*
-        printf("interseccion");
+
         Operandos* operandoInterseccion = sacar_operando_union_inters(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoInterseccion->aliasOperandoA, operandoInterseccion->aliasOperandoB);//parsea a | b
         Conjunto op3 = hash_busco(HASH, operandoInterseccion->aliasOperandoA);
         Conjunto op4 = hash_busco(HASH, operandoInterseccion->aliasOperandoB);
+        */
+        printf("interseccion");
+        Conjunto op3 = hash_busco(HASH, "pepe");
+        Conjunto op4 = hash_busco(HASH, "papa");
+        if(op3 == NULL){printf("\nOP1 NULL\n");}
+        if(op4 == NULL){printf("\nOP2 NULL\n");}
+
+
         if (op3 != NULL && op4 != NULL) {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
           GList aplanada_op3 = aplanar_lista(op3);
           GList aplanada_op4 = aplanar_lista(op4);
           GList intersecciones = conjunto_inters(aplanada_op3, aplanada_op4);
-          Conjunto interseccion = crear_conjunto(alias,NULL, intersecciones);
-          hash_inserto(HASH, alias, NULL, intersecciones);
+          Conjunto interseccion = crear_conjunto("carlos",NULL, intersecciones);
+          hash_inserto(HASH, "carlos", NULL, intersecciones);
           mostrar_conjunto(interseccion);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
-        */
+        interprete = 1;
         break;
       case 5:
           /*
@@ -522,7 +530,8 @@ int main() {
 
 
   free_table(HASH);
-  
+
+//FREE COMPRENSION Y "EXTENSION"
   GList proximo = freeLista;
   GList actual;
   for(; proximo != NULL;){
@@ -534,7 +543,7 @@ int main() {
     free(fr);
     free(actual);
   }
-  
+
   /*
   free(testt->intervaloLista);
   free(testt->lista);
