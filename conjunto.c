@@ -132,7 +132,7 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     //free(data);
     free(actual);
   }
-
+  conjunto->lista = NULL;
   GList proximoDos = conjunto->intervaloLista;
   GList actualDos;
   for (; proximoDos != NULL ; ) {
@@ -140,10 +140,10 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     actualDos = proximoDos;
     proximoDos = proximoDos->next;
     //Intervalo* data = (Intervalo*)actualDos->data;
-    //free(data);
+    free(actualDos->data);
     free(actualDos);
   }
-
+  conjunto->intervaloLista = NULL;
   //dlist_destruir(conjunto->lista,(Visitante)free_int_punt);
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
