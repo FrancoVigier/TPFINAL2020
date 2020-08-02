@@ -432,7 +432,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 4;
+          instruccion = 6;
         }
         test++;
       //  interprete = 1;
@@ -536,22 +536,32 @@ int main() {
         interprete = 1;
         break;
       case 6:
-          /*
+
         printf("complemento");
+          /*
         Operandos* operandoComplemento = sacar_operando_complemento(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoComplemento->aliasOperandoA, operandoComplemento->aliasOperandoB);//parsea a | b
         Conjunto op7 = hash_busco(HASH, operandoComplemento->aliasOperandoA);
+        */
+
+
+        Conjunto op7 = hash_busco(HASH, "papa");
+        if(op7 == NULL){printf("\nOP1 NULL\n");}
+
         if (op7 != NULL) {
           mostrar_conjunto(op7);
           GList complemetos = definir_conj_comple(op7);
-          Conjunto complemento = crear_conjunto(alias, NULL, complemetos);
-          hash_inserto(HASH, alias, NULL, complemetos);
+          Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
+          hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
+
+        interprete = 1;
+
         break;
-        */
+
       case 7:
           /*
         printf("imprimir");
