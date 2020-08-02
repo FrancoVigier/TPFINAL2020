@@ -519,7 +519,7 @@ int main() {
   //system("pause");
 
   
-  free_table(HASH);destruir_conjunto(testt;NULL);
+  free_table(HASH);destruir_conjunto(testt,NULL);
   //mostrar_conjunto(testt);
   return 0;
 }
