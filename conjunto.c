@@ -143,7 +143,8 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     free(actualDos->data);
     free(actualDos);
   }
-  conjunto->intervaloLista = NULL;
+  free(conjunto->intervaloLista);
+  //conjunto->intervaloLista = NULL;
   //dlist_destruir(conjunto->lista,(Visitante)free_int_punt);
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
