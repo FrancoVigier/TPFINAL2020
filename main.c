@@ -518,8 +518,8 @@ int main() {
   //mostrar_conjunto(op3);
   //system("pause");
 
-  mostrar_conjunto(testt);
-  free_table(HASH);
-  mostrar_conjunto(testt);
+  
+  free_table(HASH);free(testt);
+  //mostrar_conjunto(testt);
   return 0;
 }
