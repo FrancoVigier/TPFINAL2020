@@ -320,6 +320,7 @@ GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
 //a lo sumo inicializar "bien universo"
   GList complemento = initialization_glist();
   complemento = definir_conj_dif(uni, operador);
+  destruir_conjunto(uni, NULL);
   return complemento;
 }
 
@@ -534,7 +535,7 @@ int main() {
           Conjunto resta = crear_conjunto("carlos", NULL, restas);
           hash_inserto(HASH, "carlos", NULL, restas);
           mostrar_conjunto(resta);
-          freeLista = prepend_glist(freeLista, resta);
+         // freeLista = prepend_glist(freeLista, resta);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -560,7 +561,8 @@ int main() {
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
-          freeLista = prepend_glist(freeLista,complemento);
+          //dlist_destruir_intervalo(complemetos);
+       //   freeLista = prepend_glist(freeLista,complemento);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
