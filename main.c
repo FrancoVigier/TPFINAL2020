@@ -524,7 +524,7 @@ int main() {
   free_table(HASH);
   
   GList proximo = freeLista;
-  Glist actual;
+  GList actual;
   for(; proximo != NULL;){
     actual = proximo;
     proximo = proximo->next;
