@@ -188,8 +188,17 @@ GList conjunto_inters( GList intervaloOperandoA, GList intervaloOperandoB) {
   return listaInterseccion;
 }
 
+void mostrar_intervalo(GList intervalll) {
+  for (; intervalll != NULL;) {
+    Intervalo* mostrar = intervalll->data;
+    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
+    intervalll = intervalll->next;
+  }
+}
 
 GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
+
+  GList intervaloABuffer = intervaloA;
   GList intervaloResta =  initialization_glist();
   if (largo_glist(intervaloA) <= 0) {
     intervaloResta = prepend_glist(intervaloResta, intervaloB);
@@ -197,16 +206,16 @@ GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
   }
   Intervalo* nodoAEnPosI;
   Intervalo* nodoAEnPosZero;
-  for(; largo_glist(intervaloA) > 0; intervaloA = intervaloA->next) {
-    for (int i = 1; i < largo_glist(intervaloA); i++){
-      nodoAEnPosI = get_data_glist(intervaloA, i);
-      nodoAEnPosZero = get_data_glist(intervaloA, 0);
+  for(; largo_glist(intervaloABuffer) > 0; intervaloABuffer = intervaloABuffer->next) {
+    for (int i = 1; i < largo_glist(intervaloABuffer); i++){
+      nodoAEnPosI = get_data_glist(intervaloABuffer, i);
+      nodoAEnPosZero = get_data_glist(intervaloABuffer, 0);
       if (nodoAEnPosI->inicio < nodoAEnPosZero->inicio) {
-        intervaloA = pisa_data_glist(intervaloA, i, nodoAEnPosZero);
-        intervaloA = pisa_data_glist(intervaloA, 0, nodoAEnPosI);
+        intervaloABuffer = pisa_data_glist(intervaloABuffer, i, nodoAEnPosZero);
+        intervaloABuffer = pisa_data_glist(intervaloABuffer, 0, nodoAEnPosI);
       }
     }
-    nodoAEnPosZero = get_data_glist(intervaloA, 0);
+    nodoAEnPosZero = get_data_glist(intervaloABuffer, 0);
     if (intervaloB->inicio < nodoAEnPosZero->inicio) {
       if (intervaloB->ultimo < nodoAEnPosZero->inicio) {
         intervaloResta = prepend_glist (intervaloResta, intervaloB);
@@ -215,6 +224,13 @@ GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
       Intervalo* temp =  malloc(sizeof(struct _Intervalo));
       temp->inicio =  intervaloB->inicio;
       temp->ultimo = nodoAEnPosZero->inicio - 1;
+      temp->cardinalidad = (temp->ultimo - temp->inicio) + 1;
+      if(temp->inicio <= temp->ultimo){
+        temp->esVacio = 0;
+      }
+      if(temp->inicio > temp->ultimo){
+        temp->esVacio = 1;
+      }
       intervaloResta =  prepend_glist(intervaloResta, temp);
       intervaloB->inicio = nodoAEnPosZero->inicio;
     }
@@ -224,7 +240,7 @@ GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
     if (intervaloB->inicio <= nodoAEnPosZero->ultimo) {
       intervaloB->inicio = nodoAEnPosZero->ultimo + 1;
     }
-    if (largo_glist(intervaloA) == 1) {
+    if (largo_glist(intervaloABuffer) == 1) {
       if (intervaloB->inicio <= nodoAEnPosZero->ultimo) {
         intervaloB->inicio =  nodoAEnPosZero->ultimo + 1;
       }
@@ -232,6 +248,8 @@ GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
       break;
     }
   }
+  printf("\nRESTAAAAAAAAA:\n");
+  mostrar_intervalo(intervaloA);
   return intervaloResta;
 }
 
@@ -242,14 +260,27 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
   GList listaDiferencia = initialization_glist();
   GList buff;
   for (; listauno != NULL; listauno = listauno->next) {
-    lista = conjunto_diferencia(listados, (Intervalo*)listauno->data);
+    Intervalo* datazo = (Intervalo*)listauno->data;
+
+    Intervalo* dato = malloc(sizeof(struct _Intervalo));
+    dato->inicio = datazo->inicio;
+    dato->ultimo = datazo->ultimo;
+    dato->cardinalidad = datazo->cardinalidad;
+    dato->esVacio = datazo->esVacio;
+    printf("\nQUEDAAAAAAA1:\n");
+    mostrar_intervalo(primero->intervaloLista);
+    lista = conjunto_diferencia(listados, dato);
+    printf("\nQUEDAAAAAAA2:\n");
+    mostrar_intervalo(primero->intervaloLista);
     buff = lista;
     for (; buff != NULL; buff = buff->next) {
       listaDiferencia = prepend_glist(listaDiferencia, buff->data);
       Intervalo* data = buff->data;
-      printf("FOR:[%i,%i]\n",data->inicio, data->ultimo);
+      printf("FOR:[%i,%i] %i %i\n",data->inicio, data->ultimo, data->cardinalidad, data->esVacio);
     }
   }
+  printf("\nQUEDAAAAAAA3:\n");
+  mostrar_intervalo(primero->intervaloLista);
   return listaDiferencia;
 }
 
@@ -282,13 +313,6 @@ void mostrar_glist(GList lista) {
   }
 }
 
-void mostrar_intervalo(GList intervalll) {
-  for (; intervalll != NULL;) {
-    Intervalo* mostrar = intervalll->data;
-    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
-    intervalll = intervalll->next;
-  }
-}
 
 void mostrar_glist_intervalos(GList lista) {
   GList buff = lista->next;
@@ -387,7 +411,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 4;
+          instruccion = 5;
         }
         test++;
       //  interprete = 1;
@@ -472,17 +496,23 @@ int main() {
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoResta->aliasOperandoA, operandoResta->aliasOperandoB);//parsea a | b
         Conjunto op5 = hash_busco(HASH, operandoResta->aliasOperandoA);
         Conjunto op6 = hash_busco(HASH, operandoResta->aliasOperandoB);
+        */
+        printf("resta");
+                Conjunto op5 = hash_busco(HASH, "pepe");
+        Conjunto op6 = hash_busco(HASH, "papa");
+        if(op5 == NULL){printf("\nOP1 NULL\n");}
+        if(op6 == NULL){printf("\nOP2 NULL\n");}
         if (op5 != NULL && op6 != NULL) {
           mostrar_conjunto(op5);
           mostrar_conjunto(op6);
           GList restas = definir_conj_dif(op5, op6);
-          Conjunto resta = crear_conjunto(alias, NULL, restas);
-          hash_inserto(HASH, alias, NULL, restas);
+          Conjunto resta = crear_conjunto("carlos", NULL, restas);
+          hash_inserto(HASH, "carlos", NULL, restas);
           mostrar_conjunto(resta);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
-        */
+        interprete = 1;
         break;
       case 6:
           /*
