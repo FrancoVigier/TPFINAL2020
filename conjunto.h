@@ -14,7 +14,7 @@ typedef struct _Conjunto {
 }* Conjunto;
 */
 
-Conjunto inicializar_conjunto(Conjunto conjunto, char* alias, char* operacion);
+Conjunto inicializar_conjunto(char* alias, char* operacion);
 Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista);
 Conjunto extraer_com_conjunto(char* operacion, Conjunto conjunto);
 Conjunto definir_conj_com(char* operacion, char* alias);
