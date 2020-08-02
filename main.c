@@ -519,7 +519,10 @@ int main() {
   //system("pause");
 
   
-  free_table(HASH);free(testt->intervaloLista);
+  free_table(HASH);
+    free(testt->intervaloLista);
+  free(testt->lista);
+  free(testt);
   //mostrar_conjunto(testt);
   return 0;
 }
