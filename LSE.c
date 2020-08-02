@@ -218,6 +218,7 @@ void dlist_destruir (GList lista, Visitante liberar) {
       liberar(actual->data, NULL);
     free(actual);
   }
+  lista = NULL;
 }
 
 void dlist_destruir_int(GList lista){
