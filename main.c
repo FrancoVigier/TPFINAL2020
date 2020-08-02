@@ -308,6 +308,8 @@ int main() {
 
   int instruccion = 2;
   int test = 1;
+  Conjunto testt;
+
 
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
@@ -367,7 +369,7 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         //free (operandoB);
-
+        testt = operandoB;
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
@@ -412,9 +414,6 @@ int main() {
           mostrar_conjunto(uniones);
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
-
-          destruir_conjunto(op1,NULL);
-          destruir_conjunto(op2,NULL);
 
         } else {
           printf("\nUno de los operandos no existe...\n");
@@ -518,7 +517,9 @@ int main() {
   //Conjunto op3 = hash_busco(HASH, "papa");
   //mostrar_conjunto(op3);
   //system("pause");
+
+  mostrar_conjunto(testt);
   free_table(HASH);
+  mostrar_conjunto(testt);
   return 0;
 }
-
