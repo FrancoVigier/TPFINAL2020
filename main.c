@@ -59,8 +59,6 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   GList segundoBufferLista = initialization_glist();
 
   primeroBufferIntervalo = glist_copiar_lista(recursaPrimero->intervaloLista);
- // GList primeroBufferIntervalo = primero->intervaloLista;
-
   primeroBufferLista = glist_copiar_lista(recursaPrimero->lista);
   segundoBufferIntervalo = glist_copiar_lista(recursaSegundo->intervaloLista);
   segundoBufferLista = glist_copiar_lista(recursaSegundo->lista);
@@ -123,21 +121,43 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
 }
 
 GList aplanar_lista(Conjunto primero) {
+
+
   GList listaAplanada = initialization_glist();
-  listaAplanada = glist_copiar_lista(primero->intervaloLista);
-  GList aux = initialization_glist();
-  aux = glist_copiar_lista(primero->lista);
-  for (; aux!= NULL;) {
+  Conjunto recursaPrimero = primero;
+
+  GList primeroBufferIntervalo = initialization_glist();
+  GList primeroBufferLista = initialization_glist();
+
+  primeroBufferIntervalo = glist_copiar_lista(recursaPrimero->intervaloLista);
+  primeroBufferLista = glist_copiar_lista(recursaPrimero->lista);
+
+ for (; primeroBufferIntervalo != NULL;) {
+    Intervalo* mostrar = primeroBufferIntervalo->data;
+
+    Intervalo* cpy = malloc(sizeof(struct _Intervalo));
+    cpy->cardinalidad = mostrar->cardinalidad;
+    cpy->esVacio = mostrar->esVacio;
+    cpy->inicio = mostrar->inicio;
+    cpy->ultimo = mostrar->ultimo;
+
+    printf("APLANAR[%i,%i]-", mostrar->inicio,mostrar->ultimo);
+    listaAplanada = prepend_glist(listaAplanada, cpy);
+    primeroBufferIntervalo = primeroBufferIntervalo->next;
+  }
+  for (; primeroBufferLista != NULL;) {
     Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
-    int extremos = (int)aux->data;
+    int extremos = (int)primeroBufferLista->data;
     printf("numero libre -%i-\n", extremos);
     numero_solo->inicio = extremos;
     numero_solo->ultimo = extremos;
     numero_solo->cardinalidad = 1;
     numero_solo->esVacio = 0;
+    printf("APLANAR1[%i,%i]-", numero_solo->inicio, numero_solo->ultimo);
     listaAplanada = prepend_glist(listaAplanada, numero_solo);
-    aux = aux->next;
+    primeroBufferLista = primeroBufferLista->next;
   }
+
   return listaAplanada;
 }
 
@@ -535,7 +555,7 @@ int main() {
           Conjunto resta = crear_conjunto("carlos", NULL, restas);
           hash_inserto(HASH, "carlos", NULL, restas);
           mostrar_conjunto(resta);
-         // freeLista = prepend_glist(freeLista, resta);
+          //freeLista = prepend_glist(freeLista, resta);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -555,12 +575,13 @@ int main() {
         if(op7 == NULL){printf("\nOP1 NULL\n");}
 
         if (op7 != NULL) {
-          mostrar_conjunto(op7);
           GList complemetos = initialization_glist();
           complemetos = definir_conj_comple(op7);
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
+          mostrar_conjunto(op7);
+
           //dlist_destruir_intervalo(complemetos);
        //   freeLista = prepend_glist(freeLista,complemento);
         } else {
