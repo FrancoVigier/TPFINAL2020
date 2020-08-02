@@ -550,7 +550,7 @@ int main() {
 
         if (op7 != NULL) {
           mostrar_conjunto(op7);
-          GList complementos = initialization_glist();
+          GList complemetos = initialization_glist();
           complemetos = definir_conj_comple(op7);
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
