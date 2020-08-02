@@ -309,13 +309,17 @@ GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
   Intervalo* universal = malloc(sizeof(struct _Intervalo));
   universal->inicio = INT_INFLIM;
   universal->ultimo = INT_SUPLIM;
-  Conjunto universo = malloc(sizeof(struct _Conjunto));
-  universo->intervaloLista = malloc(sizeof(struct _GNodo));
-  universo->intervaloLista = initialization_glist();
-  universo->intervaloLista = prepend_glist(universo->intervaloLista, universal);
+  universal->cardinalidad = 0;
+  universal->esVacio = 0;
+
+  GList lista = initialization_glist();
+  lista = prepend_glist(lista, universal);
+
+  Conjunto uni = crear_conjunto("universo", NULL, lista);
+
 //a lo sumo inicializar "bien universo"
   GList complemento = initialization_glist();
-  complemento = definir_conj_dif(universo, operador);
+  complemento = definir_conj_dif(uni, operador);
   return complemento;
 }
 
