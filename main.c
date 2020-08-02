@@ -57,14 +57,25 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   GList primeroBufferLista = initialization_glist();
   GList segundoBufferIntervalo = initialization_glist();
   GList segundoBufferLista = initialization_glist();
+
   primeroBufferIntervalo = glist_copiar_lista(recursaPrimero->intervaloLista);
+ // GList primeroBufferIntervalo = primero->intervaloLista;
+
   primeroBufferLista = glist_copiar_lista(recursaPrimero->lista);
   segundoBufferIntervalo = glist_copiar_lista(recursaSegundo->intervaloLista);
   segundoBufferLista = glist_copiar_lista(recursaSegundo->lista);
+  //segundoBufferLista = recursaSegundo->lista;
   for (; primeroBufferIntervalo != NULL;) {
     Intervalo* mostrar = primeroBufferIntervalo->data;
+
+    Intervalo* cpy = malloc(sizeof(struct _Intervalo));
+    cpy->cardinalidad = mostrar->cardinalidad;
+    cpy->esVacio = mostrar->esVacio;
+    cpy->inicio = mostrar->inicio;
+    cpy->ultimo = mostrar->ultimo;
+
     printf("APLANAR[%i,%i]-", mostrar->inicio,mostrar->ultimo);
-    listaAplanada = prepend_glist(listaAplanada, primeroBufferIntervalo->data);
+    listaAplanada = prepend_glist(listaAplanada, cpy);
     primeroBufferIntervalo = primeroBufferIntervalo->next;
   }
   for (; primeroBufferLista != NULL;) {
@@ -92,8 +103,15 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   }
   for (; segundoBufferIntervalo != NULL;) {
     Intervalo* mostrar = segundoBufferIntervalo->data;
+
+    Intervalo* cpy = malloc(sizeof(struct _Intervalo));
+    cpy->cardinalidad = mostrar->cardinalidad;
+    cpy->esVacio = mostrar->esVacio;
+    cpy->inicio = mostrar->inicio;
+    cpy->ultimo = mostrar->ultimo;
+
     printf("APLANAR[%i,%i]-", mostrar->inicio, mostrar->ultimo);
-    listaAplanada = prepend_glist(listaAplanada, segundoBufferIntervalo->data);
+    listaAplanada = prepend_glist(listaAplanada, cpy);
     segundoBufferIntervalo = segundoBufferIntervalo->next;
   }
   if (listaAplanada == NULL) {
@@ -379,18 +397,21 @@ int main() {
         Conjunto op1 = hash_busco(HASH, operandoUnion->aliasOperandoA);
         Conjunto op2 = hash_busco(HASH, operandoUnion->aliasOperandoB);
         */
-        Conjunto op1 = hash_busco(HASH, "pepe"); 
+        Conjunto op1 = hash_busco(HASH, "pepe");
         Conjunto op2 = hash_busco(HASH, "papa");
         if(op1 == NULL){printf("\nOP1 NULL\n");}
         if(op2 == NULL){printf("\nOP2 NULL\n");}
 
         if (op1 != NULL && op2 != NULL) {
-          mostrar_conjunto(op1);
-          mostrar_conjunto(op2);
+
           GList resultado = aplanar_solos_e_intervalos(op1, op2);
+
           Conjunto uniones = crear_conjunto("carlos", NULL, resultado);
           hash_inserto(HASH, "carlos", NULL, resultado);
           mostrar_conjunto(uniones);
+          mostrar_conjunto(op1);
+          mostrar_conjunto(op2);
+
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -490,6 +511,10 @@ int main() {
         break;
     }
   }
+  //Conjunto op3 = hash_busco(HASH, "papa");
+  //mostrar_conjunto(op3);
+  //system("pause");
   free_table(HASH);
   return 0;
 }
+
