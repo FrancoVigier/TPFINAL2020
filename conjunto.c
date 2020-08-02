@@ -133,19 +133,21 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     free(actual);
   }
   conjunto->lista = NULL;
+
   GList proximoDos = conjunto->intervaloLista;
   GList actualDos;
   for (; proximoDos != NULL ; ) {
     // Guardo un puntero al nodo actual, me muevo al siguiente y libero.
     actualDos = proximoDos;
     proximoDos = proximoDos->next;
-    //Intervalo* data = (Intervalo*)actualDos->data;
-    free(actualDos->data);
+    Intervalo* data = (Intervalo*)actualDos->data;
+    free(data);
     free(actualDos);
   }
-  free(conjunto->intervaloLista);
-  //conjunto->intervaloLista = NULL;
+  //free(conjunto->intervaloLista);
+  conjunto->intervaloLista = NULL;
   //dlist_destruir(conjunto->lista,(Visitante)free_int_punt);
   //dlist_destruir(conjunto->intervaloLista,(Visitante)free_intervalo);
   free(conjunto);
 }
+
