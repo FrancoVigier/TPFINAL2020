@@ -309,7 +309,7 @@ int main() {
   int instruccion = 2;
   int test = 1;
   Conjunto testt;
-
+  Conjunto testt2;
 
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
@@ -381,7 +381,7 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         //free (operandoB);
-
+        testt2 = operandoB;
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
@@ -518,12 +518,14 @@ int main() {
   //mostrar_conjunto(op3);
   //system("pause");
 
-  
+
   free_table(HASH);
-    free(testt->intervaloLista);
+  free(testt->intervaloLista);
   free(testt->lista);
   free(testt);
+  free(testt2->intervaloLista);
+  free(testt2->lista);
+  free(testt2);
   //mostrar_conjunto(testt);
   return 0;
 }
-
