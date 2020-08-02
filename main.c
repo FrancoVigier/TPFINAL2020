@@ -151,21 +151,42 @@ int existe_interseccion(Intervalo* A, Intervalo* B) {
   return 0;
 }
 
-GList conjunto_inters( GList intervaloOperandoA, GList intervaloOperandoB) {
-  intervaloOperandoA = dlist_selectionSort(intervaloOperandoA);
-  intervaloOperandoB = dlist_selectionSort(intervaloOperandoB);
+GList conjunto_inters( GList intervaloOperandoAA, GList intervaloOperandoBB) {
+  GList intervaloOperandoA = dlist_selectionSort(intervaloOperandoAA);
+  GList intervaloOperandoB = dlist_selectionSort(intervaloOperandoBB);
   GList listaInterseccion = initialization_glist();
   int i = 0;
   int j = 0;
   while (i < largo_glist(intervaloOperandoA) && j < largo_glist(intervaloOperandoB)){
     Intervalo* nodoAEnPosI = malloc (sizeof(struct _Intervalo));
     Intervalo* nodoBEnPosJ = malloc (sizeof(struct _Intervalo));
-    nodoAEnPosI = get_data_glist(intervaloOperandoA, i);
-    nodoBEnPosJ = get_data_glist(intervaloOperandoB, j);
+
+    Intervalo* nodoAEnPosII = get_data_glist(intervaloOperandoA, i);
+    Intervalo* nodoBEnPosJJ = get_data_glist(intervaloOperandoB, j);
+
+    nodoAEnPosI->cardinalidad = nodoAEnPosII->cardinalidad;
+    nodoAEnPosI->esVacio = nodoAEnPosII->esVacio;
+    nodoAEnPosI->inicio = nodoAEnPosII->inicio;
+    nodoAEnPosI->ultimo = nodoAEnPosII->ultimo;
+
+    nodoBEnPosJ->cardinalidad = nodoBEnPosJJ->cardinalidad;
+    nodoBEnPosJ->esVacio = nodoBEnPosJJ->esVacio;
+    nodoBEnPosJ->inicio = nodoBEnPosJJ->inicio;
+    nodoBEnPosJ->ultimo = nodoBEnPosJJ->ultimo;
+
     if (existe_interseccion(nodoAEnPosI, nodoBEnPosJ)) {
       Intervalo* temporal = malloc (sizeof(struct _Intervalo));
       temporal->inicio = MAX (nodoAEnPosI->inicio, nodoBEnPosJ->inicio);
       temporal->ultimo = MIN (nodoAEnPosI->ultimo, nodoBEnPosJ->ultimo);
+
+      temporal->cardinalidad = (temporal->ultimo - temporal->inicio) + 1;
+      if(temporal->inicio <= temporal->ultimo){
+        temporal->esVacio = 0;
+      }
+      if(temporal->inicio > temporal->ultimo){
+        temporal->esVacio = 1;
+      }
+
       nodoAEnPosI->inicio = temporal->ultimo + 1;
       nodoBEnPosJ->inicio = temporal->ultimo + 1;
       intervaloOperandoA = pisa_data_glist(intervaloOperandoA, i, nodoAEnPosI);
@@ -411,7 +432,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 5;
+          instruccion = 4;
         }
         test++;
       //  interprete = 1;
