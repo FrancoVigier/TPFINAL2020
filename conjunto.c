@@ -50,13 +50,13 @@ Conjunto extraer_com_conjunto(char* operacion, Conjunto conjunto) {
 Conjunto definir_conj_com(char* operacion, char* alias) {
   Conjunto nuevoConjunto = malloc(sizeof (struct _Conjunto));
   nuevoConjunto = inicializar_conjunto(nuevoConjunto, alias, operacion);
-  nuevoConjunto = extraer_com_conjunto(operacion, nuevoConjunto);
-  Intervalo* inter = nuevoConjunto->intervaloLista->data; //GUARDA BIEN
-  if (nuevoConjunto->vacio == 1)
+  Conjunto nuevoConju = extraer_com_conjunto(operacion, nuevoConjunto);
+  Intervalo* inter = nuevoConju->intervaloLista->data; //GUARDA BIEN
+  if (nuevoConju->vacio == 1)
     printf("\nVACIO POR COMPRENSION\n");
   else
     printf("\n[%i:%i], CARDINAL: %i\n", inter->inicio, inter->ultimo, inter->cardinalidad);
-  return nuevoConjunto;
+  return nuevoConju;
 }
 
 Conjunto definir_conj_ext(char* operacion, char* alias) {
