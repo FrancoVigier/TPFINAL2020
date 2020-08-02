@@ -534,6 +534,7 @@ int main() {
           Conjunto resta = crear_conjunto("carlos", NULL, restas);
           hash_inserto(HASH, "carlos", NULL, restas);
           mostrar_conjunto(resta);
+          freeLista = prepend_glist(freeLista,resta);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
