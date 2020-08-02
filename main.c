@@ -413,6 +413,9 @@ int main() {
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
 
+          destruir_conjunto(op1,NULL);
+          destruir_conjunto(op2,NULL);
+
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
