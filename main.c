@@ -432,7 +432,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 5;
+          instruccion = 6;
         }
         test++;
       //  interprete = 1;
@@ -550,7 +550,8 @@ int main() {
 
         if (op7 != NULL) {
           mostrar_conjunto(op7);
-          GList complemetos = definir_conj_comple(op7);
+          GList complementos = initialization_glist();
+          complemetos = definir_conj_comple(op7);
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
