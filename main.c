@@ -618,6 +618,7 @@ int main() {
           complemetos = definir_conj_dif(universal, op7);
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
+          destruir_conjunto(universal,NULL);
           mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
         } else {
