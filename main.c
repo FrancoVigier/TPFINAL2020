@@ -660,7 +660,8 @@ int main() {
     free(actual);
   }
   
-  free(freeLista2->data);
+  Conjunto fre =(Conjunto) freeLista2->data;
+  free(fre->intervaloLista);
   free(freeLista2);
   
   system("pause");
