@@ -602,7 +602,6 @@ int main() {
 
           //dlist_destruir_intervalo(complemetos);
           freeLista = prepend_glist(freeLista,complemento);
-            free(complemento->intervaloLista);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
