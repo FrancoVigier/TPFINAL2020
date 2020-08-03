@@ -601,7 +601,7 @@ int main() {
           mostrar_conjunto(op7);
 
           //dlist_destruir_intervalo(complemetos);
-       //   freeLista = prepend_glist(freeLista,complemento);
+          freeLista = prepend_glist(freeLista,complemento);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
