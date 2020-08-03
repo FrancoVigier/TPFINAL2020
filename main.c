@@ -329,7 +329,6 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
 
   //
   dlist_destruir_intervalo(bufferlistauno);
-  free(bufferlistauno);
   dlist_destruir_intervalo(bufferlistados);
   //
   return listaDiferencia;
