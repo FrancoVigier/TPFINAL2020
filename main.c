@@ -421,7 +421,7 @@ int main() {
 
           Conjunto universal = crear_conjunto("universal", NULL, universo);
 
-
+hash_inserto(HASH, universal->alias, universal->lista, universal->intervaloLista);
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
@@ -612,11 +612,12 @@ int main() {
 
 
         Conjunto op7 = hash_busco(HASH, "papa");
+        Conjunto op8 = hash_busco(HASH, "universal");
         if(op7 == NULL){printf("\nOP1 NULL\n");}
 
         if (op7 != NULL) {
            mostrar_conjunto(op7);
-          GList complemetos = definir_conj_dif(universal, op7);
+          GList complemetos = definir_conj_dif(op8, op7);
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
@@ -654,8 +655,8 @@ int main() {
   }
 
 
-  destruir_conjunto(universal,NULL);
-  free(universo);
+  //destruir_conjunto(universal,NULL);*****
+  //free(universo);******
 
   free_table(HASH);
   //Conjunto op3 = hash_busco(HASH, "carlos");
