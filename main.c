@@ -656,8 +656,8 @@ int main() {
 
 
   destruir_conjunto(universal,NULL);
-  
-  
+  free(universo);
+
   free_table(HASH);
   //Conjunto op3 = hash_busco(HASH, "carlos");
   //mostrar_conjunto(op3);
