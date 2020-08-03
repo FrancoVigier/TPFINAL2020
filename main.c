@@ -647,8 +647,8 @@ int main() {
     actual = proximo;
     proximo = proximo->next;
     Conjunto fr = (Conjunto) actual->data;
-    free(fr->lista);
-    free(fr->intervaloLista);
+    dlist_destruir_int(fr->lista);
+    dlist_destruir_intervalo(fr->intervaloLista);
     free(fr);
     free(actual);
   }
