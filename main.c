@@ -319,9 +319,16 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
     mostrar_intervalo(primero->intervaloLista);
     buff = lista;
     for (; buff != NULL; buff = buff->next) {
-      listaDiferencia = prepend_glist(listaDiferencia, buff->data);
+      Intervalo* dat = (Intervalo*) buff->data;
+
+      Intervalo* date = malloc(sizeof(struct _Intervalo));
+      date->inicio = dat->inicio;
+      date->ultimo = dat->ultimo;
+      date->cardinalidad = dat->cardinalidad;
+      date->esVacio = dat->esVacio;
+      listaDiferencia = prepend_glist(listaDiferencia, date);
       Intervalo* data = buff->data;
-      printf("FOR:[%i,%i] %i %i\n",data->inicio, data->ultimo, data->cardinalidad, data->esVacio);
+      printf("FOR:[%i,%i] %i %i\n",date->inicio, date->ultimo, date->cardinalidad, date->esVacio);
     }
   }
   printf("\nQUEDAAAAAAA3:\n");
@@ -329,8 +336,8 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
 
   //
   dlist_destruir_intervalo(bufferlistauno);
-
   dlist_destruir_intervalo(bufferlistados);
+  dlist_destruir_intervalo(lista);
   //
   return listaDiferencia;
 }
