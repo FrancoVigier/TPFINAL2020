@@ -318,6 +318,8 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
     lista = conjunto_diferencia(listados, dato);
     printf("\nQUEDAAAAAAA2:\n");
     mostrar_intervalo(primero->intervaloLista);
+    mostrar_intervalo(lista);
+
     buff = lista;
     for (; buff != NULL; buff = buff->next) {
       Intervalo* dat = (Intervalo*) buff->data;
@@ -330,8 +332,8 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
       listaDiferencia = prepend_glist(listaDiferencia, date);
       Intervalo* data = buff->data;
       printf("FOR:[%i,%i] %i %i\n",date->inicio, date->ultimo, date->cardinalidad, date->esVacio);
-    //  
-      free(date);
+    //
+    //  free(date); //falta esto
     //
     }
   }
@@ -480,7 +482,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 6;
+          instruccion = 5;
         }
         test++;
       //  interprete = 1;
@@ -577,7 +579,10 @@ int main() {
           Conjunto resta = crear_conjunto("carlos", NULL, restas);
           hash_inserto(HASH, "carlos", NULL, restas);
           mostrar_conjunto(resta);
-          //freeLista = prepend_glist(freeLista, resta);
+          printf("OPERANDOS DE LA OPERACION:\n\n");
+          mostrar_conjunto(op5);
+          mostrar_conjunto(op6);
+          printf("________________");
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -599,14 +604,10 @@ int main() {
         if (op7 != NULL) {
           GList complemetos = initialization_glist();
           complemetos = definir_conj_comple(op7);
-         //   Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
+          Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
-       //     mostrar_conjunto(complemento);
+          mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
-            freeLista2 = complemetos;
-
-            //freeLista = prepend_glist(freeLista,complemento);
-
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -662,10 +663,6 @@ int main() {
     free(fr);
     free(actual);
   }
-
-  Conjunto fre =(Conjunto) freeLista2->data;
-  free(fre->lista);
-  free(freeLista2);
 
   system("pause");
 
