@@ -601,9 +601,7 @@ int main() {
           mostrar_conjunto(op7);
 
 //
-          free(complemetos);
-          free(complemento->intervaloLista);
-          free(complemento);
+          dlist_destruir_intervalo(complemetos);
  //
 
           freeLista = prepend_glist(freeLista,complemento);
@@ -674,3 +672,4 @@ int main() {
   //mostrar_conjunto(testt);
   return 0;
 }
+
