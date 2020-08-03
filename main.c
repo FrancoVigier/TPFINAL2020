@@ -614,7 +614,7 @@ int main() {
 
 
 
-          freeLista2 = prepend_glist(freeLista2,complemento);
+          freeLista = prepend_glist(freeLista,complemento);
 
         } else {
           printf("\nUno de los operandos no existe...\n");
@@ -670,7 +670,7 @@ int main() {
     free(fr);
     free(actual);
   }
-  dlist_destruir(freeLista2,(Visitante)destruir_conjunto);
+  //dlist_destruir(freeLista2,(Visitante)destruir_conjunto);
   /*
   free(testt->intervaloLista);
   free(testt->lista);
