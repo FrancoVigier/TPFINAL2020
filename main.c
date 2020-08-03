@@ -343,15 +343,6 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
 }
 
 GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
-  Conjunto operaBuffer = malloc(sizeof(struct _Conjunto));
-  operaBuffer->abiertoCerrado = operador->abiertoCerrado;
-  operaBuffer->alias = operador->alias;
-  operaBuffer->comprenExtens = operador->comprenExtens;
-  operaBuffer->extInferior = operador->extInferior;
-  operaBuffer->extSuperior = operador->extSuperior;
-  operaBuffer->intervaloLista = operador->intervaloLista;
-  operaBuffer->lista = operador->lista;
-  operaBuffer->vacio = operador->vacio;
 
   Intervalo* universal = malloc(sizeof(struct _Intervalo));
   universal->inicio = INT_INFLIM;
@@ -366,9 +357,11 @@ GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
 
 //a lo sumo inicializar "bien universo"
   GList complemento = initialization_glist();
-  complemento = definir_conj_dif(uni, operaBuffer);
+  complemento = definir_conj_dif(uni, operador);
+
   destruir_conjunto(uni, NULL);
   free(lista);
+
   return complemento;
 }
 
