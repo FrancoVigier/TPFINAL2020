@@ -482,7 +482,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 5;
+          instruccion = 6;
         }
         test++;
       //  interprete = 1;
@@ -602,8 +602,20 @@ int main() {
         if(op7 == NULL){printf("\nOP1 NULL\n");}
 
         if (op7 != NULL) {
+
+          Intervalo* uni = malloc(sizeof(struct _Intervalo));
+          uni->cardinalidad = 0;
+          uni->esVacio = 0;
+          uni->inicio = INT_INFLIM;
+          uni->ultimo = INT_SUPLIM;
+
+          GList universo = initialization_glist();
+          universo = prepend_glist(universo,uni);
+
+          Conjunto universal = crear_conjunto("universal", NULL, universo);
+
           GList complemetos = initialization_glist();
-          complemetos = definir_conj_comple(op7);
+          complemetos = definir_conj_dif(universal, op7);
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
