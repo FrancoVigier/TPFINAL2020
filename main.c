@@ -602,6 +602,7 @@ int main() {
 
           //dlist_destruir_intervalo(complemetos);
           freeLista = prepend_glist(freeLista,complemento);
+
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -647,9 +648,13 @@ int main() {
     actual = proximo;
     proximo = proximo->next;
     Conjunto fr = (Conjunto) actual->data;
-    free(fr->lista);
-    free(fr->intervaloLista);
-    free(fr);
+    printf("\nALIAS A ELIMINAR X2\n");
+    //mostrar_conjunto(fr);
+    destruir_conjunto(fr, NULL);
+    //mostrar_conjunto(fr);
+   // free(fr->lista);
+   // free(fr->intervaloLista);
+   // free(fr);
     free(actual);
   }
 
