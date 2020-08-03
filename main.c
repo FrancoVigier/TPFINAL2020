@@ -606,15 +606,15 @@ int main() {
         if (op7 != NULL) {
           GList complemetos = initialization_glist();
           complemetos = definir_conj_comple(op7);
-       //   Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
+       //     Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
-       //   mostrar_conjunto(complemento);
+       //     mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
 
 
 
 
-      //    freeLista = prepend_glist(freeLista,complemento);
+         //   freeLista = prepend_glist(freeLista,complemento);
 
         } else {
           printf("\nUno de los operandos no existe...\n");
@@ -647,13 +647,14 @@ int main() {
         break;
     }
   }
-  //Conjunto op3 = hash_busco(HASH, "papa");
-  //mostrar_conjunto(op3);
-  //system("pause");
+
 
 
   free_table(HASH);
-
+  //Conjunto op3 = hash_busco(HASH, "carlos");
+  //mostrar_conjunto(op3);
+  //destruir_conjunto(op3, NULL);
+  //mostrar_conjunto(op3);
 //FREE COMPRENSION Y "EXTENSION"
   GList proximo = freeLista;
   GList actual;
@@ -662,7 +663,7 @@ int main() {
     proximo = proximo->next;
     Conjunto fr = (Conjunto) actual->data;
     printf("\nALIAS A ELIMINAR X2\n");
-    //mostrar_conjunto(fr);
+   // mostrar_conjunto(fr);
     //destruir_conjunto(fr, NULL);
     //mostrar_conjunto(fr);
     free(fr->lista);
@@ -670,6 +671,12 @@ int main() {
     free(fr);
     free(actual);
   }
+  system("pause");
+
+  //Conjunto op3 = hash_busco(HASH, "carlos");
+  //mostrar_conjunto(op3);
+  //destruir_conjunto(op3, NULL);
+  //mostrar_conjunto(op3);
   //dlist_destruir(freeLista2,(Visitante)destruir_conjunto);
   /*
   free(testt->intervaloLista);
