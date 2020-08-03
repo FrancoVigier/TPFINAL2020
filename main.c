@@ -600,7 +600,10 @@ int main() {
           mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
 
-          //dlist_destruir_intervalo(complemetos);
+//
+          free(complemetos);
+ //
+
           freeLista = prepend_glist(freeLista,complemento);
 
         } else {
