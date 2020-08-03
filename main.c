@@ -343,6 +343,16 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
 }
 
 GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
+  Conjunto operaBuffer = malloc(sizeof(struct _Conjunto));
+  operaBuffer->abiertoCerrado = operador->abiertoCerrado;
+  operaBuffer->alias = operador->alias;
+  operaBuffer->comprenExtens = operador->comprenExtens;
+  operaBuffer->extInferior = operador->extInferior;
+  operaBuffer->extSuperior = operador->extSuperior;
+  operaBuffer->intervaloLista = operador->intervaloLista;
+  operaBuffer->lista = operador->lista;
+  operaBuffer->vacio = operador->vacio;
+
   Intervalo* universal = malloc(sizeof(struct _Intervalo));
   universal->inicio = INT_INFLIM;
   universal->ultimo = INT_SUPLIM;
@@ -356,7 +366,7 @@ GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
 
 //a lo sumo inicializar "bien universo"
   GList complemento = initialization_glist();
-  complemento = definir_conj_dif(uni, operador);
+  complemento = definir_conj_dif(uni, operaBuffer);
   destruir_conjunto(uni, NULL);
   free(lista);
   return complemento;
@@ -398,7 +408,8 @@ int main() {
   int test = 1;
   Conjunto testt;
   Conjunto testt2;
-  GList freeLista = initialization_glist();
+  GList freeLista = initialization_glist(); //ext y com
+  GList freeLista2 = initialization_glist();
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
@@ -600,11 +611,10 @@ int main() {
           mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
 
-//
-          dlist_destruir_intervalo(complemetos);
- //
 
-          freeLista = prepend_glist(freeLista,complemento);
+
+
+          freeLista2 = prepend_glist(freeLista2,complemento);
 
         } else {
           printf("\nUno de los operandos no existe...\n");
@@ -672,4 +682,3 @@ int main() {
   //mostrar_conjunto(testt);
   return 0;
 }
-
