@@ -596,13 +596,13 @@ int main() {
         if (op7 != NULL) {
           GList complemetos = initialization_glist();
           complemetos = definir_conj_comple(op7);
-            Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
+         //   Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
        //     mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
+            freeLista2 = complemetos;
 
-
-            freeLista = prepend_glist(freeLista,complemento);
+            //freeLista = prepend_glist(freeLista,complemento);
 
         } else {
           printf("\nUno de los operandos no existe...\n");
@@ -659,6 +659,10 @@ int main() {
     free(fr);
     free(actual);
   }
+  
+  free(freeLista2->data);
+  free(freeLista2);
+  
   system("pause");
 
   //Conjunto op3 = hash_busco(HASH, "carlos");
