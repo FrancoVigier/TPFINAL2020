@@ -341,6 +341,7 @@ GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
   GList complemento = initialization_glist();
   complemento = definir_conj_dif(uni, operador);
   destruir_conjunto(uni, NULL);
+  free(universal);
   return complemento;
 }
 
