@@ -670,7 +670,7 @@ int main() {
     free(fr);
     free(actual);
   }
-
+  dlist_destruir(freeLista2,(Visitante)destruir_conjunto);
   /*
   free(testt->intervaloLista);
   free(testt->lista);
