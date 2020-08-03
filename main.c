@@ -409,7 +409,7 @@ int main() {
   Conjunto testt2;
   GList freeLista = initialization_glist(); //ext y com
   GList freeLista2 = initialization_glist();
-
+/*
    Intervalo* uni = malloc(sizeof(struct _Intervalo));
           uni->cardinalidad = 0;
           uni->esVacio = 0;
@@ -420,8 +420,14 @@ int main() {
           universo = prepend_glist(universo,uni);
 
           Conjunto universal = crear_conjunto("universal", NULL, universo);
+*/
+        char aliasUni[] = "universal";
+        char operacionUni[] = " {x : -32767 <= x <= 32767}";
+        printf("-%s- , -%s-", operacionUni, aliasUni);
+        Conjunto universal = definir_conj_com(operacionUni, aliasUni);//hashea operando con el alias
+        hash_inserto(HASH, universal->alias, universal->lista, universal->intervaloLista);
+        freeLista = prepend_glist(freeLista,universal);
 
-hash_inserto(HASH, universal->alias, universal->lista, universal->intervaloLista);
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
