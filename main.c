@@ -650,11 +650,11 @@ int main() {
     Conjunto fr = (Conjunto) actual->data;
     printf("\nALIAS A ELIMINAR X2\n");
     //mostrar_conjunto(fr);
-    destruir_conjunto(fr, NULL);
+    //destruir_conjunto(fr, NULL);
     //mostrar_conjunto(fr);
-   // free(fr->lista);
-   // free(fr->intervaloLista);
-   // free(fr);
+    free(fr->lista);
+    free(fr->intervaloLista);
+    free(fr);
     free(actual);
   }
 
