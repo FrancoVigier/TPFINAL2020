@@ -409,6 +409,19 @@ int main() {
   Conjunto testt2;
   GList freeLista = initialization_glist(); //ext y com
   GList freeLista2 = initialization_glist();
+
+   Intervalo* uni = malloc(sizeof(struct _Intervalo));
+          uni->cardinalidad = 0;
+          uni->esVacio = 0;
+          uni->inicio = INT_INFLIM;
+          uni->ultimo = INT_SUPLIM;
+
+          GList universo = initialization_glist();
+          universo = prepend_glist(universo,uni);
+
+          Conjunto universal = crear_conjunto("universal", NULL, universo);
+
+
   while (interprete == 0) {
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
@@ -602,23 +615,11 @@ int main() {
         if(op7 == NULL){printf("\nOP1 NULL\n");}
 
         if (op7 != NULL) {
-
-          Intervalo* uni = malloc(sizeof(struct _Intervalo));
-          uni->cardinalidad = 0;
-          uni->esVacio = 0;
-          uni->inicio = INT_INFLIM;
-          uni->ultimo = INT_SUPLIM;
-
-          GList universo = initialization_glist();
-          universo = prepend_glist(universo,uni);
-
-          Conjunto universal = crear_conjunto("universal", NULL, universo);
-
+           mostrar_conjunto(op7);
           GList complemetos = initialization_glist();
           complemetos = definir_conj_dif(universal, op7);
           Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
           hash_inserto(HASH, "carlos", NULL, complemetos);
-          destruir_conjunto(universal,NULL);
           mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
         } else {
