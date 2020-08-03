@@ -129,8 +129,8 @@ GList aplanar_lista(Conjunto primero) {
   GList primeroBufferIntervalo = initialization_glist();
   GList primeroBufferLista = initialization_glist();
 
-  primeroBufferIntervalo = glist_copiar_lista(recursaPrimero->intervaloLista);
-  primeroBufferLista = glist_copiar_lista(recursaPrimero->lista);
+  primeroBufferIntervalo = recursaPrimero->intervaloLista;
+  primeroBufferLista = recursaPrimero->lista;
 
  for (; primeroBufferIntervalo != NULL;) {
     Intervalo* mostrar = primeroBufferIntervalo->data;
@@ -329,6 +329,7 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
 
   //
   dlist_destruir_intervalo(bufferlistauno);
+
   dlist_destruir_intervalo(bufferlistados);
   //
   return listaDiferencia;
@@ -656,4 +657,3 @@ int main() {
   //mostrar_conjunto(testt);
   return 0;
 }
-
