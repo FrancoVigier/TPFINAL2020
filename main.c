@@ -501,7 +501,7 @@ if(inicializarUniversal == 0){
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 6;
+          instruccion = 5;
         }
         test++;
       //  interprete = 1;
@@ -687,20 +687,5 @@ if(inicializarUniversal == 0){
   }
 
   system("pause");
-
-  //Conjunto op3 = hash_busco(HASH, "carlos");
-  //mostrar_conjunto(op3);
-  //destruir_conjunto(op3, NULL);
-  //mostrar_conjunto(op3);
-  //dlist_destruir(freeLista2,(Visitante)destruir_conjunto);
-  /*
-  free(testt->intervaloLista);
-  free(testt->lista);
-  free(testt);
-  free(testt2->intervaloLista);
-  free(testt2->lista);
-  free(testt2);
-  */
-  //mostrar_conjunto(testt);
   return 0;
 }
