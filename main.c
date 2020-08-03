@@ -295,8 +295,12 @@ GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
 }
 
 GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
-  GList listauno = aplanar_lista(primero);
-  GList listados = aplanar_lista(segundo);
+  GList bufferlistauno = aplanar_lista(primero);
+  GList bufferlistados = aplanar_lista(segundo);
+
+  GList listauno = bufferlistauno;
+  GList listados = bufferlistados;
+
   GList lista = initialization_glist();
   GList listaDiferencia = initialization_glist();
   GList buff;
@@ -322,6 +326,11 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
   }
   printf("\nQUEDAAAAAAA3:\n");
   mostrar_intervalo(primero->intervaloLista);
+
+  //
+  dlist_destruir_intervalo(bufferlistauno);
+  dlist_destruir_intervalo(bufferlistados);
+  //
   return listaDiferencia;
 }
 
@@ -647,3 +656,4 @@ int main() {
   //mostrar_conjunto(testt);
   return 0;
 }
+
