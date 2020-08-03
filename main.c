@@ -330,6 +330,9 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
       listaDiferencia = prepend_glist(listaDiferencia, date);
       Intervalo* data = buff->data;
       printf("FOR:[%i,%i] %i %i\n",date->inicio, date->ultimo, date->cardinalidad, date->esVacio);
+    //  
+      free(date);
+    //
     }
   }
   printf("\nQUEDAAAAAAA3:\n");
@@ -659,11 +662,11 @@ int main() {
     free(fr);
     free(actual);
   }
-  
+
   Conjunto fre =(Conjunto) freeLista2->data;
-  free(fre->intervaloLista);
+  free(fre->lista);
   free(freeLista2);
-  
+
   system("pause");
 
   //Conjunto op3 = hash_busco(HASH, "carlos");
