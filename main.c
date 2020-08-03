@@ -602,6 +602,8 @@ int main() {
 
 //
           free(complemetos);
+          free(complemento->intervaloLista);
+          free(complemento);
  //
 
           freeLista = prepend_glist(freeLista,complemento);
