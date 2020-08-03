@@ -409,32 +409,32 @@ int main() {
   Conjunto testt2;
   GList freeLista = initialization_glist(); //ext y com
   GList freeLista2 = initialization_glist();
-/*
-   Intervalo* uni = malloc(sizeof(struct _Intervalo));
-          uni->cardinalidad = 0;
-          uni->esVacio = 0;
-          uni->inicio = INT_INFLIM;
-          uni->ultimo = INT_SUPLIM;
 
-          GList universo = initialization_glist();
-          universo = prepend_glist(universo,uni);
-
-          Conjunto universal = crear_conjunto("universal", NULL, universo);
-*/
-        char aliasUni[] = "universal";
-        char operacionUni[] = " {x : -32767 <= x <= 32767}";
-        printf("-%s- , -%s-", operacionUni, aliasUni);
-        Conjunto universal = definir_conj_com(operacionUni, aliasUni);//hashea operando con el alias
-        hash_inserto(HASH, universal->alias, universal->lista, universal->intervaloLista);
-        freeLista = prepend_glist(freeLista,universal);
+  int inicializarUniversal = 0;
 
   while (interprete == 0) {
+
+
+if(inicializarUniversal == 0){
+    char alias[] = "universal";
+    char operacion[] = " {x : -32767 <= x <= 32767}";
+    printf("-%s- , -%s-", operacion, alias);
+    Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
+    hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
+    Conjunto aux1 = hash_busco(HASH, operandoB->alias);
+    mostrar_conjunto(aux1);
+    //free (operandoB);
+    testt = operandoB;
+    freeLista = prepend_glist(freeLista,operandoB);
+    inicializarUniversal = 1;
+}
+
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
+
 ///    fgets(alias, LIMITE, stdin);
 ///    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
 ///    int instruccion = comando_int(operacion, alias);
-
     switch (instruccion) {
       case 1:
         printf("extension");
@@ -587,7 +587,7 @@ int main() {
         Conjunto op6 = hash_busco(HASH, operandoResta->aliasOperandoB);
         */
         printf("resta");
-                Conjunto op5 = hash_busco(HASH, "pepe");
+                Conjunto op5 = hash_busco(HASH, "universal");
         Conjunto op6 = hash_busco(HASH, "papa");
         if(op5 == NULL){printf("\nOP1 NULL\n");}
         if(op6 == NULL){printf("\nOP2 NULL\n");}
