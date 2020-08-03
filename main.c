@@ -606,7 +606,7 @@ int main() {
 
 
 
-
+            free(complemetos);
          //   freeLista = prepend_glist(freeLista,complemento);
 
         } else {
