@@ -617,7 +617,7 @@ if(inicializarUniversal == 0){
         Conjunto op7 = hash_busco(HASH, operandoComplemento->aliasOperandoA);
         */
 
-        Conjunto op8 = hash_busco(HASH, "universal");
+        Conjunto op8 = hash_busco(HASH, "pepe");
         Conjunto op7 = hash_busco(HASH, "papa");
 
         if(op8 == NULL){printf("\nOP1 NULL\n");}
