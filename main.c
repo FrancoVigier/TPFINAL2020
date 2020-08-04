@@ -183,8 +183,8 @@ void mostrar_intervalo(GList intervall) {
 GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   GList intervaloOperandoAA = aplanar_lista(primero);
   GList intervaloOperandoBB = aplanar_lista(segundo);
-  int testNull = 1;
-  if(intervaloOperandoAA == NULL || intervaloOperandoBB == NULL || testNull == 1){
+ // int testNull = 1; A (inters) void = void, void (inters) A = void
+  if(intervaloOperandoAA == NULL || intervaloOperandoBB == NULL){
     return NULL;
   }
 
@@ -528,7 +528,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 4;
+          instruccion = 3;
         }
         test++;
       //  interprete = 1;
@@ -543,7 +543,7 @@ int main() {
         Conjunto op1 = hash_busco(HASH, operandoUnion->aliasOperandoA);
         Conjunto op2 = hash_busco(HASH, operandoUnion->aliasOperandoB);
         */
-        Conjunto op1 = hash_busco(HASH, "pepe");
+        Conjunto op1 = hash_busco(HASH, "papa");
         Conjunto op2 = hash_busco(HASH, "papa");
         if(op1 == NULL){printf("\nOP1 NULL\n");}
         if(op2 == NULL){printf("\nOP2 NULL\n");}
@@ -556,8 +556,10 @@ int main() {
           Conjunto uniones = crear_conjunto("carlos", NULL, resultado);
           hash_inserto(HASH, "carlos", NULL, resultado);
           mostrar_conjunto(uniones);
-
-
+          printf("OPERANDOS UNION:\n");
+          mostrar_conjunto(op1);
+          mostrar_conjunto(op2);
+          printf("____________________\n");
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
