@@ -412,21 +412,6 @@ int main() {
 
   int inicializarUniversal = 0;
 
-if(inicializarUniversal == 0){
-
-    char aliasa[] = "universal";
-    char operacione[] = " {x : -32767 <= x <= 32767}";
-    printf("-%s- , -%s-", operacione, aliasa);
-    Conjunto operandoBB = definir_conj_com(operacione, aliasa);//hashea operando con el alias
-    hash_inserto(HASH, operandoBB->alias, operandoBB->lista, operandoBB->intervaloLista);
-    Conjunto aux1 = hash_busco(HASH, operandoBB->alias);
-    mostrar_conjunto(aux1);
-    //free (operandoB);
-    testt = operandoBB;
-    freeLista = prepend_glist(freeLista,operandoBB);
-    inicializarUniversal = 1;
-}
-
   while (interprete == 0) {
 
 
@@ -616,6 +601,21 @@ if(inicializarUniversal == 0){
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoComplemento->aliasOperandoA, operandoComplemento->aliasOperandoB);//parsea a | b
         Conjunto op7 = hash_busco(HASH, operandoComplemento->aliasOperandoA);
         */
+
+if(inicializarUniversal == 0){
+
+    char aliasa[] = "universal";
+    char operacione[] = " {x : -32767 <= x <= 32767}";
+    printf("-%s- , -%s-", operacione, aliasa);
+    Conjunto operandoBB = definir_conj_com(operacione, aliasa);//hashea operando con el alias
+    hash_inserto(HASH, operandoBB->alias, operandoBB->lista, operandoBB->intervaloLista);
+    Conjunto aux1 = hash_busco(HASH, operandoBB->alias);
+    mostrar_conjunto(aux1);
+    //free (operandoB);
+    testt = operandoBB;
+    freeLista = prepend_glist(freeLista,operandoBB);
+    inicializarUniversal = 1;
+}
 
         Conjunto op8 = hash_busco(HASH, "universal");
         Conjunto op7 = hash_busco(HASH, "papa");
