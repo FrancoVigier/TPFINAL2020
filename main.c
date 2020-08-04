@@ -296,6 +296,10 @@ GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
 }
 
 GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
+  if(strcmp(primero->alias, segundo->alias) == 0){
+    return NULL;
+  }
+
   GList bufferlistauno = aplanar_lista(primero);
   GList bufferlistados = aplanar_lista(segundo);
 
@@ -587,10 +591,10 @@ int main() {
           printf("OPERANDOS DE LA OPERACION:\n\n");
           mostrar_conjunto(op5);
           mostrar_conjunto(op6);
-          
-          freeLista = prepend_glist(freeLista,resta);
-          free(restas);
-          
+
+          //freeLista = prepend_glist(freeLista,resta);
+          //free(restas);
+
           printf("________________");
         } else {
           printf("\nUno de los operandos no existe...\n");
