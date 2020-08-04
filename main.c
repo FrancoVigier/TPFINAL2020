@@ -412,10 +412,8 @@ int main() {
 
   int inicializarUniversal = 0;
 
-  while (interprete == 0) {
-
-
 if(inicializarUniversal == 0){
+
     char aliasa[] = "universal";
     char operacione[] = " {x : -32767 <= x <= 32767}";
     printf("-%s- , -%s-", operacione, aliasa);
@@ -428,6 +426,11 @@ if(inicializarUniversal == 0){
     freeLista = prepend_glist(freeLista,operandoBB);
     inicializarUniversal = 1;
 }
+
+  while (interprete == 0) {
+
+
+
 
 ///    char* alias = malloc(LIMITE * sizeof(char));
 ///    char* operacion = malloc(LIMITE * sizeof(char));
@@ -592,8 +595,6 @@ if(inicializarUniversal == 0){
         if(op5 == NULL){printf("\nOP1 NULL\n");}
         if(op6 == NULL){printf("\nOP2 NULL\n");}
         if (op5 != NULL && op6 != NULL) {
-          mostrar_conjunto(op5);
-          mostrar_conjunto(op6);
           GList restas = definir_conj_dif(op5, op6);
           Conjunto resta = crear_conjunto("carlos", NULL, restas);
           hash_inserto(HASH, "carlos", NULL, restas);
@@ -662,14 +663,8 @@ if(inicializarUniversal == 0){
   }
 
 
-  //destruir_conjunto(universal,NULL);*****
-  //free(universo);******
-
   free_table(HASH);
-  //Conjunto op3 = hash_busco(HASH, "carlos");
-  //mostrar_conjunto(op3);
-  //destruir_conjunto(op3, NULL);
-  //mostrar_conjunto(op3);
+
 //FREE COMPRENSION Y "EXTENSION"
   GList proximo = freeLista;
   GList actual;
@@ -678,9 +673,7 @@ if(inicializarUniversal == 0){
     proximo = proximo->next;
     Conjunto fr = (Conjunto) actual->data;
     printf("\nALIAS A ELIMINAR X2\n");
-   // mostrar_conjunto(fr);
-    //destruir_conjunto(fr, NULL);
-    //mostrar_conjunto(fr);
+
     free(fr->lista);
     free(fr->intervaloLista);
     free(fr);
