@@ -252,7 +252,8 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
 
   mostrar_intervalo(intervaloOperandoAA);
   mostrar_intervalo(intervaloOperandoA);
-
+  printf("RESULTADO 420:\n");
+  mostrar_intervalo(listaInterseccion);
   dlist_destruir_intervalo(intervaloOperandoA);
   dlist_destruir_intervalo(intervaloOperandoB);
 
@@ -598,6 +599,9 @@ int main() {
           printf("____________________\n");
 
           freeLista = prepend_glist(freeLista, interseccion);
+          //
+          free(intersecciones);
+        //
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
