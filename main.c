@@ -511,7 +511,7 @@ int main() {
         }
         if(test == 2){
         char alias[] = "papa";
-        char operacion[] = " {x : 25 <= x <= 75}";
+        char operacion[] = " {x : 110 <= x <= 125}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
