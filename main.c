@@ -416,16 +416,16 @@ int main() {
 
 
 if(inicializarUniversal == 0){
-    char alias[] = "universal";
-    char operacion[] = " {x : -32767 <= x <= 32767}";
-    printf("-%s- , -%s-", operacion, alias);
-    Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
-    hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
-    Conjunto aux1 = hash_busco(HASH, operandoB->alias);
+    char aliasa[] = "universal";
+    char operacione[] = " {x : -32767 <= x <= 32767}";
+    printf("-%s- , -%s-", operacione, aliasa);
+    Conjunto operandoBB = definir_conj_com(operacione, aliasa);//hashea operando con el alias
+    hash_inserto(HASH, operandoBB->alias, operandoBB->lista, operandoBB->intervaloLista);
+    Conjunto aux1 = hash_busco(HASH, operandoBB->alias);
     mostrar_conjunto(aux1);
     //free (operandoB);
-    testt = operandoB;
-    freeLista = prepend_glist(freeLista,operandoB);
+    testt = operandoBB;
+    freeLista = prepend_glist(freeLista,operandoBB);
     inicializarUniversal = 1;
 }
 
@@ -619,7 +619,7 @@ if(inicializarUniversal == 0){
         Conjunto op8 = hash_busco(HASH, "universal");
         Conjunto op7 = hash_busco(HASH, "papa");
 
-        if(op7 == NULL){printf("\nOP1 NULL\n");}
+        if(op8 == NULL){printf("\nOP1 NULL\n");}
 
         if (op7 != NULL) {
           mostrar_conjunto(op7);
