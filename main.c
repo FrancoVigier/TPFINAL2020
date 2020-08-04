@@ -171,12 +171,31 @@ int existe_interseccion(Intervalo* A, Intervalo* B) {
   return 0;
 }
 
+void mostrar_intervalo(GList intervall) {
+    GList intervalll = intervall;
+  for (; intervalll != NULL;) {
+    Intervalo* mostrar = intervalll->data;
+    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
+    intervalll = intervalll->next;
+  }
+}
+
 GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   GList intervaloOperandoAA = aplanar_lista(primero);
   GList intervaloOperandoBB = aplanar_lista(segundo);
 
-  GList intervaloOperandoA = dlist_selectionSort(intervaloOperandoAA);
-  GList intervaloOperandoB = dlist_selectionSort(intervaloOperandoBB);
+  printf("\nINTERSECCION DENTRO ANTES\n");
+  mostrar_intervalo(intervaloOperandoAA);
+
+  GList intervaloOperandoAAA = dlist_selectionSort(intervaloOperandoAA);
+  GList intervaloOperandoBBB = dlist_selectionSort(intervaloOperandoBB);
+
+  GList intervaloOperandoA = glist_copiar_lista(intervaloOperandoAAA);
+  GList intervaloOperandoB = glist_copiar_lista(intervaloOperandoBBB);
+
+    printf("\nINTERSECCION DENTRO DESPUES DEL SORT\n");
+  mostrar_intervalo(intervaloOperandoAA);
+
   GList listaInterseccion = initialization_glist();
   int i = 0;
   int j = 0;
@@ -229,20 +248,17 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
     else
       i += 1;
   }
+  printf("INTERSECCION DENTRO\n");
+
+  mostrar_intervalo(intervaloOperandoAA);
+  mostrar_intervalo(intervaloOperandoA);
 
   dlist_destruir_intervalo(intervaloOperandoAA);
   dlist_destruir_intervalo(intervaloOperandoBB);
+
   return listaInterseccion;
 }
 
-void mostrar_intervalo(GList intervall) {
-    GList intervalll = intervall;
-  for (; intervalll != NULL;) {
-    Intervalo* mostrar = intervalll->data;
-    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
-    intervalll = intervalll->next;
-  }
-}
 
 GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
 
