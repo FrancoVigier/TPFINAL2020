@@ -253,6 +253,9 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   mostrar_intervalo(intervaloOperandoAA);
   mostrar_intervalo(intervaloOperandoA);
 
+  dlist_destruir_intervalo(intervaloOperandoA);
+  dlist_destruir_intervalo(intervaloOperandoB);
+
   dlist_destruir_intervalo(intervaloOperandoAA);
   dlist_destruir_intervalo(intervaloOperandoBB);
 
