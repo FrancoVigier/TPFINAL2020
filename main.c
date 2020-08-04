@@ -171,7 +171,10 @@ int existe_interseccion(Intervalo* A, Intervalo* B) {
   return 0;
 }
 
-GList conjunto_inters( GList intervaloOperandoAA, GList intervaloOperandoBB) {
+GList conjunto_inters( Conjunto primero, Conjunto segundo) {
+  GList intervaloOperandoAA = aplanar_lista(primero);
+  GList intervaloOperandoBB = aplanar_lista(segundo);
+
   GList intervaloOperandoA = dlist_selectionSort(intervaloOperandoAA);
   GList intervaloOperandoB = dlist_selectionSort(intervaloOperandoBB);
   GList listaInterseccion = initialization_glist();
@@ -563,9 +566,7 @@ int main() {
         if (op3 != NULL && op4 != NULL) {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
-          GList aplanada_op3 = aplanar_lista(op3);
-          GList aplanada_op4 = aplanar_lista(op4);
-          GList intersecciones = conjunto_inters(aplanada_op3, aplanada_op4);
+          GList intersecciones = conjunto_inters(op3, op4);
           Conjunto interseccion = crear_conjunto("carlos",NULL, intersecciones);
           hash_inserto(HASH, "carlos", NULL, intersecciones);
           mostrar_conjunto(interseccion);
@@ -573,6 +574,7 @@ int main() {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
           printf("____________________\n");
+
           freeLista = prepend_glist(freeLista, interseccion);
         } else {
           printf("\nUno de los operandos no existe...\n");
