@@ -296,7 +296,7 @@ GList conjunto_diferencia(GList intervaloA, Intervalo* intervaloB) {
 }
 
 GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
-  if(strcmp(primero->alias, segundo->alias) == 0){
+  if(strcmp(primero->alias, segundo->alias) == 0){// R - R = NULL
     return NULL;
   }
 
@@ -305,6 +305,10 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
 
   GList listauno = bufferlistauno;
   GList listados = bufferlistados;
+
+  if(listauno == NULL){// NULL - R = NULL
+    return NULL;
+  }
 
   GList lista = initialization_glist();
   GList listaDiferencia = initialization_glist();
@@ -468,7 +472,7 @@ int main() {
 
         if(test == 1){
         char alias[] = "pepe";
-        char operacion[] = " {x : -32767 <= x <= 32767}";
+        char operacion[] = " {x : 25 <= x <= 75}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -691,3 +695,4 @@ if(inicializarUniversal == 0){
   system("pause");
   return 0;
 }
+
