@@ -592,7 +592,7 @@ int main() {
           mostrar_conjunto(op5);
           mostrar_conjunto(op6);
 
-          //freeLista = prepend_glist(freeLista,resta);
+          freeLista = prepend_glist(freeLista,resta);
           //free(restas);
 
           printf("________________");
