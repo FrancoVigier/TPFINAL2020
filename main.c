@@ -231,8 +231,9 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   }
 
   dlist_destruir_intervalo(intervaloOperandoAA);
+  free(intervaloOperandoAA);
   dlist_destruir_intervalo(intervaloOperandoBB);
-
+  free(intervaloOperandoBB);
   return listaInterseccion;
 }
 
