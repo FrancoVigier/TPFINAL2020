@@ -157,6 +157,7 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
  //
 dlist_destruir_intervalo(intervaloOperandoA);
 dlist_destruir_intervalo(intervaloOperandoB);
+dlist_destruir_intervalo(unionCadenas);
   //
 
   //
