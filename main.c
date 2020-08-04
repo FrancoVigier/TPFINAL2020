@@ -573,6 +573,7 @@ int main() {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
           printf("____________________\n");
+          freeLista = prepend_glist(freeLista, interseccion);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
