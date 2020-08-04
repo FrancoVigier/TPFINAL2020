@@ -497,7 +497,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 5;
+          instruccion = 4;
         }
         test++;
       //  interprete = 1;
@@ -554,7 +554,7 @@ int main() {
         Conjunto op4 = hash_busco(HASH, operandoInterseccion->aliasOperandoB);
         */
         printf("interseccion");
-        Conjunto op3 = hash_busco(HASH, "pepe");
+        Conjunto op3 = hash_busco(HASH, "papa");
         Conjunto op4 = hash_busco(HASH, "papa");
         if(op3 == NULL){printf("\nOP1 NULL\n");}
         if(op4 == NULL){printf("\nOP2 NULL\n");}
@@ -569,6 +569,10 @@ int main() {
           Conjunto interseccion = crear_conjunto("carlos",NULL, intersecciones);
           hash_inserto(HASH, "carlos", NULL, intersecciones);
           mostrar_conjunto(interseccion);
+          printf("OPERANDOS INTERSECCION:\n");
+          mostrar_conjunto(op3);
+          mostrar_conjunto(op4);
+          printf("____________________\n");
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
