@@ -579,7 +579,7 @@ int main() {
         Conjunto op6 = hash_busco(HASH, operandoResta->aliasOperandoB);
         */
         printf("resta");
-                Conjunto op5 = hash_busco(HASH, "papa");
+                Conjunto op5 = hash_busco(HASH, "pepe");
         Conjunto op6 = hash_busco(HASH, "papa");
         if(op5 == NULL){printf("\nOP1 NULL\n");}
         if(op6 == NULL){printf("\nOP2 NULL\n");}
