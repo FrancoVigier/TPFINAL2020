@@ -52,77 +52,6 @@ GList conjunto_union(GList intervalos) { /// [...],[...] UNION
   return listaUnion;
 }
 
-GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->union 2->interseccion
-  GList listaAplanada = initialization_glist();
-  Conjunto recursaPrimero = primero;
-  Conjunto recursaSegundo = segundo;
-  GList primeroBufferIntervalo = initialization_glist();
-  GList primeroBufferLista = initialization_glist();
-  GList segundoBufferIntervalo = initialization_glist();
-  GList segundoBufferLista = initialization_glist();
-
-  primeroBufferIntervalo = glist_copiar_lista(recursaPrimero->intervaloLista);
-  primeroBufferLista = glist_copiar_lista(recursaPrimero->lista);
-  segundoBufferIntervalo = glist_copiar_lista(recursaSegundo->intervaloLista);
-  segundoBufferLista = glist_copiar_lista(recursaSegundo->lista);
-  //segundoBufferLista = recursaSegundo->lista;
-  for (; primeroBufferIntervalo != NULL;) {
-    Intervalo* mostrar = primeroBufferIntervalo->data;
-
-    Intervalo* cpy = malloc(sizeof(struct _Intervalo));
-    cpy->cardinalidad = mostrar->cardinalidad;
-    cpy->esVacio = mostrar->esVacio;
-    cpy->inicio = mostrar->inicio;
-    cpy->ultimo = mostrar->ultimo;
-
-    printf("APLANAR[%i,%i]-", mostrar->inicio,mostrar->ultimo);
-    listaAplanada = prepend_glist(listaAplanada, cpy);
-    primeroBufferIntervalo = primeroBufferIntervalo->next;
-  }
-  for (; primeroBufferLista != NULL;) {
-    Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
-    int extremos = (int)primeroBufferLista->data;
-    printf("numero libre -%i-\n", extremos);
-    numero_solo->inicio = extremos;
-    numero_solo->ultimo = extremos;
-    numero_solo->cardinalidad = 1;
-    numero_solo->esVacio = 0;
-    printf("APLANAR1[%i,%i]-", numero_solo->inicio, numero_solo->ultimo);
-    listaAplanada = prepend_glist(listaAplanada, numero_solo);
-    primeroBufferLista = primeroBufferLista->next;
-  }
-  for (; segundoBufferLista != NULL;) {
-    Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
-    int extremos = (int)segundoBufferLista->data;
-    numero_solo->inicio = extremos;
-    numero_solo->ultimo = extremos;
-    numero_solo->cardinalidad = 1;
-    numero_solo->esVacio = 0;
-    printf("APLANAR2[%i,%i]-", numero_solo->inicio, numero_solo->ultimo);
-    listaAplanada = prepend_glist(listaAplanada, numero_solo);
-    segundoBufferLista = segundoBufferLista->next;
-  }
-  for (; segundoBufferIntervalo != NULL;) {
-    Intervalo* mostrar = segundoBufferIntervalo->data;
-
-    Intervalo* cpy = malloc(sizeof(struct _Intervalo));
-    cpy->cardinalidad = mostrar->cardinalidad;
-    cpy->esVacio = mostrar->esVacio;
-    cpy->inicio = mostrar->inicio;
-    cpy->ultimo = mostrar->ultimo;
-
-    printf("APLANAR[%i,%i]-", mostrar->inicio, mostrar->ultimo);
-    listaAplanada = prepend_glist(listaAplanada, cpy);
-    segundoBufferIntervalo = segundoBufferIntervalo->next;
-  }
-  if (listaAplanada == NULL) {
-    return NULL;
-  }
-
-  GList listaAplana = conjunto_union(listaAplanada);
-  return listaAplana;
-}
-
 GList aplanar_lista(Conjunto primero) {
 
 
@@ -164,6 +93,58 @@ GList aplanar_lista(Conjunto primero) {
   return listaAplanada;
 }
 
+GList concatenar_glist (GList listaA, GList listaB){
+  if(listaA == NULL){
+    return listaB;
+  }
+  if(listaB == NULL){
+    return listaA;
+  }
+
+  GList lista = listaA;
+
+  for(;lista->next != NULL; lista = lista->next);
+
+  lista->next = listaB;
+
+  return listaA;
+}
+void mostrar_intervalo(GList intervall) {
+    GList intervalll = intervall;
+  for (; intervalll != NULL;) {
+    Intervalo* mostrar = intervalll->data;
+    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
+    intervalll = intervalll->next;
+  }
+}
+
+GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->union 2->interseccion
+  GList listaAplanada = initialization_glist();
+
+  GList intervaloOperandoAA = aplanar_lista(primero);
+  GList intervaloOperandoBB = aplanar_lista(segundo);
+
+  GList intervaloOperandoA = glist_copiar_lista(intervaloOperandoAA);
+  GList intervaloOperandoB = glist_copiar_lista(intervaloOperandoBB);
+
+  GList unionCadenas = concatenar_glist(intervaloOperandoA,intervaloOperandoB);
+
+  mostrar_intervalo(intervaloOperandoA);
+  mostrar_intervalo(intervaloOperandoB);
+  mostrar_intervalo(unionCadenas);
+
+  if (unionCadenas == NULL) {
+    return NULL;
+  }
+  listaAplanada = conjunto_union(unionCadenas);
+ //
+
+  //
+
+  //
+  return listaAplanada;
+}
+
 int existe_interseccion(Intervalo* A, Intervalo* B) {
   if (A->inicio <= B->inicio && A->ultimo >= B->inicio) {
     return 1;
@@ -174,14 +155,7 @@ int existe_interseccion(Intervalo* A, Intervalo* B) {
   return 0;
 }
 
-void mostrar_intervalo(GList intervall) {
-    GList intervalll = intervall;
-  for (; intervalll != NULL;) {
-    Intervalo* mostrar = intervalll->data;
-    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
-    intervalll = intervalll->next;
-  }
-}
+
 
 GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   GList intervaloOperandoAA = aplanar_lista(primero);
