@@ -183,6 +183,11 @@ void mostrar_intervalo(GList intervall) {
 GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   GList intervaloOperandoAA = aplanar_lista(primero);
   GList intervaloOperandoBB = aplanar_lista(segundo);
+  int testNull = 1;
+  if(intervaloOperandoAA == NULL || intervaloOperandoBB == NULL || testNull == 1){
+    return NULL;
+  }
+
 
   printf("\nINTERSECCION DENTRO ANTES\n");
   mostrar_intervalo(intervaloOperandoAA);
