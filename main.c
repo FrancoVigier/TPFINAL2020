@@ -587,6 +587,7 @@ int main() {
           printf("OPERANDOS DE LA OPERACION:\n\n");
           mostrar_conjunto(op5);
           mostrar_conjunto(op6);
+          freeLista = prepend_glist(freeLista,resta);
           printf("________________");
         } else {
           printf("\nUno de los operandos no existe...\n");
