@@ -560,6 +560,7 @@ int main() {
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
           printf("____________________\n");
+          freeLista = prepend_glist(freeLista, uniones);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
