@@ -42,7 +42,15 @@ GList conjunto_union(GList intervalos) { /// [...],[...] UNION
   GList listaUnion = initialization_glist();
   while (!stack_es_vacio(pila)) {
     Intervalo* intervaloUnion = stack_top(pila);
-    listaUnion =  prepend_glist(listaUnion, intervaloUnion);
+
+    Intervalo* poner = malloc(sizeof(struct _Intervalo));
+
+    poner->cardinalidad = intervaloUnion->cardinalidad;
+    poner->esVacio = intervaloUnion->esVacio;
+    poner->ultimo = intervaloUnion->ultimo;
+    poner->inicio = intervaloUnion->inicio;
+
+    listaUnion =  prepend_glist(listaUnion, poner);
     printf("[%i,%i]-", intervaloUnion->inicio, intervaloUnion->ultimo);
     stack_pop(pila);
   }
@@ -95,19 +103,22 @@ GList aplanar_lista(Conjunto primero) {
 
 GList concatenar_glist (GList listaA, GList listaB){
   if(listaA == NULL){
-    return listaB;
+    GList listaSave = glist_copiar_lista(listaB);
+    return listaSave;
   }
   if(listaB == NULL){
-    return listaA;
+    GList listaSave = glist_copiar_lista(listaA);
+    return listaSave;
   }
 
-  GList lista = listaA;
+  GList listaSave = glist_copiar_lista(listaA);
+  GList lista = listaSave;
 
   for(;lista->next != NULL; lista = lista->next);
 
-  lista->next = listaB;
+  lista->next = glist_copiar_lista(listaB);
 
-  return listaA;
+  return listaSave;
 }
 void mostrar_intervalo(GList intervall) {
     GList intervalll = intervall;
@@ -129,16 +140,23 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
 
   GList unionCadenas = concatenar_glist(intervaloOperandoA,intervaloOperandoB);
 
+
+
+  printf("PRIMEEEERO\n");
   mostrar_intervalo(intervaloOperandoA);
+  printf("SEGUNDO\n");
   mostrar_intervalo(intervaloOperandoB);
+  printf("UNION\n");
   mostrar_intervalo(unionCadenas);
 
   if (unionCadenas == NULL) {
     return NULL;
   }
+
   listaAplanada = conjunto_union(unionCadenas);
  //
-
+dlist_destruir_intervalo(intervaloOperandoA);
+dlist_destruir_intervalo(intervaloOperandoB);
   //
 
   //
