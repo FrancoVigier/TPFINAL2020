@@ -498,7 +498,7 @@ int main() {
 
         if(test == 1){
         char alias[] = "pepe";
-        char operacion[] = " {x : 25 <= x <= 75}";
+        char operacion[] = " {x : 100 <= x <= 150}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
