@@ -530,7 +530,7 @@ int main() {
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 3;
+          instruccion = 6;
         }
         test++;
       //  interprete = 1;
