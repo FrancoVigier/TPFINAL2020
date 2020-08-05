@@ -158,8 +158,8 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
 dlist_destruir_intervalo(intervaloOperandoA);
 dlist_destruir_intervalo(intervaloOperandoB);
 
-free(intervaloOperandoAA);
-free(intervaloOperandoBB);
+dlist_destruir_int(intervaloOperandoAA);
+dlist_destruir_int(intervaloOperandoBB);
 
 dlist_destruir_int(unionCadenas);
   //
@@ -550,7 +550,7 @@ int main() {
 
         if (op1 != NULL && op2 != NULL) {
 
-          GList resultado = aplanar_solos_e_intervalos(op1, op2);
+          GList resultado = aplanar_solos_e_intervalos(op2, op1);
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
           Conjunto uniones = crear_conjunto("carlos", NULL, resultado);
