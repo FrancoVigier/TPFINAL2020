@@ -503,7 +503,7 @@ int main() {
 
         if(test == 1){
         char alias[] = "pepe";
-        char operacion[] = " {x : 100 <= x <= 150}";
+        char operacion[] = " {x : 75 <= x <= 100}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -516,7 +516,7 @@ int main() {
         }
         if(test == 2){
         char alias[] = "papa";
-        char operacion[] = " {x : 110 <= x <= 125}";
+        char operacion[] = " {x : 10 <= x <= 120}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -543,7 +543,7 @@ int main() {
         Conjunto op1 = hash_busco(HASH, operandoUnion->aliasOperandoA);
         Conjunto op2 = hash_busco(HASH, operandoUnion->aliasOperandoB);
         */
-        Conjunto op1 = hash_busco(HASH, "papa");
+        Conjunto op1 = hash_busco(HASH, "pepe");
         Conjunto op2 = hash_busco(HASH, "papa");
         if(op1 == NULL){printf("\nOP1 NULL\n");}
         if(op2 == NULL){printf("\nOP2 NULL\n");}
@@ -561,10 +561,10 @@ int main() {
           mostrar_conjunto(op2);
           printf("____________________\n");
           freeLista = prepend_glist(freeLista, uniones);
-          
+
           //free(resultado);viene a tirar lo de abajo
           dlist_destruir_int(resultado);
-        
+
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
