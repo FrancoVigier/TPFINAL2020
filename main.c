@@ -161,7 +161,7 @@ dlist_destruir_intervalo(intervaloOperandoB);
 free(intervaloOperandoAA);
 free(intervaloOperandoBB);
 
-dlist_destruir_intervalo(unionCadenas);
+dlist_destruir_int(unionCadenas);
   //
 
   //
