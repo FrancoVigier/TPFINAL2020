@@ -137,8 +137,8 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
   GList intervaloOperandoBB = aplanar_lista(segundo);
 
 
-  GList intervaloOperandoA = glist_copiar_lista(NULL);
-  GList intervaloOperandoB = glist_copiar_lista(NULL);
+  GList intervaloOperandoA = glist_copiar_lista(intervaloOperandoAA);
+  GList intervaloOperandoB = glist_copiar_lista(intervaloOperandoBB);
 
   GList unionCadenas = concatenar_glist(intervaloOperandoA,intervaloOperandoB);
 
@@ -734,8 +734,8 @@ if(inicializarUniversal == 0){
     Conjunto fr = (Conjunto) actual->data;
     printf("\nALIAS A ELIMINAR X2\n");
 
-    free(fr->lista);
-    free(fr->intervaloLista);
+    dlist_destruir_int(fr->lista);
+    dlist_destruir_int(fr->intervaloLista);
     free(fr);
     free(actual);
   }
