@@ -690,6 +690,7 @@ if(inicializarUniversal == 0){
           hash_inserto(HASH, "carlos", NULL, complemetos);
           mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
+          freeLista = prepend_glist(freeLista,complemento);
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
