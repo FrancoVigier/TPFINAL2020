@@ -561,7 +561,10 @@ int main() {
           mostrar_conjunto(op2);
           printf("____________________\n");
           freeLista = prepend_glist(freeLista, uniones);
-          free(resultado);
+          
+          //free(resultado);viene a tirar lo de abajo
+          dlist_destruir_int(resultado);
+        
         } else {
           printf("\nUno de los operandos no existe...\n");
         }
@@ -609,7 +612,8 @@ int main() {
 
           freeLista = prepend_glist(freeLista, interseccion);
           //
-          free(intersecciones);
+          //free(intersecciones);
+          dlist_destruir_int(intersecciones);
         //
         } else {
           printf("\nUno de los operandos no existe...\n");
