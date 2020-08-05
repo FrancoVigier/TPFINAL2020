@@ -132,11 +132,13 @@ void mostrar_intervalo(GList intervall) {
 GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->union 2->interseccion
   GList listaAplanada = initialization_glist();
 
+
   GList intervaloOperandoAA = aplanar_lista(primero);
   GList intervaloOperandoBB = aplanar_lista(segundo);
 
+
   GList intervaloOperandoA = glist_copiar_lista(intervaloOperandoAA);
-  GList intervaloOperandoB = glist_copiar_lista(intervaloOperandoBB);
+  GList intervaloOperandoB = glist_copiar_lista(NULL);
 
   GList unionCadenas = concatenar_glist(intervaloOperandoA,intervaloOperandoB);
 
