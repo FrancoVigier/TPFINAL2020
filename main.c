@@ -337,7 +337,7 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
   GList bufferlistados = aplanar_lista(segundo);
 
   GList listauno = bufferlistauno;
-  GList listados = NULL;
+  GList listados = bufferlistados;
 
   if(listauno == NULL){// NULL - R = NULL
     return NULL;
