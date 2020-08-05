@@ -138,7 +138,7 @@ GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->unio
 
 
   GList intervaloOperandoA = glist_copiar_lista(NULL);
-  GList intervaloOperandoB = glist_copiar_lista(intervaloOperandoBB);
+  GList intervaloOperandoB = glist_copiar_lista(NULL);
 
   GList unionCadenas = concatenar_glist(intervaloOperandoA,intervaloOperandoB);
 
