@@ -23,18 +23,19 @@ Intervalo* extraer_ini_y_fin(char* operacion) {
   fin[strlen(fin) - 1] = '\0';
   int init = numero_char_a_int(inicio);
   int fina = numero_char_a_int(fin);
-  Intervalo* intervalo = malloc(sizeof(struct _Intervalo));
   if (fina < init) {
     return NULL;
+  }
   //  intervalo->inicio = init;
   //  intervalo->ultimo = fina;
   //    intervalo->esVacio = 1;
   //  intervalo->cardinalidad = 0;
-  } else {
+  Intervalo* intervalo = malloc(sizeof(struct _Intervalo));
+
     intervalo->inicio = init;
     intervalo->ultimo = fina;
     intervalo->esVacio = 0;
-    }
+    
   printf("INICIO: -%i-\nFIN: -%i-", init, fina);
   if (intervalo->esVacio == 0 && intervalo->inicio >= 0 && intervalo->ultimo >= 0) {
     intervalo->cardinalidad = intervalo->ultimo - intervalo->inicio;
@@ -50,3 +51,4 @@ Intervalo* extraer_ini_y_fin(char* operacion) {
   }
   return intervalo;
 }
+
