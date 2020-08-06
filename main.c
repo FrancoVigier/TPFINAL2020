@@ -261,10 +261,13 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   mostrar_intervalo(intervaloOperandoA);
   printf("RESULTADO 420:\n");
   mostrar_intervalo(listaInterseccion);
+    printf("DESTRUIR 1:\n");
   dlist_destruir_intervalo(intervaloOperandoA);
+  printf("DESTRUIR 2:\n");
   dlist_destruir_intervalo(intervaloOperandoB);
-
+printf("DESTRUIR 3:\n");
   dlist_destruir_intervalo(intervaloOperandoAA);
+  printf("DESTRUIR 4:\n");
   dlist_destruir_intervalo(intervaloOperandoBB);
 
   return listaInterseccion;
@@ -470,7 +473,7 @@ int main() {
 
         if(test == 1){
           char alias[] = "pepe";
-          char operacion[] = " {1,4,6,8,3,7}";
+          char operacion[] = " {10,40,60,80,30,70,100,10000}";
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
@@ -609,7 +612,7 @@ printf("HOLAAAAA");
         if (op3 != NULL && op4 != NULL) {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
-          GList intersecciones = conjunto_inters(op4, op3);
+          GList intersecciones = conjunto_inters(op3, op4);
           Conjunto interseccion = crear_conjunto("carlos",NULL, intersecciones);
           hash_inserto(HASH, "carlos", NULL, intersecciones);
           mostrar_conjunto(interseccion);
