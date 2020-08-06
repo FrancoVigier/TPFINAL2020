@@ -238,6 +238,10 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
 
       nodoAEnPosI->inicio = temporal->ultimo + 1;
       nodoBEnPosJ->inicio = temporal->ultimo + 1;
+
+      free(nodoAEnPosII);
+      free(nodoBEnPosJJ);
+
       intervaloOperandoA = pisa_data_glist(intervaloOperandoA, i, nodoAEnPosI);
       intervaloOperandoB = pisa_data_glist(intervaloOperandoB, j, nodoBEnPosJ);
       if (nodoAEnPosI->inicio > nodoAEnPosI->ultimo || nodoAEnPosI->ultimo <= temporal->inicio) {
@@ -261,15 +265,22 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   mostrar_intervalo(intervaloOperandoA);
   printf("RESULTADO 420:\n");
   mostrar_intervalo(listaInterseccion);
+
+
+
     printf("DESTRUIR 1:\n");
   dlist_destruir_intervalo(intervaloOperandoA);
   printf("DESTRUIR 2:\n");
   dlist_destruir_intervalo(intervaloOperandoB);
+  printf("______________\n");
+ // dlist_destruir_intervalo(intervaloOperandoAAA);
+    printf("______________\n");
+//  dlist_destruir_intervalo(intervaloOperandoBBB);
+    printf("______________\n");
 printf("DESTRUIR 3:\n");
-  dlist_destruir_intervalo(intervaloOperandoAA);
+  dlist_destruir_int(intervaloOperandoAA);
   printf("DESTRUIR 4:\n");
-  dlist_destruir_intervalo(intervaloOperandoBB);
-
+  dlist_destruir_int(intervaloOperandoBB);
   return listaInterseccion;
 }
 
@@ -473,7 +484,7 @@ int main() {
 
         if(test == 1){
           char alias[] = "pepe";
-          char operacion[] = " {10,40,60,80,30,70,100,10000}";
+          char operacion[] = " {-12,10,-40,60,80,-30,70,-100,10000,1000}";
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
