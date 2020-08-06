@@ -481,7 +481,7 @@ int main() {
         }
         if(test == 2){
           char alias[] = "papa";
-          char operacion[] = " {}";
+          char operacion[] = " {1,4,6,8,3,7}";
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
@@ -492,7 +492,7 @@ int main() {
         freeLista = prepend_glist(freeLista, operando);
         }
         if(test == 2){
-          instruccion = 3;
+          instruccion = 4;
         }
         test++;
         system("pause");
