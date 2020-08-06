@@ -41,6 +41,10 @@ Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista) {
 
 void extraer_com_conjunto(char* operacion, Conjunto conjunto) {
   Intervalo* intervalo = extraer_ini_y_fin(operacion);
+  if(intervalo == NULL){
+    conjunto->vacio = 1;
+    return;
+  }
   conjunto->vacio = intervalo->esVacio;
   printf("\nINICIO -%i-\nFINAL -%i-\n", intervalo->inicio, intervalo->ultimo);
   if (conjunto->vacio == 0) {
