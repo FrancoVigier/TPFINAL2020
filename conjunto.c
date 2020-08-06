@@ -5,6 +5,7 @@
 #include "intervalo.h"
 #include "parser.h"
 
+
 #define INT_SUPLIM 32767
 #define INT_INFLIM -32767
 
@@ -52,12 +53,13 @@ Conjunto definir_conj_com(char* operacion, char* alias) {
 
   Conjunto nuevoConjunto = inicializar_conjunto( alias, operacion);
   extraer_com_conjunto(operacion, nuevoConjunto);
-
-  Intervalo* inter = nuevoConjunto->intervaloLista->data; //GUARDA BIEN
+   //GUARDA BIEN
   if (nuevoConjunto->vacio == 1)
     printf("\nVACIO POR COMPRENSION\n");
-  else
+  else{
+    Intervalo* inter = nuevoConjunto->intervaloLista->data;
     printf("\n[%i:%i], CARDINAL: %i\n", inter->inicio, inter->ultimo, inter->cardinalidad);
+  }
   //destruir_conjunto(nuevoConjunto, NULL);
   return nuevoConjunto;
 }
@@ -120,6 +122,16 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
   }
 }
 
+void mostrar_intervalos(GList intervall) {
+    GList intervalll = intervall;
+  for (; intervalll != NULL;) {
+    Intervalo* mostrar = intervalll->data;
+    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
+    intervalll = intervalll->next;
+  }
+}
+
+
 void destruir_conjunto(Conjunto conjunto, void* aux){
 
   printf("\nA ELIMINAR: %s\n", conjunto->alias);
@@ -131,7 +143,7 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     proximo = proximo->next;
     free(actual);
   }
-  conjunto->lista = NULL;
+//  conjunto->lista = NULL;
   GList proximoDos = conjunto->intervaloLista;
   GList actualDos;
   for (; proximoDos != NULL ; ) {
@@ -140,12 +152,18 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
     proximoDos = proximoDos->next;
     Intervalo* data = (Intervalo*)actualDos->data;
     printf("DATA A ELIMINAR: [%i-%i] %i %i\n",data->inicio,data->ultimo,data->esVacio,data->cardinalidad);
+  //  free(actualDos->data);
     free(data);
+   // printf("DATA 'eliminada': [%i-%i] %i %i\n",data->inicio,data->ultimo,data->esVacio,data->cardinalidad);
+
     free(actualDos);
   }
-  //free(conjunto->intervaloLista);
+  printf("ATENCION");
+ // mostrar_intervalos(conjunto->intervaloLista);
   conjunto->intervaloLista = NULL;
+
+  printf("CONJUNTO 'eliminado':\n");
+  mostrar_conjunto(conjunto);
 
   free(conjunto);
 }
-
