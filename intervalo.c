@@ -25,8 +25,11 @@ Intervalo* extraer_ini_y_fin(char* operacion) {
   int fina = numero_char_a_int(fin);
   Intervalo* intervalo = malloc(sizeof(struct _Intervalo));
   if (fina < init) {
-    intervalo->esVacio = 1;
-    intervalo->cardinalidad = 0;
+    return NULL;
+  //  intervalo->inicio = init;
+  //  intervalo->ultimo = fina;
+  //    intervalo->esVacio = 1;
+  //  intervalo->cardinalidad = 0;
   } else {
     intervalo->inicio = init;
     intervalo->ultimo = fina;
