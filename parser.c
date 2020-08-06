@@ -4,6 +4,16 @@
 #include <ctype.h>
 #include "parser.h"
 
+int potencia_de_diez(int largo){
+int potencia = 1;
+
+while(largo > 0){
+ potencia = 10 * potencia;
+ largo--;
+}
+return potencia;
+}
+
 int numero_char_a_int(char* numero) {
   int indice = 0;
   int largo = strlen(numero);
@@ -15,14 +25,23 @@ int numero_char_a_int(char* numero) {
     indice = 1;
     largo--;
   }
+ // printf("\nEL LARGO ES:\n%i", largo);
+  int buff = largo;
   while (numero[indice] != '\0') {
     decimal = numero[indice] - '0';
-    cifra += decimal * pow(10, --largo);
+   // printf("\nLA DECIMA CONFORMADA ES:\n%i", decimal);
+   // printf("\nLA DECIMA SE MULTIPLICA POR:\n%i", potencia_de_diez(--buff));
+    cifra += decimal * potencia_de_diez(--largo);
+  //  printf("\nLA CIFRA PARCIAL CONFORMADA ES:\n%i", cifra);
     indice++;
   }
+
   if (negativo == 1) {
     cifra = cifra * -1;
   }
+
+  printf("\nLA CIFRA CONFORMADA ES:\n%i", cifra);
+
   return cifra;
 }
 
@@ -41,7 +60,7 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   separadorInicial[0] = ',';
   fraccion = strtok(numeros, separadorInicial);
   if (fraccion != NULL) { //fraccion = "10" i.e
-    while (fraccion != NULL) {// Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// SÃ³lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       int numConjunto =  numero_char_a_int(fraccion);
       conjunto->lista = prepend_glist(conjunto->lista, (int*)numConjunto);
       fraccion = strtok(NULL, separadorInicial);
@@ -56,7 +75,7 @@ char* parsear_comando_y_operacion(char* comando, char* operacion) {
   int diferencia = 0;
   char separadorDiferencial[] = "\0";
   if (fraccion != NULL) {
-    while (fraccion != NULL) {// Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// SÃ³lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       fraccion[strlen(fraccion) - 1] = '\0';
       if (diferencia == 0) {
         comando = fraccion;
@@ -174,3 +193,4 @@ Operandos* sacar_operando_imprimir(char* alias) {
   operandos->aliasOperandoB = fin;
   return operandos;
 }
+
