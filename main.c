@@ -481,7 +481,7 @@ int main() {
         }
         if(test == 2){
           char alias[] = "papa";
-          char operacion[] = " {1,3,6,7}";
+          char operacion[] = " {}";
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
@@ -552,7 +552,7 @@ printf("HOLAAAAA");
         Conjunto op2 = hash_busco(HASH, operandoUnion->aliasOperandoB);
         */
         Conjunto op1 = hash_busco(HASH, "pepe");
-        Conjunto op2 = hash_busco(HASH, "papa");
+        Conjunto op2 = hash_busco(HASH, "pepe");
         if(op1 == NULL){printf("\nOP1 NULL\n");}
         if(op2 == NULL){printf("\nOP2 NULL\n");}
 
