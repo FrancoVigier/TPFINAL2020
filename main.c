@@ -551,8 +551,8 @@ printf("HOLAAAAA");
         Conjunto op1 = hash_busco(HASH, operandoUnion->aliasOperandoA);
         Conjunto op2 = hash_busco(HASH, operandoUnion->aliasOperandoB);
         */
-        Conjunto op1 = hash_busco(HASH, "pepe");
-        Conjunto op2 = hash_busco(HASH, "papa");
+        Conjunto op1 = hash_busco(HASH, "papa");
+        Conjunto op2 = hash_busco(HASH, "pepe");
         if(op1 == NULL){printf("\nOP1 NULL\n");}
         if(op2 == NULL){printf("\nOP2 NULL\n");}
 
