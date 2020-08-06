@@ -145,9 +145,10 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   for (; proximo != NULL ; ) {
     actual = proximo;
     proximo = proximo->next;
+    printf("DATA A ELIMINAR: -%i-\n",actual->data);
     free(actual);
   }
-//  conjunto->lista = NULL;
+  conjunto->lista = NULL;
   GList proximoDos = conjunto->intervaloLista;
   GList actualDos;
   for (; proximoDos != NULL ; ) {
