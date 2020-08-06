@@ -1,5 +1,5 @@
 #include <string.h>
-
+#include <stdio.h>
 #include "LSE.h"
 #include "conjunto.h"
 #include "intervalo.h"
@@ -214,8 +214,9 @@ void dlist_destruir (GList lista, Visitante liberar) {
     // Guardo un puntero al nodo actual, me muevo al siguiente y libero.
     actual = proximo;
     proximo = proximo->next;
-    if (liberar != NULL)
-      liberar(actual->data, NULL);
+    if (liberar != NULL){
+      liberar((Conjunto)actual->data, NULL);
+    }
     free(actual);
   }
   lista = NULL;
@@ -232,6 +233,7 @@ void dlist_destruir_int(GList lista){
     //free(data);
     free(actual);
   }
+  lista = NULL;
   }
 
 void dlist_destruir_intervalo(GList lista){
@@ -242,6 +244,7 @@ void dlist_destruir_intervalo(GList lista){
     actualDos = proximoDos;
     proximoDos = proximoDos->next;
     Intervalo* data = actualDos->data;
+    printf("DATA DLISTINTERVAL %i %i\n", data->inicio,data->ultimo);
     free(data);
     free(actualDos);
   }
