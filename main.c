@@ -444,7 +444,7 @@ int main() {
   struct _GNodo*** HASH;
   HASH =  inicializar_HASH();
 
-  int instruccion = 2;
+  int instruccion = 1;
   int test = 1;
   Conjunto testt;
   Conjunto testt2;
@@ -467,7 +467,7 @@ int main() {
     switch (instruccion) {
       case 1:
         printf("extension");
-/*
+
         if(test == 1){
           char alias[] = "pepe";
           char operacion[] = " {10,11,12,13}";
@@ -477,7 +477,7 @@ int main() {
         Conjunto aux = hash_busco(HASH, operando->alias);
         mostrar_conjunto(aux);
         //free (operando);
-        destruir_conjunto(operando,NULL);
+        freeLista = prepend_glist(freeLista, operando);
         }
         if(test == 2){
           char alias[] = "papa";
@@ -488,27 +488,32 @@ int main() {
         Conjunto aux = hash_busco(HASH, operando->alias);
         mostrar_conjunto(aux);
         //free (operando);
-        destruir_conjunto(operando,NULL);
+        //free (operando);
+        freeLista = prepend_glist(freeLista, operando);
         }
         if(test == 2){
           instruccion = 3;
         }
         test++;
-      ///  system("pause");
-      */
+        system("pause");
+
         break;
       case 2:
         printf("comprension");
-
+/*
       //  char alias[] = "pepe";
       //  char operacion[] = " {x : 2 <= x <= 100}";
 
         if(test == 1){
         char alias[] = "pepe";
-        char operacion[] = " {x : 150 <= x <= 100}";
+        char operacion[] = " {x : -1 <= x <= -2}";
+
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
-        hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
+
+        mostrar_conjunto(operandoB);
+printf("HOLAAAAA");
+        hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);printf("HOLAAAAA");
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         //free (operandoB);
@@ -518,7 +523,7 @@ int main() {
         }
         if(test == 2){
         char alias[] = "papa";
-        char operacion[] = " {x : 125 <= x <= 200}";
+        char operacion[] = " {x : 25 <= x <= 200}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -535,6 +540,7 @@ int main() {
         test++;
       //  interprete = 1;
       system("pause");
+      */
         break;
       case 3:
         printf("union");
@@ -584,7 +590,7 @@ int main() {
         }
 */
         interprete = 1;
-
+        system("pause");
         break;
       case 4:
           /*
