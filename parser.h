@@ -8,6 +8,7 @@ typedef struct _Operandos {
   char* aliasOperandoB;
 } Operandos;
 
+int potencia_de_diez(int largo);
 int numero_char_a_int(char* numero);
 GList extraer_ext_conjunto(char* operacion, Conjunto conjunto);
 char* parsear_comando_y_operacion(char* comando, char* operacion);
