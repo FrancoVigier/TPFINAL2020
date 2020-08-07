@@ -458,7 +458,7 @@ int main() {
   struct _GNodo*** HASH;
   HASH =  inicializar_HASH();
 
-  int instruccion = 1;
+  int instruccion = 2;
   int test = 1;
   Conjunto testt;
   Conjunto testt2;
@@ -481,7 +481,7 @@ int main() {
     switch (instruccion) {
       case 1:
         printf("extension");
-
+/*
         if(test == 1){
           char alias[] = "pepe";
           char operacion[] = " {-2,-1,0,1,2}";
@@ -510,17 +510,17 @@ int main() {
         }
         test++;
         system("pause");
-
+*/
         break;
       case 2:
         printf("comprension");
-/*
+
       //  char alias[] = "pepe";
       //  char operacion[] = " {x : 2 <= x <= 100}";
 
         if(test == 1){
         char alias[] = "pepe";
-        char operacion[] = " {x : -1 <= x <= -2}";
+        char operacion[] = " {x : 25 <= x <= 200}";
 
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
@@ -549,12 +549,12 @@ printf("HOLAAAAA");
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 6;
+          instruccion = 4;
         }
         test++;
       //  interprete = 1;
       system("pause");
-      */
+
         break;
       case 3:
         printf("union");
@@ -685,7 +685,7 @@ printf("HOLAAAAA");
 if(inicializarUniversal == 0){
 
     char aliasa[] = "universal";
-    char operacione[] = " {x : -2 <= x <= 2}";//{x : -32767 <= x <= 32767}
+    char operacione[] = " {x : -32767 <= x <= 32767}";//{x : -32767 <= x <= 32767}
     printf("-%s- , -%s-", operacione, aliasa);
     Conjunto operandoBB = definir_conj_com(operacione, aliasa);//hashea operando con el alias
     hash_inserto(HASH, operandoBB->alias, operandoBB->lista, operandoBB->intervaloLista);
