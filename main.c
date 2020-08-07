@@ -520,7 +520,7 @@ int main() {
 
         if(test == 1){
         char alias[] = "pepe";
-        char operacion[] = " {x : -25 <= x <= 200}";
+        char operacion[] = " {x : -250 <= x <= -50}";
 
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
@@ -537,7 +537,7 @@ printf("HOLAAAAA");
         }
         if(test == 2){
         char alias[] = "papa";
-        char operacion[] = " {x : -5 <= x <= 100}";
+        char operacion[] = " {x : -25 <= x <= 0}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -615,7 +615,7 @@ printf("HOLAAAAA");
         */
         printf("interseccion");
         Conjunto op3 = hash_busco(HASH, "pepe");
-        Conjunto op4 = hash_busco(HASH, "pepe");
+        Conjunto op4 = hash_busco(HASH, "papa");
         if(op3 == NULL){printf("\nOP1 NULL\n");}
         if(op4 == NULL){printf("\nOP2 NULL\n");}
 
