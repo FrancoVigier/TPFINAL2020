@@ -484,7 +484,7 @@ int main() {
 
         if(test == 1){
           char alias[] = "pepe";
-          char operacion[] = " {}";
+          char operacion[] = " {-2,-1,0,1,2}";
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
@@ -685,7 +685,7 @@ printf("HOLAAAAA");
 if(inicializarUniversal == 0){
 
     char aliasa[] = "universal";
-    char operacione[] = " {x : -32767 <= x <= 32767}";
+    char operacione[] = " {x : -2 <= x <= 2}";//{x : -32767 <= x <= 32767}
     printf("-%s- , -%s-", operacione, aliasa);
     Conjunto operandoBB = definir_conj_com(operacione, aliasa);//hashea operando con el alias
     hash_inserto(HASH, operandoBB->alias, operandoBB->lista, operandoBB->intervaloLista);
