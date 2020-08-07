@@ -35,7 +35,8 @@ Intervalo* extraer_ini_y_fin(char* operacion) {
     intervalo->inicio = init;
     intervalo->ultimo = fina;
     intervalo->esVacio = 0;
-    
+    intervalo->cardinalidad = 0;  
+  
   printf("INICIO: -%i-\nFIN: -%i-", init, fina);
   if (intervalo->esVacio == 0 && intervalo->inicio >= 0 && intervalo->ultimo >= 0) {
     intervalo->cardinalidad = intervalo->ultimo - intervalo->inicio;
