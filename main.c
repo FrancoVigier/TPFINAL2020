@@ -484,7 +484,7 @@ int main() {
 
         if(test == 1){
           char alias[] = "pepe";
-          char operacion[] = " {-12,10,60,-40,80,-30,70,-100,10000,1000,-1}";
+          char operacion[] = " {}";
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
