@@ -537,7 +537,7 @@ printf("HOLAAAAA");
         }
         if(test == 2){
         char alias[] = "papa";
-        char operacion[] = " {x : -25 <= x <= 0}";
+        char operacion[] = " {x : -25 <= x <= -50}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -623,7 +623,7 @@ printf("HOLAAAAA");
         if (op3 != NULL && op4 != NULL) {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
-          GList intersecciones = conjunto_inters(op4, op3);
+          GList intersecciones = conjunto_inters(op3, op4);
           Conjunto interseccion = crear_conjunto("carlos",NULL, intersecciones);
           hash_inserto(HASH, "carlos", NULL, intersecciones);
           mostrar_conjunto(interseccion);
