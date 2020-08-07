@@ -623,7 +623,7 @@ printf("HOLAAAAA");
         if (op3 != NULL && op4 != NULL) {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
-          GList intersecciones = conjunto_inters(op3, op4);
+          GList intersecciones = conjunto_inters(op4, op3);
           Conjunto interseccion = crear_conjunto("carlos",NULL, intersecciones);
           hash_inserto(HASH, "carlos", NULL, intersecciones);
           mostrar_conjunto(interseccion);
