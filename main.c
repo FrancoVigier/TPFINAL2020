@@ -615,7 +615,7 @@ printf("HOLAAAAA");
         */
         printf("interseccion");
         Conjunto op3 = hash_busco(HASH, "pepe");
-        Conjunto op4 = hash_busco(HASH, "papa");
+        Conjunto op4 = hash_busco(HASH, "pepe");
         if(op3 == NULL){printf("\nOP1 NULL\n");}
         if(op4 == NULL){printf("\nOP2 NULL\n");}
 
