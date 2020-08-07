@@ -506,7 +506,7 @@ int main() {
         freeLista = prepend_glist(freeLista, operando);
         }
         if(test == 2){
-          instruccion = 5;
+          instruccion = 6;
         }
         test++;
         system("pause");
