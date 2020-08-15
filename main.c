@@ -417,6 +417,11 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
     return NULL;
   }
 
+  if(segundo->lista == NULL && segundo->intervaloLista == NULL){
+    GList base = aplanar_lista(primero);
+    return base;
+  }
+
   GList bufferlistauno = aplanar_lista(primero);
   GList bufferlistados = aplanar_lista(segundo);
 
@@ -654,12 +659,12 @@ int main() {
     }
 
         if(test == 1){
-        strcpy(alias,"b = {var : 0 <= var <= 30} ");
+        strcpy(alias,"b = {var : 0 <= var <= -1} ");
         test++;
     }
 
     if(test == 0){
-        strcpy(alias,"a = {var : 0 <= var <= -1} ");
+        strcpy(alias,"a = {var : 0 <= var <= 100} ");
         test++;
     }
 
