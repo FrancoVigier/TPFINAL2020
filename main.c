@@ -609,9 +609,6 @@ int main() {
     char* operacion = malloc(LIMITE * sizeof(char));
 
     //fgets(alias, LIMITE, stdin);
-    if(test == 3){
-        strcpy(alias, "salir ");
-    }
 
         if(test == 2){
         strcpy(alias,"c = a | b ");
@@ -696,6 +693,7 @@ int main() {
         free(operandoUnion);
 
         //system("pause");
+        interprete = 1;
         break;
       case 4:
         printf("interseccion");
