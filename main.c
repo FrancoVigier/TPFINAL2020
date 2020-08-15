@@ -195,7 +195,7 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   if(segundo->lista == NULL && segundo->intervaloLista == NULL){
     return NULL;
   }
-  
+
   GList intervaloOperandoAA = aplanar_lista(primero);
   GList intervaloOperandoBB = aplanar_lista(segundo);
   printf("\nINTERSECCION DENTRO ANTES\n");
@@ -313,8 +313,8 @@ printf("DESTRUIR 3:\n");
   printf("DESTRUIR 4:\n");
   dlist_destruir_int(intervaloOperandoBB);
 
-  free(intervaloOperandoAA);
-  free(intervaloOperandoBB);
+  //free(intervaloOperandoAA);
+  //free(intervaloOperandoBB);
 
   return listaInterseccion;
 }
@@ -625,12 +625,12 @@ int main() {
     }
 
         if(test == 1){
-        strcpy(alias,"b = {var : 50 <= var <= 0} ");
+        strcpy(alias,"b = {var : -20 <= var <= 0} ");
         test++;
     }
 
     if(test == 0){
-        strcpy(alias,"a = {var : 60 <= var <= 65} ");
+        strcpy(alias,"a = {var : 70 <= var <= 65} ");
         test++;
     }
 
