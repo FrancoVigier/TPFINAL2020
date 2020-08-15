@@ -625,11 +625,12 @@ int main() {
         test++;
     }
 
-
+    printf("OPERACION ANTERS DE PARSER: %s\n",operacion);
     operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
+    printf("OPERACION DESPUES DE PARSER: %s\n",operacion);
     int instruccion = comando_int(operacion, alias);
-
-    //system("pause");
+    printf("OPERACION DESPUES DE COMANDO: %s\n",operacion);
+    system("pause");
 
     switch (instruccion) {
       case 1:
@@ -647,7 +648,9 @@ int main() {
       case 2:
         printf("comprension");
         printf("-%s- , -%s-", operacion, alias);
+        printf("OPERACION ANTES DE DEFINICION: %s\n",operacion);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
+        printf("OPERACION DEspues DE DEFINICION1: %s\n",operacion);
         mostrar_conjunto(operandoB);
         printf("HOLAAAAA");
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -655,9 +658,15 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         freeLista = prepend_glist(freeLista,operandoB);
-
-        free(alias);
+        printf("OPERACION DESPUES DE DEFINICION2: %s\n",operacion);
+        printf("ALIAS DESPUES DE DEFINICION2: %s\n",alias);
         free(operacion);
+     //   printf("ALIAS DESPUES DE DEFINICION2: %s\n",alias);
+     //   printf("OPERACION DESPUES DE DEFINICION: %s\n",operacion);
+        free(alias);
+    //    printf("OPERACION DESPUES DE DEFINICION: %s\n",operacion);
+    //    system("pause");
+
         //system("pause");
         break;
       case 3:
