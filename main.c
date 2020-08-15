@@ -845,6 +845,8 @@ int main() {
     Conjunto fr = (Conjunto) actual->data;
     printf("\nALIAS A ELIMINAR X2\n");
 
+    free(fr->alias);
+
     dlist_destruir_int(fr->lista);
     dlist_destruir_int(fr->intervaloLista);
     free(fr);
