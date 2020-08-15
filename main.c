@@ -606,7 +606,7 @@ int main() {
   while (interprete == 0) {
 
     char* alias = malloc(LIMITE * sizeof(char));
-    char* operacion = malloc(LIMITE * sizeof(char));
+    //char* operacion = malloc(LIMITE * sizeof(char));
 
     //fgets(alias, LIMITE, stdin);
 
@@ -625,8 +625,9 @@ int main() {
         test++;
     }
 
-    printf("OPERACION ANTERS DE PARSER: %s\n",operacion);
-    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
+  //  printf("OPERACION ANTERS DE PARSER: %s\n",operacionA);
+    char* operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
+  //  printf("OPERACION DESPUES DE PARSER: %s\n",operacionA);
     printf("OPERACION DESPUES DE PARSER: %s\n",operacion);
     int instruccion = comando_int(operacion, alias);
     printf("OPERACION DESPUES DE COMANDO: %s\n",operacion);
