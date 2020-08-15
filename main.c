@@ -616,12 +616,12 @@ int main() {
     }
 
         if(test == 1){
-        strcpy(alias,"b = {var : 15 <= var <= 10} ");
+        strcpy(alias,"b = {var : 15 <= var <= 40} ");
         test++;
     }
 
     if(test == 0){
-        strcpy(alias,"a = {var : 3 <= var <= 0} ");
+        strcpy(alias,"a = {var : 46 <= var <= 100} ");
         test++;
     }
 
