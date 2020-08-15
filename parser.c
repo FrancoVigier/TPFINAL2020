@@ -105,7 +105,7 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   separadorInicial[0] = ',';
   fraccion = strtok(numeros, separadorInicial);
   if (fraccion != NULL) { //fraccion = "10" i.e
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       long long numConjunto =  numero_char_a_long_long(fraccion);
       conjunto->lista = prepend_glist(conjunto->lista, (long long*)numConjunto);
       fraccion = strtok(NULL, separadorInicial);
@@ -120,7 +120,7 @@ char* parsear_comando_y_operacion(char* comando, char* operacion) {
   int diferencia = 0;
   char separadorDiferencial[] = "\0";
   if (fraccion != NULL) {
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       fraccion[strlen(fraccion) - 1] = '\0';
       if (diferencia == 0) {
         comando = fraccion;
@@ -200,7 +200,7 @@ int check_cadena_num_ext(char* operacion) {
   separadorInicial[0] = ',';
   fraccion = strtok(numeros, separadorInicial);
   if (fraccion != NULL) { //fraccion = "10" i.e
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       if(cadena_de_numeros(fraccion) == 1){
         cdn = 1;
       }
@@ -295,7 +295,7 @@ int nombre_de_var_igual_com (char* operacion){//free aliasA aliasB
   int diferencia = 0;
   printf("STAGE1 INTERNO\n");
   if (fraccion != NULL) {
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       fraccion[strlen(fraccion)] = '\0';
       if (diferencia == 0) { // "{alias"
         strcpy(aliasA,fraccion);
@@ -353,7 +353,7 @@ int nombre_de_var_igual_com (char* operacion){//free aliasA aliasB
 
 
   if( cadena_de_numeros(numeroA) == 1 || cadena_de_numeros(numeroB) == 1){
-    printf("Error de sintaxis del tipo {alias : 'x' <= alias <= 'y'} con x e y no n鷐eros enteros\n");
+    printf("Error de sintaxis del tipo {alias : 'x' <= alias <= 'y'} con x e y no n煤meros enteros\n");
     ok = 1;
   }
 
@@ -365,7 +365,7 @@ int nombre_de_var_igual_com (char* operacion){//free aliasA aliasB
     printf("Error de sintaxis del tipo {alias : x <= alias <= 'y'} con y fuera de rango INT\n");
     ok = 1;
   }
-
+  aliasA--;
   free(aliasA);
   free(aliasB);
   free(numeroA);
@@ -485,3 +485,4 @@ Operandos* sacar_operando_imprimir(char* alias) {
   operandos->aliasOperandoB = fin;
   return operandos;
 }
+
