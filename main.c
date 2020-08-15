@@ -5,13 +5,6 @@
 #include <ctype.h>
 #include <limits.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <ctype.h>
-#include <limits.h>
-
 #include "pila.h"
 #include "conjunto.h"
 #include "LSE.h"
@@ -661,7 +654,7 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = a - b ");
+        strcpy(alias,"c = ~a ");
         test++;
     }
 
@@ -867,10 +860,11 @@ interprete = 1;
               printf("\n%s NO EXISTE COMO OPERANDO\n", operandoComplemento->aliasOperandoA);
             }
           }
-
+        free(alias);
         free(operandoComplemento);
 
-        system("pause");
+   //     system("pause");
+   interprete = 1;
         break;
       case 7:
         printf("imprimir");
