@@ -854,6 +854,7 @@ interprete = 1;
           mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
           freeLista = prepend_glist(freeLista,complemento);
+          dlist_destruir_int(complemetos);
         } else {
             printf("\nUno de los operandos no existe...\n");
             if (op7 == NULL){
@@ -877,15 +878,18 @@ interprete = 1;
         } else {
           printf("\nEl operando %s no existe...\n", operandoImprimir->aliasOperandoA);
         }
+        free(alias);
         free(operandoImprimir);
         //system("pause");
         break;
       case 8:
         printf("salir");
+        free(alias);
         interprete = 1;
         break;
       case 9:
         printf("\nERROR DE SINTAXIS\n");
+        free(alias);
         break;
     }
   }
