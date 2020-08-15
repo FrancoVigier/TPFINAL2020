@@ -661,7 +661,7 @@ int main() {
         freeLista = prepend_glist(freeLista,operandoB);
         printf("OPERACION DESPUES DE DEFINICION2: %s\n",operacion);
         printf("ALIAS DESPUES DE DEFINICION2: %s\n",alias);
-        free(operacion);
+
      //   printf("ALIAS DESPUES DE DEFINICION2: %s\n",alias);
      //   printf("OPERACION DESPUES DE DEFINICION: %s\n",operacion);
         free(alias);
@@ -704,7 +704,6 @@ int main() {
           }
 
         free(alias);
-        free(operacion);
         free(operandoUnion);
 
         //system("pause");
