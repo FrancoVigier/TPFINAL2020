@@ -188,12 +188,16 @@ int existe_interseccion(Intervalo* A, Intervalo* B) {
 }
 
 GList conjunto_inters( Conjunto primero, Conjunto segundo) {
-  GList intervaloOperandoAA = aplanar_lista(primero);
-  GList intervaloOperandoBB = aplanar_lista(segundo);
-  if(intervaloOperandoAA == NULL || intervaloOperandoBB == NULL){
+
+  if(primero->lista == NULL && primero->intervaloLista == NULL){
     return NULL;
   }
-
+  if(segundo->lista == NULL && segundo->intervaloLista == NULL){
+    return NULL;
+  }
+  
+  GList intervaloOperandoAA = aplanar_lista(primero);
+  GList intervaloOperandoBB = aplanar_lista(segundo);
   printf("\nINTERSECCION DENTRO ANTES\n");
   mostrar_intervalo(intervaloOperandoAA);
 
@@ -308,8 +312,10 @@ printf("DESTRUIR 3:\n");
 
   printf("DESTRUIR 4:\n");
   dlist_destruir_int(intervaloOperandoBB);
+
   free(intervaloOperandoAA);
   free(intervaloOperandoBB);
+
   return listaInterseccion;
 }
 
