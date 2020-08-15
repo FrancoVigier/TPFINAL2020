@@ -27,6 +27,7 @@ Intervalo* extraer_ini_y_fin(char* operacionA) {
   long long init = numero_char_a_long_long(inicio);
   long long fina = numero_char_a_long_long(fin);
   if (fina < init) {
+    free(operacion);
     return NULL;
   }
 
@@ -53,4 +54,3 @@ Intervalo* extraer_ini_y_fin(char* operacionA) {
   free(operacion);
   return intervalo;
 }
-
