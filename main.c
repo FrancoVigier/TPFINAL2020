@@ -655,6 +655,9 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         freeLista = prepend_glist(freeLista,operandoB);
+
+        free(alias);
+        free(operacion);
         //system("pause");
         break;
       case 3:
@@ -690,6 +693,8 @@ int main() {
             }
           }
 
+        free(alias);
+        free(operacion);
         free(operandoUnion);
 
         //system("pause");
