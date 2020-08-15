@@ -338,45 +338,68 @@ GList res = initialization_glist();
                 Intervalo* interval = malloc(sizeof(struct _Intervalo));
                 interval->inicio = left;
                 interval->ultimo = right;
+
+                interval->cardinalidad = (interval->ultimo - interval->inicio) + 1;
+                interval->esVacio = 0;
+
                 res = prepend_glist(res, interval);
                 }
                 if(right == intervaloB->inicio){
                 Intervalo* interval = malloc(sizeof(struct _Intervalo));
                 interval->inicio = left;
                 interval->ultimo = right-1;
+
+                interval->cardinalidad = (interval->ultimo - interval->inicio) + 1;
+                interval->esVacio = 0;
+
                 res = prepend_glist(res, interval);
                 }
             } else if (left < intervaloB->inicio && right <= intervaloB->ultimo) {
                   Intervalo* interval = malloc(sizeof(struct _Intervalo));
                 interval->inicio = left;
                 interval->ultimo = intervaloB->inicio-1;
+
+                interval->cardinalidad = (interval->ultimo - interval->inicio) + 1;
+                interval->esVacio = 0;
+
                 res = prepend_glist(res, interval);
             } else if (left < intervaloB->inicio && right > intervaloB->ultimo) {
                    Intervalo* interval1 = malloc(sizeof(struct _Intervalo));
                 interval1->inicio = left;
                 interval1->ultimo = intervaloB->inicio-1;
+                interval1->cardinalidad = (interval1->ultimo - interval1->inicio) + 1;
+                interval1->esVacio = 0;
+
                 res = prepend_glist(res, interval1);
 
                 Intervalo* interval2 =  malloc(sizeof(struct _Intervalo));
                 interval2->inicio = intervaloB->ultimo+1;
                 interval2->ultimo = right;
+                interval2->cardinalidad = (interval2->ultimo - interval2->inicio) + 1;
+                interval2->esVacio = 0;
                 res = prepend_glist(res, interval2);
             } else if (left >= intervaloB->inicio && left <= intervaloB->ultimo && right > intervaloB->ultimo) {
                 Intervalo* interval = malloc(sizeof(struct _Intervalo));
                 interval->inicio = intervaloB->ultimo+1;//
                 interval->ultimo = right;
+                interval->cardinalidad = (interval->ultimo - interval->inicio) + 1;
+                interval->esVacio = 0;
                 res = prepend_glist(res, interval);
             } else if (left >= intervaloB->ultimo) {
                 if(left > intervaloB->ultimo){
                 Intervalo* interval = malloc(sizeof(struct _Intervalo));
                 interval->inicio = left;
                 interval->ultimo = right;
+                interval->cardinalidad = (interval->ultimo - interval->inicio) + 1;
+                interval->esVacio = 0;
                 res = prepend_glist(res, interval);
                 }
                 if(left == intervaloB->ultimo){
                 Intervalo* interval = malloc(sizeof(struct _Intervalo));
                 interval->inicio = left+1;
                 interval->ultimo = right;
+                interval->cardinalidad = (interval->ultimo - interval->inicio) + 1;
+                interval->esVacio = 0;
                 res = prepend_glist(res, interval);
                 }
             }
