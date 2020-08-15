@@ -740,7 +740,7 @@ int main() {
               printf("\n%s NO EXISTE COMO OPERANDO\n", operandoInterseccion->aliasOperandoB);
             }
           }
-
+        free(alias);
         free(operandoInterseccion);
         interprete = 1;
        // system("pause");
