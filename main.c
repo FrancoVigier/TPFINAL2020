@@ -632,7 +632,7 @@ int main() {
     operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
     int instruccion = comando_int(operacion, alias);
 
-    system("pause");
+    //system("pause");
 
     switch (instruccion) {
       case 1:
@@ -658,7 +658,7 @@ int main() {
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
         freeLista = prepend_glist(freeLista,operandoB);
-        system("pause");
+        //system("pause");
         break;
       case 3:
         printf("union");
@@ -695,7 +695,7 @@ int main() {
 
         free(operandoUnion);
 
-        system("pause");
+        //system("pause");
         break;
       case 4:
         printf("interseccion");
@@ -819,7 +819,7 @@ int main() {
           printf("\nEl operando %s no existe...\n", operandoImprimir->aliasOperandoA);
         }
         free(operandoImprimir);
-        system("pause");
+        //system("pause");
         break;
       case 8:
         printf("salir");
@@ -848,6 +848,6 @@ int main() {
     free(actual);
   }
 
-  system("pause");
+ // system("pause");
   return 0;
 }
