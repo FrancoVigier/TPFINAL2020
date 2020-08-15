@@ -742,7 +742,7 @@ int main() {
           }
 
         free(operandoInterseccion);
-
+        interprete = 1;
        // system("pause");
         break;
       case 5:
