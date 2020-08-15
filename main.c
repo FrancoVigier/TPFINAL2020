@@ -620,17 +620,17 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = a - a ");
+        strcpy(alias,"c = a - b ");
         test++;
     }
 
         if(test == 1){
-        strcpy(alias,"b = {var : 0 <= var <= 30} ");
+        strcpy(alias,"b = {var : 15 <= var <= 15} ");
         test++;
     }
 
     if(test == 0){
-        strcpy(alias,"a = {var : 15 <= var <= 40} ");
+        strcpy(alias,"a = {var : 0 <= var <= 30} ");
         test++;
     }
 
