@@ -413,6 +413,10 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
     return NULL;
   }
 
+  if(primero->lista == NULL && primero->intervaloLista == NULL){
+    return NULL;
+  }
+
   GList bufferlistauno = aplanar_lista(primero);
   GList bufferlistados = aplanar_lista(segundo);
 
