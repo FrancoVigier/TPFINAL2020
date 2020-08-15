@@ -664,7 +664,7 @@ int main() {
     }
 
     if(test == 0){
-        strcpy(alias,"a = {x : -2147483648 <= x <= 2147483647} ");
+        strcpy(alias,"a = {x : 0 <= x <= -10} ");
         test++;
     }
 
