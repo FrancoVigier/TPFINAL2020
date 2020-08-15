@@ -848,7 +848,7 @@ interprete = 1;
         if (op7 != NULL) {
           mostrar_conjunto(op7);
           mostrar_conjunto(op8);
-          GList complemetos = definir_conj_dif(op8, op7);
+          GList complemetos = definir_conj_dif_dos(op8, op7);
           Conjunto complemento = crear_conjunto(alias, NULL, complemetos);
           hash_inserto(HASH, alias, NULL, complemetos);
           mostrar_conjunto(complemento);
