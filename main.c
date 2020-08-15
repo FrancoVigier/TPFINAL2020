@@ -611,12 +611,12 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = a | a ");
+        strcpy(alias,"c = a & b ");
         test++;
     }
 
         if(test == 1){
-        strcpy(alias,"b = {var : 50 <= var <= 70} ");
+        strcpy(alias,"b = {var : 50 <= var <= 0} ");
         test++;
     }
 
