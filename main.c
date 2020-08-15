@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <ctype.h>
+#include <limits.h>
 
 #include "pila.h"
 #include "conjunto.h"
@@ -20,25 +21,36 @@
 
 ///////////////////////
 GList conjunto_union(GList intervalos) { /// [...],[...] UNION
-  intervalos = dlist_selectionSort(intervalos);
-  printf("HOLAAAAa");
-  int largo = largo_glist(intervalos);
-  if (largo <= 0) {
+  if(intervalos == NULL){
     return NULL;
   }
+  intervalos = dlist_selectionSort(intervalos);
+  printf("HOLAAAAa");
+
+  int largo = largo_glist(intervalos);
+
   Stack pila = stack_new();
-  stack_push(pila, get_data_glist(intervalos, 0));
+  Intervalo* inicio = get_data_glist(intervalos, 0);
   for (int i = 1; i < largo; i++) {
-    Intervalo* top = stack_top(pila);
     Intervalo* posi = get_data_glist(intervalos, i);
-    if (top->ultimo < posi->inicio)
-      stack_push(pila, posi);
-    else if (top->ultimo < posi->ultimo) {
-      top->ultimo =  posi->ultimo;
-      stack_pop(pila);
-      stack_push(pila, top);
+    if(inicio->ultimo + 1 < posi->inicio ){
+      stack_push(pila, inicio);
+      inicio = posi;
     }
+    if (inicio->ultimo  >= posi->inicio ){
+      if(inicio->ultimo < posi->ultimo){
+        inicio->ultimo = posi->ultimo;
+      }
+      continue;
+    }
+    if(inicio->ultimo + 1 == posi->inicio){
+      inicio->ultimo = posi->ultimo;
+      continue;
+    }
+
   }
+  stack_push(pila,inicio);
+
   GList listaUnion = initialization_glist();
   while (!stack_es_vacio(pila)) {
     Intervalo* intervaloUnion = stack_top(pila);
@@ -51,7 +63,7 @@ GList conjunto_union(GList intervalos) { /// [...],[...] UNION
     poner->inicio = intervaloUnion->inicio;
 
     listaUnion =  prepend_glist(listaUnion, poner);
-    printf("[%i,%i]-", intervaloUnion->inicio, intervaloUnion->ultimo);
+    printf("[%lld,%lld]-", intervaloUnion->inicio, intervaloUnion->ultimo);
     stack_pop(pila);
   }
   //
@@ -81,23 +93,22 @@ GList aplanar_lista(Conjunto primero) {
     cpy->inicio = mostrar->inicio;
     cpy->ultimo = mostrar->ultimo;
 
-    printf("APLANAR[%i,%i]-", mostrar->inicio,mostrar->ultimo);
+    printf("APLANAR[%lld,%lld]-", mostrar->inicio,mostrar->ultimo);
     listaAplanada = prepend_glist(listaAplanada, cpy);
     primeroBufferIntervalo = primeroBufferIntervalo->next;
   }
   for (; primeroBufferLista != NULL;) {
     Intervalo* numero_solo = malloc(sizeof(struct _Intervalo));
-    int extremos = (int)primeroBufferLista->data;
-    printf("numero libre -%i-\n", extremos);
+    long long extremos = (long long)primeroBufferLista->data;
+    printf("numero libre -%lld-\n", extremos);
     numero_solo->inicio = extremos;
     numero_solo->ultimo = extremos;
     numero_solo->cardinalidad = 1;
     numero_solo->esVacio = 0;
-    printf("APLANAR1[%i,%i]-", numero_solo->inicio, numero_solo->ultimo);
+    printf("APLANAR1[%lld,%lld]-", numero_solo->inicio, numero_solo->ultimo);
     listaAplanada = prepend_glist(listaAplanada, numero_solo);
     primeroBufferLista = primeroBufferLista->next;
   }
-
   return listaAplanada;
 }
 
@@ -124,25 +135,21 @@ void mostrar_intervalo(GList intervall) {
     GList intervalll = intervall;
   for (; intervalll != NULL;) {
     Intervalo* mostrar = intervalll->data;
-    printf("-[%i,%i]-\n", mostrar->inicio, mostrar->ultimo);
+    printf("-[%lld,%lld]-\n", mostrar->inicio, mostrar->ultimo);
     intervalll = intervalll->next;
   }
 }
 
-GList aplanar_solos_e_intervalos(Conjunto primero, Conjunto segundo) { //1->union 2->interseccion
+GList definir_conj_union(Conjunto primero, Conjunto segundo) { //1->union 2->interseccion
   GList listaAplanada = initialization_glist();
-
 
   GList intervaloOperandoAA = aplanar_lista(primero);
   GList intervaloOperandoBB = aplanar_lista(segundo);
-
 
   GList intervaloOperandoA = glist_copiar_lista(intervaloOperandoAA);
   GList intervaloOperandoB = glist_copiar_lista(intervaloOperandoBB);
 
   GList unionCadenas = concatenar_glist(intervaloOperandoA,intervaloOperandoB);
-
-
 
   printf("PRIMEEEERO\n");
   mostrar_intervalo(intervaloOperandoA);
@@ -180,16 +187,12 @@ int existe_interseccion(Intervalo* A, Intervalo* B) {
   return 0;
 }
 
-
-
 GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   GList intervaloOperandoAA = aplanar_lista(primero);
   GList intervaloOperandoBB = aplanar_lista(segundo);
- // int testNull = 1; A (inters) void = void, void (inters) A = void
   if(intervaloOperandoAA == NULL || intervaloOperandoBB == NULL){
     return NULL;
   }
-
 
   printf("\nINTERSECCION DENTRO ANTES\n");
   mostrar_intervalo(intervaloOperandoAA);
@@ -206,7 +209,7 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   GList listaInterseccion = initialization_glist();
   int i = 0;
   int j = 0;
-  while (i < largo_glist(intervaloOperandoA) && j < largo_glist(intervaloOperandoB)){
+  for (;i < largo_glist(intervaloOperandoA) && j < largo_glist(intervaloOperandoB);){
     Intervalo* nodoAEnPosI = malloc (sizeof(struct _Intervalo));
     Intervalo* nodoBEnPosJ = malloc (sizeof(struct _Intervalo));
 
@@ -223,42 +226,65 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
     nodoBEnPosJ->inicio = nodoBEnPosJJ->inicio;
     nodoBEnPosJ->ultimo = nodoBEnPosJJ->ultimo;
 
-    if (existe_interseccion(nodoAEnPosI, nodoBEnPosJ)) {
-      Intervalo* temporal = malloc (sizeof(struct _Intervalo));
-      temporal->inicio = MAX (nodoAEnPosI->inicio, nodoBEnPosJ->inicio);
-      temporal->ultimo = MIN (nodoAEnPosI->ultimo, nodoBEnPosJ->ultimo);
+    Intervalo* temporal = malloc (sizeof(struct _Intervalo));
+    temporal->inicio = MAX (nodoAEnPosI->inicio, nodoBEnPosJ->inicio);
+    temporal->ultimo = MIN (nodoAEnPosI->ultimo, nodoBEnPosJ->ultimo);
 
-      temporal->cardinalidad = (temporal->ultimo - temporal->inicio) + 1;
-      if(temporal->inicio <= temporal->ultimo){
+    if(temporal->inicio <= temporal->ultimo){
+        temporal->cardinalidad = (temporal->ultimo - temporal->inicio) + 1;
         temporal->esVacio = 0;
       }
-      if(temporal->inicio > temporal->ultimo){
+    if(temporal->inicio > temporal->ultimo){
+        temporal->cardinalidad = 0;
         temporal->esVacio = 1;
       }
-
-      nodoAEnPosI->inicio = temporal->ultimo + 1;
-      nodoBEnPosJ->inicio = temporal->ultimo + 1;
-
-      free(nodoAEnPosII);
-      free(nodoBEnPosJJ);
-
-      intervaloOperandoA = pisa_data_glist(intervaloOperandoA, i, nodoAEnPosI);
-      intervaloOperandoB = pisa_data_glist(intervaloOperandoB, j, nodoBEnPosJ);
-      if (nodoAEnPosI->inicio > nodoAEnPosI->ultimo || nodoAEnPosI->ultimo <= temporal->inicio) {
-        i += 1;
-      }
-      if (nodoBEnPosJ->inicio > nodoBEnPosJ->ultimo || nodoBEnPosJ->ultimo <= temporal->inicio) {
-        j += 1;
-      }
-      listaInterseccion = prepend_glist(listaInterseccion, temporal);
-      continue;
+    if(nodoAEnPosI->inicio > nodoBEnPosJ->inicio){
+        if(nodoAEnPosI->ultimo <= nodoBEnPosJ->ultimo){
+            ++i;
+        }
+        else{
+            ++j;
+        }
+        if(temporal->esVacio == 0){
+            listaInterseccion = prepend_glist(listaInterseccion, temporal);
+        }
+        if(temporal->esVacio == 1){
+            free(temporal);
+        }
     }
-    if (nodoAEnPosI->inicio > nodoBEnPosJ->ultimo) {
-      j += 1;
+    else if(nodoAEnPosI->inicio < nodoBEnPosJ->inicio){
+        if(nodoAEnPosI->ultimo >= nodoBEnPosJ->ultimo){
+            ++j;
+        }
+        else{
+            ++i;
+        }
+        if(temporal->esVacio == 0){
+            listaInterseccion = prepend_glist(listaInterseccion, temporal);
+        }
+        if(temporal->esVacio == 1){
+          free(temporal);
+        }
     }
-    else
-      i += 1;
+    else{
+        if(nodoAEnPosI->ultimo < nodoBEnPosJ->ultimo){
+            ++i;
+        }
+        else if(nodoAEnPosI->ultimo > nodoBEnPosJ->ultimo){
+            ++j;
+        }
+        else{
+            ++i;
+            ++j;
+        }
+        listaInterseccion = prepend_glist(listaInterseccion, temporal);
+    }
+    free(nodoAEnPosI);
+    free(nodoBEnPosJ);
+
   }
+////
+
   printf("INTERSECCION DENTRO\n");
 
   mostrar_intervalo(intervaloOperandoAA);
@@ -272,16 +298,156 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
   dlist_destruir_intervalo(intervaloOperandoA);
   printf("DESTRUIR 2:\n");
   dlist_destruir_intervalo(intervaloOperandoB);
-  printf("______________\n");
- // dlist_destruir_intervalo(intervaloOperandoAAA);
-    printf("______________\n");
+//  printf("______________\n");
+//  dlist_destruir_intervalo(intervaloOperandoAAA);
+//    printf("______________\n");
 //  dlist_destruir_intervalo(intervaloOperandoBBB);
-    printf("______________\n");
+///    printf("______________\n");
 printf("DESTRUIR 3:\n");
   dlist_destruir_int(intervaloOperandoAA);
   printf("DESTRUIR 4:\n");
   dlist_destruir_int(intervaloOperandoBB);
   return listaInterseccion;
+}
+
+
+GList conjunto_diferencia_dos(GList intervaloA, Intervalo* intervaloB){
+intervaloA = dlist_selectionSort(intervaloA);
+int len = largo_glist(intervaloA);
+GList res = initialization_glist();
+        for (int i = 0; i < len; i++) {
+            Intervalo* data = get_data_glist(intervaloA,i);
+
+            long long left = data->inicio;
+            long long right = data->ultimo;
+
+            if(right == intervaloB->ultimo && left == intervaloB->inicio){
+                continue;
+            }
+            if (right <= intervaloB->inicio) {
+                if(right < intervaloB->inicio){
+                Intervalo* interval = malloc(sizeof(struct _Intervalo));
+                interval->inicio = left;
+                interval->ultimo = right;
+                res = prepend_glist(res, interval);
+                }
+                if(right == intervaloB->inicio){
+                Intervalo* interval = malloc(sizeof(struct _Intervalo));
+                interval->inicio = left;
+                interval->ultimo = right-1;
+                res = prepend_glist(res, interval);
+                }
+            } else if (left < intervaloB->inicio && right <= intervaloB->ultimo) {
+                  Intervalo* interval = malloc(sizeof(struct _Intervalo));
+                interval->inicio = left;
+                interval->ultimo = intervaloB->inicio-1;
+                res = prepend_glist(res, interval);
+            } else if (left < intervaloB->inicio && right > intervaloB->ultimo) {
+                   Intervalo* interval1 = malloc(sizeof(struct _Intervalo));
+                interval1->inicio = left;
+                interval1->ultimo = intervaloB->inicio-1;
+                res = prepend_glist(res, interval1);
+
+                Intervalo* interval2 =  malloc(sizeof(struct _Intervalo));
+                interval2->inicio = intervaloB->ultimo+1;
+                interval2->ultimo = right;
+                res = prepend_glist(res, interval2);
+            } else if (left >= intervaloB->inicio && left <= intervaloB->ultimo && right > intervaloB->ultimo) {
+                Intervalo* interval = malloc(sizeof(struct _Intervalo));
+                interval->inicio = intervaloB->ultimo+1;//
+                interval->ultimo = right;
+                res = prepend_glist(res, interval);
+            } else if (left >= intervaloB->ultimo) {
+                if(left > intervaloB->ultimo){
+                Intervalo* interval = malloc(sizeof(struct _Intervalo));
+                interval->inicio = left;
+                interval->ultimo = right;
+                res = prepend_glist(res, interval);
+                }
+                if(left == intervaloB->ultimo){
+                Intervalo* interval = malloc(sizeof(struct _Intervalo));
+                interval->inicio = left+1;
+                interval->ultimo = right;
+                res = prepend_glist(res, interval);
+                }
+            }
+        }
+        return res;
+    }
+
+
+GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
+  if(strcmp(primero->alias, segundo->alias) == 0){// R - R = NULL
+    return NULL;
+  }
+
+  GList bufferlistauno = aplanar_lista(primero);
+  GList bufferlistados = aplanar_lista(segundo);
+
+  GList listauno = bufferlistauno;
+  GList listados = bufferlistados;
+
+  if(listauno == NULL){// NULL - R = NULL
+    return NULL;
+  }
+
+  Stack pila = stack_new();
+  GList listaDiferencia = initialization_glist();
+  GList buff;
+  for (; listados != NULL; listados = listados->next) {
+    Intervalo* datazo = (Intervalo*)listados->data;
+
+    Intervalo* dato = malloc(sizeof(struct _Intervalo));
+    dato->inicio = datazo->inicio;
+    dato->ultimo = datazo->ultimo;
+    dato->cardinalidad = datazo->cardinalidad;
+    dato->esVacio = datazo->esVacio;
+    printf("\nQUEDAAAAAAA1:\n");
+    mostrar_intervalo(primero->intervaloLista);
+    GList lista = conjunto_diferencia_dos(listauno, dato);
+    stack_push(pila,lista);
+    printf("\nQUEDAAAAAAA2:\n");
+    mostrar_intervalo(primero->intervaloLista);
+    mostrar_intervalo(lista);
+   // listauno = lista;
+
+  }
+  GList resultado = initialization_glist();
+  if(stack_es_vacio(pila)){
+    resultado = NULL;
+  }
+  else{
+  while(!stack_es_vacio(pila)){
+    GList opA = stack_top(pila);
+    stack_pop(pila);
+    if(stack_es_vacio(pila)){
+        resultado = opA;
+    }
+    else{
+        GList opB = stack_top(pila);
+        stack_pop(pila);
+        Conjunto A = crear_conjunto("",NULL,opA);
+        Conjunto B = crear_conjunto("",NULL,opB);
+
+        GList intermedio = conjunto_inters(A,B);
+        stack_push(pila,intermedio);
+        dlist_destruir_intervalo(opA);
+        dlist_destruir_intervalo(opB);
+        destruir_conjunto(A,NULL);///
+        destruir_conjunto(B,NULL);///
+    }
+  }
+  }
+
+  printf("\nQUEDAAAAAAA3:\n");
+  mostrar_intervalo(primero->intervaloLista);
+
+  //
+  dlist_destruir_intervalo(bufferlistauno);
+  dlist_destruir_intervalo(bufferlistados);
+  free(pila);
+  //
+  return resultado;
 }
 
 
@@ -386,10 +552,7 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
       date->esVacio = dat->esVacio;
       listaDiferencia = prepend_glist(listaDiferencia, date);
       Intervalo* data = buff->data;
-      printf("FOR:[%i,%i] %i %i\n",date->inicio, date->ultimo, date->cardinalidad, date->esVacio);
-    //
-    //  free(date); //falta esto
-    //
+      printf("FOR:[%lld,%lld] %lld %i\n",date->inicio, date->ultimo, date->cardinalidad, date->esVacio);
     }
   }
   printf("\nQUEDAAAAAAA3:\n");
@@ -403,33 +566,11 @@ GList definir_conj_dif(Conjunto primero, Conjunto segundo) {
   return listaDiferencia;
 }
 
-GList definir_conj_comple(Conjunto operador) { /// [...],[...] UNION
-
-  Intervalo* universal = malloc(sizeof(struct _Intervalo));
-  universal->inicio = INT_INFLIM;
-  universal->ultimo = INT_SUPLIM;
-  universal->cardinalidad = 0;
-  universal->esVacio = 0;
-
-  GList lista = initialization_glist();
-  lista = prepend_glist(lista, universal);
-
-  Conjunto uni = crear_conjunto("universo", NULL, lista);
-
-//a lo sumo inicializar "bien universo"
-  GList complemento = initialization_glist();
-  complemento = definir_conj_dif(uni, operador);
-
-  destruir_conjunto(uni, NULL);
-  free(lista);
-
-  return complemento;
-}
 
 void mostrar(GList lista) {
   for (; lista != NULL; lista = lista->next) {
-    int num = (int)lista->data;
-    printf("- %i -\n", num);
+    long long num = (long long)lista->data;
+    printf("- %lld -\n", num);
   }
 }
 
@@ -520,7 +661,7 @@ int main() {
 
         if(test == 1){
         char alias[] = "pepe";
-        char operacion[] = " {x : -250 <= x <= -50}";
+        char operacion[] = " {x : -250 <= x <= 0}";
 
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
@@ -537,7 +678,7 @@ printf("HOLAAAAA");
         }
         if(test == 2){
         char alias[] = "papa";
-        char operacion[] = " {x : -2500 <= x <= 0}";
+        char operacion[] = " {x : -500 <= x <= -1000}";
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
@@ -549,7 +690,7 @@ printf("HOLAAAAA");
         //destruir_conjunto(operandoB,NULL);
         }
         if(test == 2){
-          instruccion = 4;
+          instruccion = 3;
         }
         test++;
       //  interprete = 1;
@@ -656,7 +797,7 @@ printf("HOLAAAAA");
         if(op5 == NULL){printf("\nOP1 NULL\n");}
         if(op6 == NULL){printf("\nOP2 NULL\n");}
         if (op5 != NULL && op6 != NULL) {
-          GList restas = definir_conj_dif(op5, op6);
+          GList restas = definir_conj_dif_dos(op5, op6);
           Conjunto resta = crear_conjunto("carlos", NULL, restas);
           hash_inserto(HASH, "carlos", NULL, restas);
           mostrar_conjunto(resta);
