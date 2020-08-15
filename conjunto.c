@@ -173,7 +173,7 @@ void destruir_conjunto(Conjunto conjunto, void* aux){
   conjunto->intervaloLista = NULL;
 
   printf("CONJUNTO 'eliminado':\n");
-  mostrar_conjunto(conjunto);
+  //mostrar_conjunto(conjunto);
 
   free(conjunto);
 }
