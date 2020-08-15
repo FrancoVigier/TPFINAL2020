@@ -3,7 +3,10 @@
 #include <stdlib.h>
 #include "intervalo.h"
 #include "parser.h"
-Intervalo* extraer_ini_y_fin(char* operacion) {
+#define LIMITE 300
+Intervalo* extraer_ini_y_fin(char* operacionA) {
+  char* operacion = malloc(sizeof(char)*LIMITE);
+  strcpy(operacion,operacionA);
   char separadorInicial[] = " ";
   char *fraccion = strtok(operacion, separadorInicial);
   char *inicio;
@@ -49,3 +52,4 @@ Intervalo* extraer_ini_y_fin(char* operacion) {
   }
   return intervalo;
 }
+
