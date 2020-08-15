@@ -50,6 +50,7 @@ Intervalo* extraer_ini_y_fin(char* operacionA) {
     intervalo->cardinalidad = intervalo->ultimo - intervalo->inicio;
     intervalo->cardinalidad++;
   }
+  free(operacion);
   return intervalo;
 }
 
