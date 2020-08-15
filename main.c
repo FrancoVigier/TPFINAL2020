@@ -713,7 +713,7 @@ printf("HOLAAAAA");
 
         if (op1 != NULL && op2 != NULL) {
 
-          GList resultado = aplanar_solos_e_intervalos(op1, op2);
+          GList resultado = definir_conj_union(op1, op2);
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
           Conjunto uniones = crear_conjunto("carlos", NULL, resultado);
