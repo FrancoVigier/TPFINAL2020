@@ -441,6 +441,8 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
     printf("\nQUEDAAAAAAA2:\n");
     mostrar_intervalo(primero->intervaloLista);
     mostrar_intervalo(lista);
+
+    free(dato);
    // listauno = lista;
 
   }
