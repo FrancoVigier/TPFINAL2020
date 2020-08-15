@@ -596,298 +596,244 @@ void mostrar_glist_intervalos(GList lista) {
 /// nunca uso eliminar
 int main() {
   int interprete = 0;
+  int test = 0;
   struct _GNodo*** HASH;
   HASH =  inicializar_HASH();
 
-  int instruccion = 2;
-  int test = 1;
-  Conjunto testt;
-  Conjunto testt2;
   GList freeLista = initialization_glist(); //ext y com
-  GList freeLista2 = initialization_glist();
-
   int inicializarUniversal = 0;
 
   while (interprete == 0) {
 
+    char* alias = malloc(LIMITE * sizeof(char));
+    char* operacion = malloc(LIMITE * sizeof(char));
+
+    //fgets(alias, LIMITE, stdin);
+    if(test == 3){
+        strcpy(alias, "salir ");
+    }
+
+        if(test == 2){
+        strcpy(alias,"c = a | b ");
+        test++;
+    }
+
+        if(test == 1){
+        strcpy(alias,"b = {var : 25 <= var <= 50} ");
+        test++;
+    }
+
+    if(test == 0){
+        strcpy(alias,"a = {var : 10 <= var <= 20} ");
+        test++;
+    }
 
 
+    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
+    int instruccion = comando_int(operacion, alias);
 
-///    char* alias = malloc(LIMITE * sizeof(char));
-///    char* operacion = malloc(LIMITE * sizeof(char));
+    system("pause");
 
-///    fgets(alias, LIMITE, stdin);
-///    operacion = parsear_comando_y_operacion(alias, operacion); // alias = "alias" , operacion = {..}
-///    int instruccion = comando_int(operacion, alias);
     switch (instruccion) {
       case 1:
         printf("extension");
-/*
-        if(test == 1){
-          char alias[] = "pepe";
-          char operacion[] = " {-2,-1,0,1,2}";
         printf("-%s- , -%s-", alias, operacion);
         Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
+        mostrar_conjunto(operando);
+        printf("QUILOMBO");
         hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
         Conjunto aux = hash_busco(HASH, operando->alias);
         mostrar_conjunto(aux);
-        //free (operando);
         freeLista = prepend_glist(freeLista, operando);
-        }
-        if(test == 2){
-          char alias[] = "papa";
-          char operacion[] = " {-12,10,60,-40,80,-30,70,-100,10000,1000,-1}";
-        printf("-%s- , -%s-", alias, operacion);
-        Conjunto operando = definir_conj_ext(operacion, alias);//hashear operando con el alias
-        hash_inserto(HASH, operando->alias, operando->lista, operando->intervaloLista);
-        Conjunto aux = hash_busco(HASH, operando->alias);
-        mostrar_conjunto(aux);
-        //free (operando);
-        //free (operando);
-        freeLista = prepend_glist(freeLista, operando);
-        }
-        if(test == 2){
-          instruccion = 6;
-        }
-        test++;
         system("pause");
-*/
         break;
       case 2:
         printf("comprension");
-
-      //  char alias[] = "pepe";
-      //  char operacion[] = " {x : 2 <= x <= 100}";
-
-        if(test == 1){
-        char alias[] = "pepe";
-        char operacion[] = " {x : -250 <= x <= 0}";
-
         printf("-%s- , -%s-", operacion, alias);
         Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
-
         mostrar_conjunto(operandoB);
-printf("HOLAAAAA");
-        hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);printf("HOLAAAAA");
-        Conjunto aux1 = hash_busco(HASH, operandoB->alias);
-        mostrar_conjunto(aux1);
-        //free (operandoB);
-        testt = operandoB;
-        freeLista = prepend_glist(freeLista,operandoB);
-        //destruir_conjunto(operandoB,NULL);
-        }
-        if(test == 2){
-        char alias[] = "papa";
-        char operacion[] = " {x : -500 <= x <= -1000}";
-        printf("-%s- , -%s-", operacion, alias);
-        Conjunto operandoB = definir_conj_com(operacion, alias);//hashea operando con el alias
+        printf("HOLAAAAA");
         hash_inserto(HASH, operandoB->alias, operandoB->lista, operandoB->intervaloLista);
+        printf("HOLAAAAA");
         Conjunto aux1 = hash_busco(HASH, operandoB->alias);
         mostrar_conjunto(aux1);
-        //free (operandoB);
-        testt2 = operandoB;
         freeLista = prepend_glist(freeLista,operandoB);
-        //destruir_conjunto(operandoB,NULL);
-        }
-        if(test == 2){
-          instruccion = 3;
-        }
-        test++;
-      //  interprete = 1;
-      system("pause");
-
+        system("pause");
         break;
       case 3:
         printf("union");
-        /*
+
         Operandos* operandoUnion = sacar_operando_union_inters(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoUnion->aliasOperandoA, operandoUnion->aliasOperandoB);//parsea a | b
-        printf("\n\nUNION\n");
         Conjunto op1 = hash_busco(HASH, operandoUnion->aliasOperandoA);
         Conjunto op2 = hash_busco(HASH, operandoUnion->aliasOperandoB);
-        */
-        Conjunto op1 = hash_busco(HASH, "papa");
-        Conjunto op2 = hash_busco(HASH, "pepe");
-        if(op1 == NULL){printf("\nOP1 NULL\n");}
-        if(op2 == NULL){printf("\nOP2 NULL\n");}
 
         if (op1 != NULL && op2 != NULL) {
 
           GList resultado = definir_conj_union(op1, op2);
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
-          Conjunto uniones = crear_conjunto("carlos", NULL, resultado);
-          hash_inserto(HASH, "carlos", NULL, resultado);
+          Conjunto uniones = crear_conjunto(alias, NULL, resultado);
+          hash_inserto(HASH, alias, NULL, resultado);
           mostrar_conjunto(uniones);
           printf("OPERANDOS UNION:\n");
           mostrar_conjunto(op1);
           mostrar_conjunto(op2);
           printf("____________________\n");
           freeLista = prepend_glist(freeLista, uniones);
-
-          //free(resultado);viene a tirar lo de abajo
           dlist_destruir_int(resultado);
 
         } else {
-          printf("\nUno de los operandos no existe...\n");
-        }
+            printf("\nUno de los operandos no existe...\n");
+            if (op1 == NULL){
+              printf("\n%s NO EXISTE COMO OPERANDO\n", operandoUnion->aliasOperandoA);
+            }
+            if (op2 == NULL){
+              printf("\n%s NO EXISTE COMO OPERANDO\n", operandoUnion->aliasOperandoB);
+            }
+          }
 
-/*
-        if (op1 != NULL && op2 != NULL) {
-          mostrar_conjunto(op1);
-          mostrar_conjunto(op2);}
-          GList resultado = aplanar_solos_e_intervalos(op1, op2);
-          Conjunto uniones = crear_conjunto(alias, NULL, resultado);
-          hash_inserto(HASH, alias, NULL, resultado);
-          mostrar_conjunto(uniones);
-        } else {
-          printf("\nUno de los operandos no existe...\n");
-        }
-*/
-        interprete = 1;
+        free(operandoUnion);
+
         system("pause");
         break;
       case 4:
-          /*
+        printf("interseccion");
+
         Operandos* operandoInterseccion = sacar_operando_union_inters(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoInterseccion->aliasOperandoA, operandoInterseccion->aliasOperandoB);//parsea a | b
         Conjunto op3 = hash_busco(HASH, operandoInterseccion->aliasOperandoA);
         Conjunto op4 = hash_busco(HASH, operandoInterseccion->aliasOperandoB);
-        */
-        printf("interseccion");
-        Conjunto op3 = hash_busco(HASH, "pepe");
-        Conjunto op4 = hash_busco(HASH, "papa");
-        if(op3 == NULL){printf("\nOP1 NULL\n");}
-        if(op4 == NULL){printf("\nOP2 NULL\n");}
-
 
         if (op3 != NULL && op4 != NULL) {
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
           GList intersecciones = conjunto_inters(op3, op4);
-          Conjunto interseccion = crear_conjunto("carlos",NULL, intersecciones);
-          hash_inserto(HASH, "carlos", NULL, intersecciones);
+          Conjunto interseccion = crear_conjunto(alias,NULL, intersecciones);
+          hash_inserto(HASH, alias, NULL, intersecciones);
           mostrar_conjunto(interseccion);
           printf("OPERANDOS INTERSECCION:\n");
           mostrar_conjunto(op3);
           mostrar_conjunto(op4);
           printf("____________________\n");
-
           freeLista = prepend_glist(freeLista, interseccion);
-          //
-          //free(intersecciones);
           dlist_destruir_int(intersecciones);
-        //
+
         } else {
           printf("\nUno de los operandos no existe...\n");
-        }
-        interprete = 1;
+            if (op3 == NULL){
+              printf("\n%s NO EXISTE COMO OPERANDO\n", operandoInterseccion->aliasOperandoA);
+            }
+            if (op4 == NULL){
+              printf("\n%s NO EXISTE COMO OPERANDO\n", operandoInterseccion->aliasOperandoB);
+            }
+          }
+
+        free(operandoInterseccion);
+
+        system("pause");
         break;
       case 5:
-          /*
         printf("resta");
-        Operandos* operandoResta = sacar_operando_union_inters(operacion);
+        Operandos* operandoResta = sacar_operando_union_inters(operacion);//free operandos
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoResta->aliasOperandoA, operandoResta->aliasOperandoB);//parsea a | b
         Conjunto op5 = hash_busco(HASH, operandoResta->aliasOperandoA);
         Conjunto op6 = hash_busco(HASH, operandoResta->aliasOperandoB);
-        */
-        printf("resta");
-                Conjunto op5 = hash_busco(HASH, "pepe");
-        Conjunto op6 = hash_busco(HASH, "papa");
-        if(op5 == NULL){printf("\nOP1 NULL\n");}
-        if(op6 == NULL){printf("\nOP2 NULL\n");}
+
         if (op5 != NULL && op6 != NULL) {
           GList restas = definir_conj_dif_dos(op5, op6);
-          Conjunto resta = crear_conjunto("carlos", NULL, restas);
-          hash_inserto(HASH, "carlos", NULL, restas);
+          Conjunto resta = crear_conjunto(alias, NULL, restas);
+          hash_inserto(HASH, alias, NULL, restas);
           mostrar_conjunto(resta);
           printf("OPERANDOS DE LA OPERACION:\n\n");
           mostrar_conjunto(op5);
+          printf("________________\n");
           mostrar_conjunto(op6);
-
           freeLista = prepend_glist(freeLista,resta);
-          //free(restas);
-
-          printf("________________");
         } else {
-          printf("\nUno de los operandos no existe...\n");
-        }
-        interprete = 1;
+            printf("\nUno de los operandos no existe...\n");
+            if (op5 == NULL){
+              printf("\n%s NO EXISTE COMO OPERANDO\n", operandoResta->aliasOperandoA);
+            }
+            if (op6 == NULL){
+              printf("\n%s NO EXISTE COMO OPERANDO\n", operandoResta->aliasOperandoB);
+            }
+          }
+
+        free(operandoResta);
+
+        system("pause");
         break;
       case 6:
 
         printf("complemento");
-          /*
+
         Operandos* operandoComplemento = sacar_operando_complemento(operacion);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoComplemento->aliasOperandoA, operandoComplemento->aliasOperandoB);//parsea a | b
         Conjunto op7 = hash_busco(HASH, operandoComplemento->aliasOperandoA);
-        */
 
-if(inicializarUniversal == 0){
-
-    char aliasa[] = "universal";
-    char operacione[] = " {x : -32767 <= x <= 32767}";//{x : -32767 <= x <= 32767}
-    printf("-%s- , -%s-", operacione, aliasa);
-    Conjunto operandoBB = definir_conj_com(operacione, aliasa);//hashea operando con el alias
-    hash_inserto(HASH, operandoBB->alias, operandoBB->lista, operandoBB->intervaloLista);
-    Conjunto aux1 = hash_busco(HASH, operandoBB->alias);
-    mostrar_conjunto(aux1);
-    //free (operandoB);
-    testt = operandoBB;
-    freeLista = prepend_glist(freeLista,operandoBB);
-    inicializarUniversal = 1;
-}
+        if (inicializarUniversal == 0){
+         char aliasa[] = "universal";
+         char operacione[] = " {x : -2147483648 <= x <= 2147483647}";//{x : -32767 <= x <= 32767}
+         printf("-%s- , -%s-", operacione, aliasa);
+         Conjunto operandoBB = definir_conj_com(operacione, aliasa);//hashea operando con el alias
+         hash_inserto(HASH, operandoBB->alias, operandoBB->lista, operandoBB->intervaloLista);
+         Conjunto aux1 = hash_busco(HASH, operandoBB->alias);
+         mostrar_conjunto(aux1);
+         freeLista = prepend_glist(freeLista,operandoBB);
+         inicializarUniversal = 1;
+       }
 
         Conjunto op8 = hash_busco(HASH, "universal");
-        Conjunto op7 = hash_busco(HASH, "pepe");
-
-        if(op8 == NULL){printf("\nOP1 NULL\n");}
+        if (op8 == NULL){printf("\nOP1 NULL\n");}
 
         if (op7 != NULL) {
           mostrar_conjunto(op7);
           mostrar_conjunto(op8);
           GList complemetos = definir_conj_dif(op8, op7);
-          Conjunto complemento = crear_conjunto("carlos", NULL, complemetos);
-          hash_inserto(HASH, "carlos", NULL, complemetos);
+          Conjunto complemento = crear_conjunto(alias, NULL, complemetos);
+          hash_inserto(HASH, alias, NULL, complemetos);
           mostrar_conjunto(complemento);
           mostrar_conjunto(op7);
           freeLista = prepend_glist(freeLista,complemento);
         } else {
-          printf("\nUno de los operandos no existe...\n");
-        }
+            printf("\nUno de los operandos no existe...\n");
+            if (op7 == NULL){
+              printf("\n%s NO EXISTE COMO OPERANDO\n", operandoComplemento->aliasOperandoA);
+            }
+          }
 
-        interprete = 1;
+        free(operandoComplemento);
 
+        system("pause");
         break;
-
       case 7:
-          /*
         printf("imprimir");
         printf("-%s-", alias);
         Operandos* operandoImprimir = sacar_operando_imprimir(alias);
         printf("\nOPERANDO1.: -%s-\nOPERANDO2.: -%s-\n", operandoImprimir->aliasOperandoA, operandoImprimir->aliasOperandoB);//parsea a | b
-        Conjunto op8 = hash_busco(HASH, operandoImprimir->aliasOperandoA);
-        if (op8 != NULL) {
-          mostrar_conjunto_imprimir(op8);
+        Conjunto op9 = hash_busco(HASH, operandoImprimir->aliasOperandoA);
+        if (op9 != NULL) {
+          mostrar_conjunto_imprimir(op9);
         } else {
-          printf("\nEl operando no existe...\n");
+          printf("\nEl operando %s no existe...\n", operandoImprimir->aliasOperandoA);
         }
-        */
+        free(operandoImprimir);
+        system("pause");
         break;
       case 8:
         printf("salir");
         interprete = 1;
         break;
       case 9:
-        printf("ERROR DE SINTAXIS");
+        printf("\nERROR DE SINTAXIS\n");
         break;
     }
   }
 
-
   free_table(HASH);
 
-//FREE COMPRENSION Y "EXTENSION"
+//FREE COMPRENSION Y "EXTENSION" ESQUELETO
   GList proximo = freeLista;
   GList actual;
   for(; proximo != NULL;){
