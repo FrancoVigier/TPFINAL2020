@@ -620,7 +620,7 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = b & b ");
+        strcpy(alias,"c = b & a ");
         test++;
     }
 
@@ -630,7 +630,7 @@ int main() {
     }
 
     if(test == 0){
-        strcpy(alias,"a = {var : 70 <= var <= 65} ");
+        strcpy(alias,"a = {var : -70 <= var <= 65} ");
         test++;
     }
 
