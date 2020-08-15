@@ -620,7 +620,7 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = a & b ");
+        strcpy(alias,"c = a - a ");
         test++;
     }
 
@@ -781,9 +781,11 @@ int main() {
             }
           }
 
+        free(alias);
         free(operandoResta);
 
-        system("pause");
+interprete = 1;
+
         break;
       case 6:
 
