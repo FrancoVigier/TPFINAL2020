@@ -305,8 +305,11 @@ GList conjunto_inters( Conjunto primero, Conjunto segundo) {
 ///    printf("______________\n");
 printf("DESTRUIR 3:\n");
   dlist_destruir_int(intervaloOperandoAA);
+
   printf("DESTRUIR 4:\n");
   dlist_destruir_int(intervaloOperandoBB);
+  free(intervaloOperandoAA);
+  free(intervaloOperandoBB);
   return listaInterseccion;
 }
 
