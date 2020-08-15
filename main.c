@@ -630,7 +630,7 @@ int main() {
     }
 
     if(test == 0){
-        strcpy(alias,"a = {var : -70 <= var <= 65} ");
+        strcpy(alias,"a = {var : -70 <= var <= -5} ");
         test++;
     }
 
@@ -874,4 +874,3 @@ int main() {
  // system("pause");
   return 0;
 }
-
