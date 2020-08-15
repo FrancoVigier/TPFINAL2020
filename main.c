@@ -796,6 +796,7 @@ int main() {
           printf("________________\n");
           mostrar_conjunto(op6);
           freeLista = prepend_glist(freeLista,resta);
+          dlist_destruir_int(restas);
         } else {
             printf("\nUno de los operandos no existe...\n");
             if (op5 == NULL){
