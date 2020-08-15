@@ -5,6 +5,13 @@
 #include <ctype.h>
 #include <limits.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <ctype.h>
+#include <limits.h>
+
 #include "pila.h"
 #include "conjunto.h"
 #include "LSE.h"
@@ -659,7 +666,7 @@ int main() {
     }
 
         if(test == 1){
-        strcpy(alias,"b = {var : 0 <= var <= -1} ");
+        strcpy(alias,"b = {var : -100 <= var <= 200} ");
         test++;
     }
 
