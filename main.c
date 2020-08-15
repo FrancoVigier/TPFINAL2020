@@ -743,7 +743,7 @@ int main() {
 
         free(operandoInterseccion);
 
-        system("pause");
+       // system("pause");
         break;
       case 5:
         printf("resta");
