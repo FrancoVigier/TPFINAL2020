@@ -12,8 +12,9 @@
 Conjunto inicializar_conjunto(char* alias, char* operacion) {
   Conjunto conjunto = malloc(sizeof (struct _Conjunto));
   char vacio[] = " {}";
-  //conjunto->alias = malloc(20 * sizeof(char));
-  conjunto->alias = alias;
+  conjunto->alias = malloc(20 * sizeof(char));
+  strcpy(conjunto->alias,alias);
+  printf("ELNOMBRE DEL CREADO ES:%s\n",conjunto->alias);
   conjunto->comprenExtens = 0;
   conjunto->lista=initialization_glist();
   conjunto->abiertoCerrado = 0;
@@ -29,9 +30,11 @@ Conjunto inicializar_conjunto(char* alias, char* operacion) {
 
 Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista) {
   Conjunto conju = malloc(sizeof(struct _Conjunto));
-//  conju->alias = malloc(sizeof(char*) * 40);
-//  strcpy(conju->alias, alias);
-  conju->alias = alias;
+
+  conju->alias = malloc(sizeof(char) * 20);
+  strcpy(conju->alias, alias);
+   printf("ELNOMBRE DEL CREADO ES:%s\n",conju->alias);
+
   conju->lista = initialization_glist();
   conju->intervaloLista = initialization_glist();
   conju->lista = glist_copiar_lista(lista);
@@ -139,6 +142,8 @@ void mostrar_intervalos(GList intervall) {
 void destruir_conjunto(Conjunto conjunto, void* aux){
 
   printf("\nA ELIMINAR: %s\n", conjunto->alias);
+
+  free(conjunto->alias);
 
   GList proximo = conjunto->lista;
   GList actual;
