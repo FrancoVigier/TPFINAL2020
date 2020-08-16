@@ -482,7 +482,7 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
         dlist_destruir_int(A->intervaloLista);
         free(A->alias);
         free(A);
-        
+
         dlist_destruir_int(B->lista);
         dlist_destruir_int(B->intervaloLista);
         free(B->alias);
@@ -671,7 +671,7 @@ int main() {
     }
 
         if(test == 1){
-        strcpy(alias,"b = {-1,-2,-6,-89,-10} ");
+        strcpy(alias,"b = {-1,-1000,-1313,-10} ");
         test++;
     }
 
