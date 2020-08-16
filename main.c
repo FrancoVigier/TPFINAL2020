@@ -654,12 +654,12 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = a & a ");
+        strcpy(alias,"c = a & b ");
         test++;
     }
 
         if(test == 1){
-        strcpy(alias,"b = {-1,-2} ");
+        strcpy(alias,"b = {-1,-2,-6,-89,-10,10,30,4,64,744} ");
         test++;
     }
 
