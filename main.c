@@ -659,7 +659,7 @@ int main() {
     }
 
         if(test == 1){
-        strcpy(alias,"b = {1,4,6,89,10} ");
+        strcpy(alias,"b = {-89,-10} ");
         test++;
     }
 
