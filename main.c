@@ -687,7 +687,8 @@ int main() {
         Conjunto aux = hash_busco(HASH, operando->alias);
         mostrar_conjunto(aux);
         freeLista = prepend_glist(freeLista, operando);
-        system("pause");
+        free(alias);
+    //    system("pause");
         break;
       case 2:
         printf("comprension");
