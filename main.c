@@ -654,7 +654,7 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = b & a ");
+        strcpy(alias,"c = a - a ");
         test++;
     }
 
