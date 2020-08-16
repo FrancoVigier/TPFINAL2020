@@ -481,9 +481,12 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
         dlist_destruir_int(A->lista);
         dlist_destruir_int(A->intervaloLista);
         free(A->alias);
+        free(A);
+        
         dlist_destruir_int(B->lista);
         dlist_destruir_int(B->intervaloLista);
         free(B->alias);
+        free(B);
        //destruir_conjunto(A,NULL);///
       //  destruir_conjunto(B,NULL);///
 
