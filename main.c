@@ -652,18 +652,19 @@ int main() {
     //char* operacion = malloc(LIMITE * sizeof(char));
 
     //fgets(alias, LIMITE, stdin);
+
         if(test == 2){
-        strcpy(alias,"c = b & b ");
+        strcpy(alias,"c = a & a ");
         test++;
     }
 
         if(test == 1){
-        strcpy(alias,"b = {} ");
+        strcpy(alias,"b = {-1,-2} ");
         test++;
     }
 
     if(test == 0){
-        strcpy(alias,"a = {-1,-4,-6,-89,-10} ");
+        strcpy(alias,"a = {-1,-2,-6,-89,-10} ");
         test++;
     }
 
