@@ -654,12 +654,12 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = b | a ");
+        strcpy(alias,"c = a | b ");
         test++;
     }
 
         if(test == 1){
-        strcpy(alias,"b = {1,2,3,10,56,87} ");
+        strcpy(alias,"b = {} ");
         test++;
     }
 
