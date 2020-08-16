@@ -474,10 +474,12 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
 
         GList intermedio = conjunto_inters(A,B);
         stack_push(pila,intermedio);
+
         dlist_destruir_intervalo(opA);
         dlist_destruir_intervalo(opB);
-        destruir_conjunto(A,NULL);///
-        destruir_conjunto(B,NULL);///
+//        destruir_conjunto(A,NULL);///
+//        destruir_conjunto(B,NULL);///
+
     }
   }
   }
