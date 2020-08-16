@@ -654,17 +654,17 @@ int main() {
     //fgets(alias, LIMITE, stdin);
 
         if(test == 2){
-        strcpy(alias,"c = ~a ");
+        strcpy(alias,"c = a | b ");
         test++;
     }
 
         if(test == 1){
-        strcpy(alias,"b = {var : -100 <= var <= 200} ");
+        strcpy(alias,"b = {1,2,3,10,56,87} ");
         test++;
     }
 
     if(test == 0){
-        strcpy(alias,"a = {x : 0 <= x <= -10} ");
+        strcpy(alias,"a = {} ");
         test++;
     }
 
