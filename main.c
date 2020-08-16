@@ -676,7 +676,7 @@ int main() {
     }
 
     if(test == 0){
-        strcpy(alias,"a = {-1,-1000,-1313,-10} ");
+        strcpy(alias,"a = {} ");
         test++;
     }
 
