@@ -6,9 +6,6 @@
 #include "parser.h"
 #include "operaciones.h"
 
-#define INT_SUPLIM 32767
-#define INT_INFLIM -32767
-
 Conjunto inicializar_conjunto(char* alias, char* operacion);
 Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista);
 void extraer_com_conjunto(char* operacion, Conjunto conjunto);
