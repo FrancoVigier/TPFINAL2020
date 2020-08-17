@@ -112,7 +112,7 @@ void mostrar_intervalos(GList intervall) {
   }
 }
 
-void destruir_conjunto(Conjunto conjunto, void* aux){
+void destruir_conjunto(Conjunto conjunto){
   free (conjunto->alias);
   GList proximo = conjunto->lista;
   GList actual;
