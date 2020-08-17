@@ -169,6 +169,7 @@ int check_cadena_num_ext(char* operacion) {
   if (cdn == 0 && vli == 0) {
   return 0;
   }
+  return -1;
 }
 
 int cadena_de_numeros_extension(char* num) {
