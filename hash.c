@@ -16,10 +16,8 @@ struct _GNodo *** inicializar_HASH() {
   return HASH;
 }
 
-int codigo_ascii(char caracter) {
-  switch (caracter) {
-      return caracter - '0';
-  }
+int codigo_ascii(char caracter) {  
+  return caracter - '0';
 }
 
 int hasheo_uno(char* palabra) {
