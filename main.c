@@ -21,7 +21,7 @@ int main() {
   int inicializarUniversal = 0;
   while (interprete == 0) {
     char* alias = malloc(LIMITE * sizeof(char));
-    fgets(alias, LIMITE, stdin);
+    (void)fgets(alias, LIMITE, stdin);
     char* operacion = NULL;
     operacion = parsear_comando_y_operacion(alias, operacion);
     int instruccion = comando_int(operacion, alias);
