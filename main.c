@@ -226,11 +226,11 @@ int main() {
     actual = proximo;
     proximo = proximo->next;
     Conjunto fr = (Conjunto)actual->data;
-    free(fr->alias);
+    free (fr->alias);
     glist_destruir_int(fr->lista);
     glist_destruir_int(fr->intervaloLista);
-    free(fr);
-    free(actual);
+    free (fr);
+    free (actual);
   }
   return 0;
 }
