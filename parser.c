@@ -131,7 +131,7 @@ int check_cadena_num_ext(char* operacion) {
   char separadorInicial[] = "{";
   char* buffer = operacion;
   char* fraccion = strtok(buffer, separadorInicial);
-  char* numeros;
+  char* numeros = NULL;
   int cdn = 0;
   int vli = 0;
   if (fraccion != NULL) {
@@ -328,8 +328,8 @@ int comando_int(char* operacion, char* alias) { //1-> creacion extension 2->crea
 Operandos* sacar_operando_union_inters(char* operacion) {
   char separadorInicial[] = " ";
   char *fraccion = strtok(operacion, separadorInicial);
-  char *inicio;
-  char *fin;
+  char *inicio = NULL;
+  char *fin = NULL;
   int contador = 0;
   if (fraccion != NULL) {
     while (fraccion != NULL) {
@@ -350,7 +350,7 @@ Operandos* sacar_operando_union_inters(char* operacion) {
 Operandos* sacar_operando_complemento(char* operacion) {
   char separadorInicial[] = "~";
   char *fraccion = strtok(operacion, separadorInicial);
-  char *inicio;
+  char *inicio = NULL;
   char *fin = NULL;
   int contador = 0;
   if (fraccion != NULL) {
@@ -370,7 +370,7 @@ Operandos* sacar_operando_complemento(char* operacion) {
 Operandos* sacar_operando_imprimir(char* alias) {
   char separadorInicial[] = " ";
   char *fraccion = strtok(alias, separadorInicial);
-  char *inicio;
+  char *inicio = NULL;
   char *fin = NULL;
   int contador = 0;
   if (fraccion != NULL) {
