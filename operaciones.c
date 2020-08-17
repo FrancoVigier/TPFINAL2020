@@ -395,29 +395,3 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
   free (pila);
   return resultado;
 }
-
-void mostrar(GList lista) {
-  for (; lista != NULL; lista = lista->next) {
-    long long num = (long long)lista->data;
-    printf("- %lld -\n", num);
-  }
-}
-
-void mostrar_glist(GList lista) {
-  Conjunto var;
-  for (; lista != NULL; lista = lista->next) {
-    var = lista->data;
-    mostrar(var->lista);
-  }
-}
-
-
-void mostrar_glist_intervalos(GList lista) {
-  GList buff = lista->next;
-  Conjunto var;
-  mostrar(buff);
-  for (; lista != NULL; lista = lista->next) {
-    var = lista->data;
-    mostrar_intervalo(var->intervaloLista);
-  }
-}
