@@ -9,9 +9,6 @@
 #include "hash.h"
 
 #define LIMITE 300
-#define INT_SUPLIM 32767
-#define INT_INFLIM -32767
-#define LIST_LIM 10
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
