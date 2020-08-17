@@ -22,7 +22,4 @@ GList definir_conj_union(Conjunto primero, Conjunto segundo);
 GList conjunto_inters( Conjunto primero, Conjunto segundo);
 GList conjunto_diferencia_dos(GList intervaloA, Intervalo* intervaloB);
 GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo);
-void mostrar(GList lista);
-void mostrar_glist(GList lista);
-void mostrar_glist_intervalos(GList lista);
 #endif // OPERACIONES_H_INCLUDED
