@@ -42,7 +42,7 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   char separadorInicial[] = "{";
   char* buffer = operacion;
   char* fraccion = strtok(buffer,separadorInicial);
-  char* numeros;
+  char* numeros = NULL;
   if (fraccion != NULL) {
     while (fraccion != NULL) {
       numeros = fraccion;
