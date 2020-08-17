@@ -1,6 +1,6 @@
   
 CC = gcc
-CFLAGS = -g -O3 -lm -Wall -Wextra -std=c99
+CFLAGS = -g -O3 -lm -Wall -Wextra -Werror -std=c99
 
 .PHONY: default_target all clean
 
