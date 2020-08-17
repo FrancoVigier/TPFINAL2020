@@ -26,7 +26,6 @@ long long numero_char_a_long_long(char* numero) {
     indice = 1;
     largo--;
   }
-  int buff = largo;
   while (numero[indice] != '\0') {
     decimal = numero[indice] - '0';
     cifra += decimal * potencia_de_diez_long(--largo);
@@ -53,7 +52,7 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   separadorInicial[0] = ',';
   fraccion = strtok(numeros, separadorInicial);
   if (fraccion != NULL) { //fraccion = "10" i.e
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       long long numConjunto =  numero_char_a_long_long(fraccion);
       conjunto->lista = prepend_glist(conjunto->lista, (long long*)numConjunto);
       fraccion = strtok(NULL, separadorInicial);
@@ -68,7 +67,7 @@ char* parsear_comando_y_operacion(char* comando, char* operacion) {
   int diferencia = 0;
   char separadorDiferencial[] = "\0";
   if (fraccion != NULL) {
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       fraccion[strlen(fraccion) - 1] = '\0';
       if (diferencia == 0) {
         comando = fraccion;
@@ -144,7 +143,7 @@ int check_cadena_num_ext(char* operacion) {
   separadorInicial[0] = ',';
   fraccion = strtok(numeros, separadorInicial);
   if (fraccion != NULL) { //fraccion = "10" i.e
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       if (cadena_de_numeros(fraccion) == 1) {
         cdn = 1;
       }
@@ -173,7 +172,6 @@ int check_cadena_num_ext(char* operacion) {
 }
 
 int cadena_de_numeros_extension(char* num) {
-  char letra;
   int ok = 0;
   if (strcmp(num, " {}") == 0) {
     return ok;
@@ -225,7 +223,7 @@ int nombre_de_var_igual_com (char* operacion){//free aliasA aliasB
 
   int diferencia = 0;
   if (fraccion != NULL) {
-    while (fraccion != NULL) {// S髄o en la primera pasamos la cadena; en las siguientes pasamos NULL
+    while (fraccion != NULL) {// S贸lo en la primera pasamos la cadena; en las siguientes pasamos NULL
       fraccion[strlen(fraccion)] = '\0';
       if (diferencia == 0) { // "{alias"
         strcpy(aliasA,fraccion);
@@ -268,7 +266,7 @@ int nombre_de_var_igual_com (char* operacion){//free aliasA aliasB
     ok = 1;
   }
   if ( cadena_de_numeros(numeroA) == 1 || cadena_de_numeros(numeroB) == 1) {
-    printf("Error de sintaxis del tipo {alias : 'x' <= alias <= 'y'} con x e y no n鷐eros enteros\n");
+    printf("Error de sintaxis del tipo {alias : 'x' <= alias <= 'y'} con x e y no n煤meros enteros\n");
     ok = 1;
   }
   if (validador_limites_int(numeroA) == 1) {
