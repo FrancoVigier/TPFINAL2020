@@ -99,7 +99,7 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
         bufferLista = bufferLista->next;
       }
       printf("\n");
-     // glist_destruir_intervalo(bufferListaConj);
+      glist_destruir_int(bufferListaConj);
     }
 }
 
