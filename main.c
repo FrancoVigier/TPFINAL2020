@@ -21,10 +21,26 @@ int main() {
   int inicializarUniversal = 0;
   while (interprete == 0) {
     char* alias = malloc(LIMITE * sizeof(char));
-    (void)fgets(alias, LIMITE, stdin);
+    if (fgets(alias, LIMITE, stdin)){}
     char* operacion = NULL;
+    int instruccion = 0;
+    if (strlen(alias) == LIMITE - 1) {
+      printf("Overflow de entrada...\n");
+      scanf("%*[^\n]");
+      scanf("%*c");
+      free (alias);
+      continue;
+    }
+    if (strstr(alias, "=") == 0 && strstr(alias, "imprimir ") == 0 &&
+        strstr(alias, "salir") == 0) {
+      printf("Error en la declaracion, no hay '='\n");
+      instruccion = 9;
+    }
+    else {
     operacion = parsear_comando_y_operacion(alias, operacion);
-    int instruccion = comando_int(operacion, alias);
+    instruccion = comando_int(operacion, alias);
+
+    }
     switch (instruccion) {
       case 1:
         printf("Definicion de un conj. por extension...\n");
