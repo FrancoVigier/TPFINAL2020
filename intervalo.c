@@ -8,8 +8,8 @@ Intervalo* extraer_ini_y_fin(char* operacionA) {
   strcpy(operacion,operacionA);
   char separadorInicial[] = " ";
   char *fraccion = strtok(operacion, separadorInicial);
-  char *inicio;
-  char *fin;
+  char *inicio = NULL;
+  char *fin = NULL;
   int contador = 0;
   if (fraccion != NULL) {
     while (fraccion != NULL) {
