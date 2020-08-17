@@ -201,7 +201,6 @@ int main() {
         Conjunto op9 = hash_busco(HASH, opeImp->aliasOperandoA);
         if (op9 != NULL) {
           mostrar_conjunto_imprimir(op9);
-          mostrar_conjunto_imprimir(op9);
         }
         else {
           printf("El operando %s no existe...\n", opeImp->aliasOperandoA);
