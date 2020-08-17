@@ -25,16 +25,19 @@ HEADERS_PARSER = $(wildcard parser/*.h)
 OBJECTS_PILA = $(patsubst %.c, compilados/.obj/%.o, $(wildcard pila/*.c))
 HEADERS_PILA = $(wildcard pila/*.h)
 
+OBJECTS_OPERACIONES = $(patsubst %.c, compilados/.obj/%.o, $(wildcard operaciones/*.c))
+HEADERS_OPERACIONES = $(wildcard operaciones/*.h)
+
 OBJECTS_INTERPRETE = $(patsubst %.c, compilados/.obj/%.o, $(wildcard *.c))
 HEADERS_INTERPRETE = $(wildcard *.h)
 
-compilados/.obj/%.o: %.c $(HEADERS_LSE) $(HEADERS_CONJUNTO) $(HEADERS_HASH) $(HEADERS_INTERVALO) $(HEADERS_PARSER) $(HEADERS_PILA) $(HEADERS_INTERPRETE)
+compilados/.obj/%.o: %.c $(HEADERS_LSE) $(HEADERS_CONJUNTO) $(HEADERS_HASH) $(HEADERS_INTERVALO) $(HEADERS_PARSER) $(HEADERS_PILA) $(HEADERS_OPERACIONES) $(HEADERS_INTERPRETE)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-.PRECIOUS: Interprete $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_INTERPRETE)
+.PRECIOUS: Interprete $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_OPERACIONES) $(OBJECTS_INTERPRETE)
 
-Interprete: compilados compilados/.obj compilados/.obj/LSE compilados/.obj/conjunto compilados/.obj/hash compilados/.obj/intervalo compilados/.obj/parser compilados/.obj/pila $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_INTERPRETE)
-	$(CC) $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_INTERPRETE) $(CFLAGS) -o compilados/$@
+Interprete: compilados compilados/.obj compilados/.obj/LSE compilados/.obj/conjunto compilados/.obj/hash compilados/.obj/intervalo compilados/.obj/parser compilados/.obj/pila compilados/.obj/operaciones $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_OPERACIONES) $(OBJECTS_INTERPRETE)
+	$(CC) $(OBJECTS_LSE) $(OBJECTS_CONJUNTO) $(OBJECTS_HASH) $(OBJECTS_INTERVALO) $(OBJECTS_PARSER) $(OBJECTS_PILA) $(OBJECTS_OPERACIONES) $(OBJECTS_INTERPRETE) $(CFLAGS) -o compilados/$@
 
 compilados:
 	mkdir -p $@
@@ -55,6 +58,9 @@ compilados/.obj/parser:
 	mkdir -p $@
 	
 compilados/.obj/pila:
+	mkdir -p $@	
+
+compilados/.obj/operaciones:
 	mkdir -p $@	
 
 compilados/.obj:
