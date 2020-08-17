@@ -38,7 +38,8 @@ int main() {
       strcpy(alias,"universal = {} ");
       test++;
     }
-    char* operacion = parsear_comando_y_operacion(alias, operacion);
+    char* operacion = NULL;
+    operacion = parsear_comando_y_operacion(alias, operacion);
     int instruccion = comando_int(operacion, alias);
     switch (instruccion) {
       case 1:
@@ -46,7 +47,6 @@ int main() {
         if (strcmp(alias, "universal") != 0){
           Conjunto oper = definir_conj_ext(operacion, alias);
           hash_inserto(HASH, oper->alias, oper->lista, oper->intervaloLista);
-          Conjunto aux = hash_busco(HASH, oper->alias);
           freeLista = prepend_glist(freeLista, oper);
           free (alias);
         }
@@ -60,7 +60,6 @@ int main() {
         if (strcmp(alias, "universal") != 0){
           Conjunto opeB = definir_conj_com(operacion, alias);
           hash_inserto(HASH, opeB->alias, opeB->lista, opeB->intervaloLista);
-          Conjunto aux1 = hash_busco(HASH, opeB->alias);
           freeLista = prepend_glist(freeLista, opeB);
           free(alias);
         }
@@ -168,7 +167,6 @@ int main() {
             char operacione[] = " {x : -2147483648 <= x <= 2147483647}";
             Conjunto uni = definir_conj_com(operacione, aliasa);
             hash_inserto(HASH, uni->alias, uni->lista, uni->intervaloLista);
-            Conjunto aux1 = hash_busco(HASH, uni->alias);
             freeLista = prepend_glist(freeLista, uni);
             inicializarUniversal = 1;
           }
