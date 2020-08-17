@@ -343,8 +343,7 @@ GList definir_conj_dif_dos(Conjunto primero, Conjunto segundo) {
   }
 
   Stack pila = stack_new();
-  GList listaDiferencia = initialization_glist();
-  GList buff;
+
   for (; listados != NULL; listados = listados->next) {
     Intervalo* datazo = (Intervalo*)listados->data;
     Intervalo* dato = malloc(sizeof(struct _Intervalo));
