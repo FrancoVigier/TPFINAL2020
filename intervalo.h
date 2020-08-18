@@ -11,6 +11,9 @@ typedef struct _Intervalo {
   long long cardinalidad;
 } Intervalo;
 
+/**
+* Extraemos los intervalos inf y sup de la def. por comprension
+*/
 Intervalo* extraer_ini_y_fin(char* operacion);
 
 #endif // INTERVALO_H_INCLUDED
