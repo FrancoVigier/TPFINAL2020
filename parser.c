@@ -5,7 +5,9 @@
 #include <limits.h>
 #include "parser.h"
 
-//Conseguimos potencias de 10
+/**
+* Conseguimos potencias de 10
+*/
 long long potencia_de_diez_long(int largo) {
   long long potencia = 1;
   while (largo > 0) {
@@ -14,36 +16,41 @@ long long potencia_de_diez_long(int largo) {
   }
   return potencia;
 }
-//Transformamos una cadena a numero
+
+/**
+* Transformamos una cadena a numero
+*/
 long long numero_char_a_long_long(char* numero) {
   int indice = 0;
   int largo = strlen(numero);
   long long cifra = 0;
   int decimal;
   int negativo = 0;
-//Si la cadena es de un numero negativo el '-' va al comienzo
+  //Si la cadena es de un numero negativo el '-' va al comienzo
   if (numero[0] == '-') {
     negativo = 1;
     indice = 1;
     largo--;
   }
-//A cada caracter en la cadena lo paso a digito y lo multiplico
-//por su potencia de 10 correspondiente a su posicion
+  //A cada caracter en la cadena lo paso a digito y lo multiplico
+  //por su potencia de 10 correspondiente a su posicion
   while (numero[indice] != '\0') {
     decimal = numero[indice] - '0';
     cifra += decimal * potencia_de_diez_long(--largo);
     indice++;
   }
-//Si es negativo multiplico el resultado por 1
+  //Si es negativo multiplico el resultado por 1
   if (negativo == 1) {
     cifra = cifra * -1;
   }
   return cifra;
 }
 
-//Extraemos los numeros presentes en la def. por extension
+/**
+* Extraemos los numeros presentes en la def. por extension
+*/
 GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
-//Leo entre comas para el caso {x} no sirve pero si altero y es {x si sirve
+  //Leo entre comas para el caso {x} no sirve pero si altero y es {x si sirve
   operacion[strlen(operacion) - 1] = ',';
   char separadorInicial[] = "{";
   char* buffer = operacion;
@@ -57,8 +64,8 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   }
   separadorInicial[0] = ',';
   fraccion = strtok(numeros, separadorInicial);
-//Fracciono la declaracion entre comas y las cadenas
-//que representan numeros las transformo a tal
+  //Fracciono la declaracion entre comas y las cadenas
+  //que representan numeros las transformo a tal
   if (fraccion != NULL) {
     while (fraccion != NULL) {
       long long numConjunto =  numero_char_a_long_long(fraccion);
@@ -69,7 +76,9 @@ GList extraer_ext_conjunto(char* operacion, Conjunto conjunto) {
   return conjunto->lista;
 }
 
-//Extraigo el alias y operacion en el formato 'alias = operacion'
+/**
+* Extraigo el alias y operacion en el formato 'alias = operacion'
+*/
 char* parsear_comando_y_operacion(char* comando, char* operacion) {
   char separador[] = "=";
   char *fraccion = strtok(comando, separador);
@@ -91,8 +100,10 @@ char* parsear_comando_y_operacion(char* comando, char* operacion) {
   return operacion;
 }
 
-//Chequeo que una cadena que representa un numero
-//este entre los limites de la variable int
+/**
+* Chequeo que una cadena que representa un numero
+* este entre los limites de la variable int
+*/
 int validador_limites_int (char* num) {
   long long numero = numero_char_a_long_long(num);
   if (numero > INT_MAX || numero < INT_MIN) {
@@ -101,7 +112,9 @@ int validador_limites_int (char* num) {
   return 0;
 }
 
-//Verifico si se trata de una declaracion alias = {x}
+/**
+* Verifico si se trata de una declaracion alias = {x}
+*/
 int conjunto_un_elem(char* operacion) {
   int indice = 2;
   if (operacion[indice] == '-') {
@@ -114,8 +127,10 @@ int conjunto_un_elem(char* operacion) {
   return 0; //0 es un num
 }
 
-//Verificador que si una cadera de caracteres
-//solo se compone de digitos
+/**
+* Verificador que si una cadera de caracteres
+* solo se compone de digitos
+*/
 int cadena_de_numeros (char* num) {
   char letra;
   int indice = 0;
@@ -141,9 +156,11 @@ int cadena_de_numeros (char* num) {
   return 0;
 }
 
-//Verificador de que si la declaracion por extensio de
-//un conjunto sus elementos son cadenas de digitos y
-//los numeros que estas representan estan dentro de los limites
+/**
+* Verificador de que si la declaracion por extensio de
+* un conjunto sus elementos son cadenas de digitos y
+* los numeros que estas representan estan dentro de los limites
+*/
 int check_cadena_num_ext(char* operacion) {
   operacion[strlen(operacion) - 1] = ',';
   char separadorInicial[] = "{";
@@ -162,18 +179,18 @@ int check_cadena_num_ext(char* operacion) {
   fraccion = strtok(numeros, separadorInicial);
   if (fraccion != NULL) {
     while (fraccion != NULL) {
-//Validamos si esta compuesta de solamente digitos la cadena
+  //Validamos si esta compuesta de solamente digitos la cadena
       if (cadena_de_numeros(fraccion) == 1) {
         cdn = 1;
       }
-//Validamos si la cadena representa un num entre los limites
+  //Validamos si la cadena representa un num entre los limites
       if (validador_limites_int(fraccion) == 1) {
         vli = 1;
       }
       fraccion = strtok(NULL, separadorInicial);
     }
   }
-//Informe de error
+  //Informe de error
   if (cdn == 1 && vli == 1) {
     printf("Error del tipo {x1,'x',...,xn}, con x distinto a un");
     printf(" numero entero\n");
@@ -195,8 +212,10 @@ int check_cadena_num_ext(char* operacion) {
   return -1;
 }
 
-//Verificador de errores en la declaracion por extension
-//de un conjunto
+/**
+* Verificador de errores en la declaracion por extension
+* de un conjunto
+*/
 int cadena_de_numeros_extension(char* num) {
   int ok = 0;
   if (strcmp(num, " {}") == 0) {
@@ -224,8 +243,10 @@ int cadena_de_numeros_extension(char* num) {
   return ok;
 }
 
-//Verificador de errores en la declaracion por comprension
-//de un conjunto
+/**
+* Verificador de errores en la declaracion por comprension
+* de un conjunto
+*/
 int nombre_de_var_igual_com (char* operacion){
   char separador[] = " ";
   int ok = 0;
@@ -299,7 +320,7 @@ int nombre_de_var_igual_com (char* operacion){
   }
   if ( cadena_de_numeros(numeroA) == 1 || cadena_de_numeros(numeroB) == 1) {
     printf("Error de sintaxis del tipo {alias : 'x' <= alias <= 'y'}");
-    printf(" con x e y no números enteros\n");
+    printf(" con x e y no nÃºmeros enteros\n");
     ok = 1;
   }
   if (validador_limites_int(numeroA) == 1) {
@@ -323,11 +344,15 @@ int nombre_de_var_igual_com (char* operacion){
   return ok;
 }
 
-//Dado un input del tipo 'alias = operacion' nos
-//dirige a una operacion entre las definidas
+/**
+* Dado un input del tipo 'alias = operacion' nos
+* dirige a una operacion entre las definidas
+*/
 int comando_int(char* operacion, char* alias) {
   if (strstr(alias, "imprimir "))
     return 7;
+  if (strcmp(alias, "salir") == 0)
+    return 8;
   if (strstr(operacion, ",") || strcmp(operacion, " {}") == 0 ||
       conjunto_un_elem(operacion) == 0) {
     if (strcmp(operacion, "") != 0 &&
@@ -357,13 +382,14 @@ int comando_int(char* operacion, char* alias) {
     return 5;
   if (strstr(operacion, "~"))
     return 6;
-  if (strstr(alias, "salir"))
-    return 8;
+
   return 9;
 }
 
-//Extraemos los operandos de las operaciones del tipo
-// 'alias = aliasA cadena aliasB'
+/**
+* Extraemos los operandos de las operaciones del tipo
+* 'alias = aliasA cadena aliasB'
+*/
 Operandos* sacar_operando_union_inters(char* operacion) {
   char separadorInicial[] = " ";
   char *fraccion = strtok(operacion, separadorInicial);
@@ -386,7 +412,9 @@ Operandos* sacar_operando_union_inters(char* operacion) {
   return operandos;
 }
 
-//Extraemos el operando de la op. Complemento
+/**
+* Extraemos el operando de la op. Complemento
+*/
 Operandos* sacar_operando_complemento(char* operacion) {
   char separadorInicial[] = "~";
   char *fraccion = strtok(operacion, separadorInicial);
@@ -407,7 +435,9 @@ Operandos* sacar_operando_complemento(char* operacion) {
   return operandos;
 }
 
-//Extraemos el operando de la directiva Imprimir
+/**
+* Extraemos el operando de la directiva Imprimir
+*/
 Operandos* sacar_operando_imprimir(char* alias) {
   char separadorInicial[] = " ";
   char *fraccion = strtok(alias, separadorInicial);
