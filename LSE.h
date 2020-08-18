@@ -26,7 +26,7 @@ GList initialization_glist();
 
 /**
 * Designamos memoria al nodo de una LSE
-*/
+*/ 
 GList alloc_gnodo();
 
 /**
