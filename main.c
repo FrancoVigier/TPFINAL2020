@@ -26,8 +26,8 @@ int main() {
     int instruccion = 0;
     if (strlen(alias) == LIMITE - 1) {
       printf("Overflow de entrada...\n");
-      scanf("%*[^\n]");
-      scanf("%*c");
+      if (scanf("%*[^\n]")){}
+      if (scanf("%*c")){}
       free (alias);
       continue;
     }
