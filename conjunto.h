@@ -1,4 +1,4 @@
-#ifndef CONJUNTO_H_INCLUDED
+#ifndef CONJUNTO_H_INCLUDED 
 #define CONJUNTO_H_INCLUDED
 #include "LSE.h"
 #include "intervalo.h"
