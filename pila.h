@@ -1,5 +1,5 @@
 #ifndef PILA_H_INCLUDED
-#define PILA_H_INCLUDED
+#define PILA_H_INCLUDED 
 #include "LSE.h"
 typedef struct _Stack {
   GList primero;
