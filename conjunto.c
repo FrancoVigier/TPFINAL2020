@@ -3,7 +3,9 @@
 #include "operaciones.h"
 #include "conjunto.h"
 
-//Inicializamos un conjunto
+/**
+* Inicializamos un conjunto
+*/
 Conjunto inicializar_conjunto(char* alias, char* operacion) {
   Conjunto conjunto = malloc(sizeof (struct _Conjunto));
   char vacio[] = " {}";
@@ -18,7 +20,9 @@ Conjunto inicializar_conjunto(char* alias, char* operacion) {
   return conjunto;
 }
 
-//Creamos un conjunto por listas por copia
+/**
+* Creamos un conjunto por listas por copia
+*/
 Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista) {
   Conjunto conju = malloc(sizeof(struct _Conjunto));
   conju->alias = malloc(sizeof(char) * 20);
@@ -30,28 +34,32 @@ Conjunto crear_conjunto(char* alias, GList lista, GList intervaloLista) {
   return conju;
 }
 
-//Dada una definicion por comprension creo un intervalo
-//y lo cargo a un Conjunto parametro
+/**
+* Dada una definicion por comprension creo un intervalo
+* y lo cargo a un Conjunto parametro
+*/
 void extraer_com_conjunto(char* operacion, Conjunto conj) {
-//Extraigo limites de la definicion
+  //Extraigo limites de la definicion
   Intervalo* intervalo = extraer_ini_y_fin(operacion);
-//Verifico si es valido el intervalo
+  //Verifico si es valido el intervalo
   if (intervalo == NULL) {
     conj->vacio = 1;
     return;
   }
   conj->vacio = intervalo->esVacio;
-//Si es valido lo cargo al conjunto parametro
+  //Si es valido lo cargo al conjunto parametro
   if (conj->vacio == 0) {
     conj->intervaloLista = prepend_glist(conj->intervaloLista, intervalo);
   }
   return;
 }
 
-//Defino un conjunto por comprension
+/**
+* Defino un conjunto por comprension
+*/
 Conjunto definir_conj_com(char* operacion, char* alias) {
   Conjunto nuevoConjunto = inicializar_conjunto(alias, operacion);
-//Extraigo el intervalo presente en la declaracion
+  //Extraigo el intervalo presente en la declaracion
   extraer_com_conjunto(operacion, nuevoConjunto);
   if (nuevoConjunto->vacio == 1) {
     printf("El conjunto definido por comprension es vacio\n");
@@ -59,11 +67,13 @@ Conjunto definir_conj_com(char* operacion, char* alias) {
   return nuevoConjunto;
 }
 
-//Definimos un conjunto por extension
+/**
+* Definimos un conjunto por extension
+*/
 Conjunto definir_conj_ext(char* operacion, char* alias) {
   Conjunto nuevoConjunto = inicializar_conjunto(alias, operacion);
-//Si el conjunto no es vacio en la declaracion por extension
-//es decir '{}' extraigo su contenido
+  //Si el conjunto no es vacio en la declaracion por extension
+  //es decir '{}' extraigo su contenido
   if (nuevoConjunto->vacio == 0)
     nuevoConjunto->lista = extraer_ext_conjunto(operacion, nuevoConjunto);
   else
@@ -71,23 +81,25 @@ Conjunto definir_conj_ext(char* operacion, char* alias) {
   return nuevoConjunto;
 }
 
-//Imprimimos un conjunto
+/**
+* Imprimimos un conjunto
+*/
 void mostrar_conjunto_imprimir(Conjunto muestro) {
-//Si el conjunto es nulo, imprimimos "{}"
+  //Si el conjunto es nulo, imprimimos "{}"
   if (muestro->lista == NULL && muestro->intervaloLista == NULL) {
     printf("{}\n");
   } else {
-//Si no lo es aplano su contenido, es decir paso
-//todo a intervalo
+  //Si no lo es aplano su contenido, es decir paso
+  //todo a intervalo
       GList bufferListaConj = aplanar_lista(muestro);
       GList bufferLista = glist_selection_sort(bufferListaConj);
       for (; bufferLista != NULL;) {
         Intervalo * ver = bufferLista->data;
-//Si son intervalos [x,x] expreso como x
+  //Si son intervalos [x,x] expreso como x
         if (ver->inicio == ver->ultimo) {
           printf("%lld", ver->inicio);
         }
-//Si no expreso como [x,y]
+  //Si no expreso como [x,y]
         else {
           printf("%lld:%lld", ver->inicio, ver->ultimo);
         }
@@ -101,13 +113,15 @@ void mostrar_conjunto_imprimir(Conjunto muestro) {
     }
 }
 
-//Liberamos la memoria de un Conjunto
+/**
+* Liberamos la memoria de un Conjunto
+*/
 void destruir_conjunto(Conjunto conjunto) {
-//Libero el alias
+  //Libero el alias
   free (conjunto->alias);
   GList proximo = conjunto->lista;
   GList actual;
-//Libero la lista de elementos tipo x
+  //Libero la lista de elementos tipo x
   for (; proximo != NULL;) {
     actual = proximo;
     proximo = proximo->next;
@@ -116,7 +130,7 @@ void destruir_conjunto(Conjunto conjunto) {
   conjunto->lista = NULL;
   GList proximoDos = conjunto->intervaloLista;
   GList actualDos;
-//Libero la lista de elementos tipo [x,y]
+  //Libero la lista de elementos tipo [x,y]
   for (; proximoDos != NULL;) {
     actualDos = proximoDos;
     proximoDos = proximoDos->next;
@@ -125,6 +139,6 @@ void destruir_conjunto(Conjunto conjunto) {
     free (actualDos);
   }
   conjunto->intervaloLista = NULL;
-//Libero el conjunto
+  //Libero el conjunto
   free (conjunto);
 }
