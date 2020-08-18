@@ -1,5 +1,5 @@
 #include <string.h>
-#include <stdio.h>
+#include <stdio.h> 
 #include "LSE.h"
 #include "conjunto.h"
 #include "intervalo.h"
