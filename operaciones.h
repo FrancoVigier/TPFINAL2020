@@ -1,4 +1,4 @@
-#ifndef OPERACIONES_H_INCLUDED
+#ifndef OPERACIONES_H_INCLUDED 
 #define OPERACIONES_H_INCLUDED
 
 #include "pila.h"
