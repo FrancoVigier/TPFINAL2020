@@ -89,7 +89,7 @@ void buscar_pico (Notificaciones* agenda, char* localidad, char* departamento) {
 /**
 * Funcion que dandole una lugar y una fecha, extrae los casos confirmados
 * para ese lugar y calcula retrocediendo en el tiempo cuantos dias tardo
-* en llegar a los confirmado encontrando un nodo anterior a él con un
+* en llegar a los confirmado encontrando un nodo anterior a Ã©l con un
 * valor de confirmados de la mitad. En mi implementacion hay variantes,
 * explicadas en el informe. Por ejemplo
 * Valor de contagios
@@ -265,6 +265,7 @@ void casos_acumulado_intervalo(Notificaciones* agenda, char* localidad,
 /**
 * Funcion que grafica los puntos presentes en el archivo AcumuladosAGraficar.csv
 */
+/*
 void plot_casos_acumulados() {
   //Invoco a gnuplot
   FILE *gnuplotPipe = popen("gnuplot", "w");
@@ -290,10 +291,11 @@ void plot_casos_acumulados() {
   fprintf(gnuplotPipe, "quit\n");
   pclose(gnuplotPipe);
 }
-
+*/
 /**
 * Funcion que grafica los puntos presentes en el archivo DiariosAGraficar.csv
 */
+/*
 void plot_casos_diarios() {
   //Invoco a gnuplot
   FILE *gnuplotPipe = popen("gnuplot", "w");
@@ -320,7 +322,7 @@ void plot_casos_diarios() {
   fprintf(gnuplotPipe, "quit\n");
   pclose(gnuplotPipe);
 }
-
+*/
 int main() {
   Notificaciones * agenda = notificaciones_crear();
   printf("BIENVENIDO AL INTERPRETE\n");
@@ -374,7 +376,7 @@ int main() {
      las++;
      }
               if(las == 12){
-     strcpy(alias,"agregar_registro 2020-11-22T00:00:00-03:00 9 de Pepé PUTOS 400 2 5");
+     strcpy(alias,"agregar_registro 2020-11-22T00:00:00-03:00 9 de PepÃ© PUTOS 400 2 5");
      las++;
      }
          if(las == 11){
