@@ -30,13 +30,13 @@ Diario* parsear_linea(char* linea) {
   //del archivo
   int parseo = 0;
   //Variables donde van a ir almacenados los datos extraidos
-  char* fecha;
-  char* departamento;
-  char* localidad;
-  int confirmados;
-  int descartados;
-  int enEstudio;
-  int notificaciones;
+  char* fecha = NULL;
+  char* departamento = NULL;
+  char* localidad = NULL;
+  int confirmados = 0;
+  int descartados = 0;
+  int enEstudio = 0;
+  int notificaciones = 0;
   if (fraccion != NULL) {
   //Recorro el contenido de mi linea entre comas y lo guardo como variables
     while (fraccion != NULL) {
@@ -104,7 +104,7 @@ void parser_cvs(char* nombreArchivo, Notificaciones* agenda) {
   while (!feof(archivo)) {
   //Cargo en una cadena la primera linea del archivo
     char *linea = calloc(sizeof(char), BUFFER_SIZE);
-    fscanf(archivo, "%1023[^\n\r]", linea);
+    if (fscanf(archivo, "%1023[^\n\r]", linea)) {}
   //Si no se trata de la linea que contiene los nombres de los argumentos
   //parseo esa linea e inserto su contenido
     if (primera_linea != 0) {
